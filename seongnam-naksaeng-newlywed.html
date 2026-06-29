@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>성남낙생 신혼희망타운 — 예비신혼부부 청약 가이드</title>
+<meta name="description" content="e편한세상 분당 퍼스트빌리지(성남낙생 A-1BL) 신혼희망타운 예비신혼부부 청약 — 거주요건·자격·가점·체크리스트·일정 (공고일 2026.05.29 기준)">
+<style>
+  :root{
+    --paper:#F4F6F7; --card:#FFFFFF; --ink:#18222B; --muted:#5C6873; --faint:#8A949E;
+    --teal:#13616E; --teal-deep:#0C434C; --tint:#E5EEF0; --tint-2:#F0F5F6;
+    --border:#DBE1E5; --border-strong:#C5CDD2;
+    --good:#2E7D4F; --good-bg:#E7F2EC; --warn:#9C6A12; --warn-bg:#F7EEDC; --crit:#B23A38; --crit-bg:#F7E7E6;
+    --shadow:0 1px 2px rgba(20,34,43,.04),0 6px 22px rgba(20,34,43,.06);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,Segoe UI,sans-serif;
+    font-size:16px; line-height:1.72; letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:840px; margin:0 auto; padding:clamp(20px,4vw,52px) clamp(16px,4vw,28px) 80px;}
+  .stack{display:flex; flex-direction:column;}
+
+  /* eyebrow / labels */
+  .eyebrow{font-size:.74rem; font-weight:700; letter-spacing:.14em; color:var(--teal); text-transform:uppercase;}
+  .label{font-size:.72rem; font-weight:700; letter-spacing:.08em; color:var(--faint); text-transform:uppercase;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(160deg,var(--teal-deep),var(--teal) 78%);
+    color:#EAF3F4; border-radius:18px; padding:clamp(22px,4vw,34px); box-shadow:var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:240px; height:240px;
+    background:radial-gradient(circle,rgba(255,255,255,.10),transparent 68%); pointer-events:none;}
+  .hero .eyebrow{color:#9FD3D9}
+  .hero h1{font-size:clamp(1.45rem,3.6vw,2rem); line-height:1.28; font-weight:800; margin:.5rem 0 .2rem; text-wrap:balance;}
+  .hero .sub{color:#BFE0E3; font-size:.95rem; margin-bottom:1.25rem}
+  .verdicts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:1.25rem}
+  .vcard{background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.16); border-radius:12px; padding:13px 15px;}
+  .vcard .vk{font-size:.74rem; color:#9FD3D9; font-weight:700; letter-spacing:.04em}
+  .vcard .vv{font-size:1.04rem; font-weight:800; color:#fff; margin-top:3px; line-height:1.35}
+  .scoreline{display:flex; flex-wrap:wrap; align-items:center; gap:10px; background:rgba(0,0,0,.16);
+    border-radius:12px; padding:14px 16px}
+  .scoreline .lead{font-size:.82rem; color:#BFE0E3; font-weight:600}
+  .chip-sum{display:flex; flex-wrap:wrap; align-items:center; gap:7px; font-weight:800}
+  .pill{display:inline-flex; align-items:center; gap:5px; border-radius:999px; padding:3px 11px; font-size:.86rem;
+    background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.18)}
+  .pill.full{background:#9FD3D9; color:#08363D; border-color:transparent}
+  .pill.mid{background:#F0D9A8; color:#5A3F0C; border-color:transparent}
+  .op{color:#7FB6BD; font-weight:700}
+  .tot{font-size:1.5rem; color:#fff; margin-left:2px}
+
+  /* ---------- SECTION ---------- */
+  section{margin-top:clamp(34px,5vw,52px)}
+  .sec-head{display:flex; align-items:baseline; gap:12px; border-bottom:2px solid var(--border-strong); padding-bottom:10px; margin-bottom:18px}
+  .sec-head h2{font-size:clamp(1.2rem,2.6vw,1.5rem); font-weight:800; margin:0; letter-spacing:-.02em; text-wrap:balance}
+  .sec-head .num{font-size:.9rem; font-weight:800; color:var(--teal); letter-spacing:.02em; flex:none;
+    border:1.5px solid var(--teal); border-radius:8px; padding:1px 8px; line-height:1.5}
+  p{margin:.5rem 0}
+  .lead-p{font-size:1.04rem; color:var(--ink)}
+  strong{font-weight:700}
+  .hl{background:linear-gradient(transparent 58%, #F0D9A8 58%); padding:0 1px; font-weight:700}
+  .muted{color:var(--muted)}
+
+  /* card */
+  .card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:clamp(16px,3vw,22px); box-shadow:var(--shadow)}
+  .card + .card{margin-top:14px}
+  .card h3{font-size:1.08rem; font-weight:800; margin:0 0 4px; letter-spacing:-.01em}
+  .card h3 .tag{font-size:.72rem; font-weight:700; color:var(--teal); background:var(--tint); border-radius:6px; padding:2px 7px; margin-left:7px; vertical-align:middle; letter-spacing:.02em}
+
+  /* callout */
+  .callout{display:flex; gap:12px; border-radius:12px; padding:14px 16px; font-size:.95rem; line-height:1.62}
+  .callout .ic{flex:none; font-weight:800; font-size:.95rem; width:22px; height:22px; border-radius:6px; display:grid; place-items:center; margin-top:1px}
+  .callout.good{background:var(--good-bg); border:1px solid #CFE6D8} .callout.good .ic{background:var(--good); color:#fff}
+  .callout.warn{background:var(--warn-bg); border:1px solid #ECDBB6} .callout.warn .ic{background:var(--warn); color:#fff}
+  .callout.crit{background:var(--crit-bg); border:1px solid #ECCBC9} .callout.crit .ic{background:var(--crit); color:#fff}
+  .callout.info{background:var(--tint-2); border:1px solid var(--border)} .callout.info .ic{background:var(--teal); color:#fff}
+  .callout b{font-weight:700}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:12px; background:var(--card)}
+  table{border-collapse:collapse; width:100%; min-width:440px; font-size:.92rem}
+  caption{caption-side:top; text-align:left; font-size:.82rem; color:var(--muted); padding:10px 14px 0; font-weight:600}
+  th,td{padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); vertical-align:top}
+  thead th{background:var(--tint-2); font-weight:700; font-size:.82rem; color:var(--teal-deep); letter-spacing:.01em; border-bottom:1.5px solid var(--border-strong)}
+  tbody tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .me{color:var(--teal-deep); font-weight:800; background:var(--tint)}
+  tr.me-row td{background:var(--tint)}
+  .dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle}
+  .dot.g{background:var(--good)} .dot.a{background:var(--warn)} .dot.r{background:var(--crit)}
+  .score-badge{display:inline-block; min-width:22px; text-align:center; font-weight:800; border-radius:6px; padding:1px 7px; font-size:.86rem}
+  .sb-3{background:var(--good-bg); color:var(--good)} .sb-2{background:var(--tint); color:var(--teal-deep)} .sb-1{background:var(--warn-bg); color:var(--warn)} .sb-0{background:#EEF1F3; color:var(--faint)}
+
+  /* checklist */
+  .checks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+  .checks li{display:flex; gap:12px; align-items:flex-start; padding:11px 6px; border-bottom:1px solid var(--border)}
+  .checks li:last-child{border-bottom:none}
+  .checks input{appearance:none; -webkit-appearance:none; flex:none; width:21px; height:21px; margin-top:2px; border:2px solid var(--border-strong); border-radius:6px; cursor:pointer; position:relative; transition:.15s; background:#fff}
+  .checks input:checked{background:var(--teal); border-color:var(--teal)}
+  .checks input:checked::after{content:""; position:absolute; left:6px; top:2px; width:5px; height:10px; border:solid #fff; border-width:0 2.5px 2.5px 0; transform:rotate(42deg)}
+  .checks input:focus-visible{outline:2px solid var(--teal); outline-offset:2px}
+  .checks label{cursor:pointer; line-height:1.55; font-size:.95rem}
+  .checks label .lt{font-weight:700}
+  .checks input:checked + label{color:var(--faint); text-decoration:line-through; text-decoration-color:var(--border-strong)}
+  .checks input:checked + label .lt{color:var(--faint)}
+  .grouphdr{display:flex; align-items:center; gap:8px; margin:18px 0 4px; font-weight:800; font-size:.98rem; color:var(--teal-deep)}
+  .grouphdr .gl{font-size:.7rem; font-weight:800; color:#fff; background:var(--teal); border-radius:6px; padding:2px 8px; letter-spacing:.04em}
+  .grouphdr:first-child{margin-top:0}
+  .reset{align-self:flex-start; margin-top:14px; font-size:.82rem; color:var(--muted); background:none; border:1px solid var(--border-strong); border-radius:8px; padding:6px 12px; cursor:pointer; font-family:inherit}
+  .reset:hover{background:var(--tint-2); color:var(--ink)}
+
+  /* timeline */
+  .tl{display:flex; flex-direction:column; gap:0; position:relative; margin-left:6px}
+  .tl li{display:grid; grid-template-columns:120px 1fr; gap:16px; padding:0 0 18px 22px; position:relative; border-left:2px solid var(--border-strong)}
+  .tl li:last-child{border-left-color:transparent; padding-bottom:0}
+  .tl li::before{content:""; position:absolute; left:-7px; top:3px; width:12px; height:12px; border-radius:50%; background:#fff; border:2.5px solid var(--teal)}
+  .tl li.done::before{background:var(--teal)}
+  .tl .when{font-weight:800; font-size:.9rem; color:var(--teal-deep); white-space:nowrap}
+  .tl .what{font-size:.95rem}
+  .tl .what .s{display:block; color:var(--muted); font-size:.85rem}
+  @media(max-width:520px){ .tl li{grid-template-columns:1fr; gap:2px} }
+
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media(max-width:600px){ .twocol{grid-template-columns:1fr} }
+
+  .note{font-size:.82rem; color:var(--faint); line-height:1.6}
+  footer{margin-top:54px; padding-top:22px; border-top:1px solid var(--border); color:var(--faint); font-size:.82rem; line-height:1.7}
+  footer b{color:var(--muted)}
+  a{color:var(--teal); text-decoration:none; border-bottom:1px solid var(--tint)}
+
+  @media(prefers-reduced-motion:no-preference){
+    .reveal{opacity:0; transform:translateY(8px); animation:rise .5s ease forwards}
+    @keyframes rise{to{opacity:1; transform:none}}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap stack">
+
+  <!-- ===== HERO ===== -->
+  <div class="hero reveal">
+    <div class="eyebrow">LH 신혼희망타운 · 공공분양</div>
+    <h1>e편한세상 분당 퍼스트빌리지 (성남낙생 A-1BL)</h1>
+    <div class="sub">예비신혼부부 청약 — 회원님 맞춤 분석 · 공고일 2026.05.29 기준</div>
+
+    <div class="verdicts">
+      <div class="vcard"><div class="vk">성남 거주자만?</div><div class="vv">아니요 · 수도권 가능<br>성남 2년↑ 우선</div></div>
+      <div class="vcard"><div class="vk">회원님 지위</div><div class="vv">성남 2년 이상<br>= 우선공급 대상 ✓</div></div>
+      <div class="vcard"><div class="vk">신청 자격</div><div class="vv">4개 확인 완료<br>총자산만 확인 남음</div></div>
+    </div>
+
+    <div class="scoreline">
+      <span class="lead">1단계 우선공급 가점</span>
+      <span class="chip-sum">
+        <span class="pill full">거주 3</span><span class="op">+</span>
+        <span class="pill full">통장 3</span><span class="op">+</span>
+        <span class="pill mid">소득 1</span><span class="op">=</span>
+        <span class="tot">7점</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== 1. 거주요건 ===== -->
+  <section class="reveal">
+    <div class="sec-head"><span class="num">Q1</span><h2>"성남 거주자만 가능한가?" — 아니요</h2></div>
+    <p class="lead-p"><strong>수도권(서울·인천·경기) 거주자</strong>면 공고일 기준 신청 가능합니다. 다만 경쟁 시 <span class="hl">해당 주택건설지역(성남시) 2년 이상 거주자에게 물량 100%를 우선 배정</span>하고, 성남 거주자가 미달할 때만 기타지역에 공급합니다.</p>
+    <div class="tbl-wrap" style="margin-top:14px">
+      <table>
+        <caption>표2 · 지역우선공급 기준 (공고일 2026.05.29)</caption>
+        <thead><tr><th>지역 구분</th><th class="num">우선배정</th><th>대상</th></tr></thead>
+        <tbody>
+          <tr class="me-row"><td><span class="dot g"></span>해당지역 — 성남시 2년 이상</td><td class="num me">100%</td><td>2024.05.29 이전부터 계속 성남 거주 · <strong>회원님 해당</strong></td></tr>
+          <tr><td><span class="dot a"></span>기타지역 — 수도권</td><td class="num">0%</td><td>성남 2년 미만 + 서울·인천·경기 (성남 미달 시에만 공급)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good" style="margin-top:14px"><span class="ic">✓</span><div>회원님은 <b>성남 2년 이상</b>이라 1·2·3단계 모두 ‘우선’ 대상입니다. 출발점이 가장 유리합니다. (타 수도권·성남 2년 미만은 미달 물량에만 기회 → 실질 당첨 어려움)</div></div>
+  </section>
+
+  <!-- ===== 2. 신청 자격 ===== -->
+  <section class="reveal">
+    <div class="sec-head"><span class="num">Q2</span><h2>예비신혼부부 신청 자격</h2></div>
+    <p class="muted">아래를 모두 충족해야 청약 가능. 모두 <strong>공고일(2026.05.29)</strong> 시점 기준으로 이미 확정 — 지금은 ‘확인’만 하면 됩니다.</p>
+    <div class="tbl-wrap" style="margin-top:14px">
+      <table>
+        <thead><tr><th>요건</th><th>기준</th><th>회원님</th></tr></thead>
+        <tbody>
+          <tr><td>예비신혼부부 정의</td><td>혼인 계획 + <strong>공고일로부터 1년 이내(≈2027.05.28) 혼인사실 증명 가능</strong></td><td><span class="dot a"></span>혼인신고 시점 계획</td></tr>
+          <tr><td>신청 단위</td><td>‘혼인으로 구성될 세대’ 직접 입력 · <strong>부부 각각 신청 불가(1인만)</strong></td><td>둘 중 1명만</td></tr>
+          <tr><td>무주택</td><td>구성될 세대 전원 무주택(분양권·입주권 포함)<br><span class="muted">60세↑ 직계존속 소유는 무주택 인정</span></td><td><span class="dot g"></span>전원 무주택 ✓</td></tr>
+          <tr><td>소득</td><td>월평균소득 130% 이하(맞벌이 140% 이하)<br><span class="muted">3인↓ 130%=9,793,892 / 140%=10,547,268원</span></td><td><span class="dot g"></span>9,033,333원<br>충족 ✓</td></tr>
+          <tr><td>총자산</td><td><strong>362,000천원(3.62억) 이하</strong> <span class="muted">(부동산+금융+기타+차량−부채)</span></td><td><span class="dot a"></span>확인 필요</td></tr>
+          <tr class="me-row"><td>청약통장</td><td>가입 6개월 경과 + 6회 이상 납입</td><td class="me">89회 · 충족 ✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good" style="margin-top:14px"><span class="ic">✓</span><div><b>확인 완료 (4/5)</b> — 거주(성남 2년↑) · 청약통장(89회) · 소득(9,033,333원 · 140% 이내) · 무주택(구성될 세대 전원). &nbsp;<b>남은 확인 1가지</b> — 총자산 3.62억 이하 여부(두 분 자산 합산 · 전세보증금·차량 포함 · 마이너스통장은 부채 불인정).</div></div>
+  </section>
+
+  <!-- ===== 3. 가점 ===== -->
+  <section class="reveal">
+    <div class="sec-head"><span class="num">Q3</span><h2>가점(배점) — 어떻게 되나</h2></div>
+    <p class="lead-p">선정은 <strong>1단계 우선공급(30%) → 2단계 일반공급(60%) → 3단계 추첨(잔여)</strong> 순. 예비신혼부부는 <strong>1단계부터 경쟁</strong>하고, 낙첨 시 2단계로 자동 이월됩니다.</p>
+
+    <div class="card" style="margin-top:16px">
+      <h3>1단계 우선공급<span class="tag">표8 · 만점 9점</span></h3>
+      <div class="tbl-wrap" style="margin-top:12px; border:none">
+        <table style="min-width:480px">
+          <thead><tr><th>배점항목</th><th>3점</th><th>2점</th><th>1점</th><th class="num">내 점수</th></tr></thead>
+          <tbody>
+            <tr><td>가구소득</td><td>70%↓ <span class="muted">(맞벌이 80%↓)</span></td><td>~100% <span class="muted">(110%)</span></td><td>초과</td><td class="num"><span class="score-badge sb-1">1</span></td></tr>
+            <tr class="me-row"><td>경기도(해당 시·도)<br>연속 거주기간</td><td>2년↑</td><td>1~2년</td><td>1년↓</td><td class="num"><span class="score-badge sb-3">3</span></td></tr>
+            <tr class="me-row"><td>청약통장 납입횟수</td><td>24회↑</td><td>12~23회</td><td>6~11회</td><td class="num"><span class="score-badge sb-3">3</span></td></tr>
+            <tr><td colspan="4" style="text-align:right; font-weight:700">합계</td><td class="num me" style="font-size:1.05rem">7점</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout crit" style="margin-top:14px"><span class="ic">!</span><div>가장 헷갈리는 포인트 — 거주 <b>가점</b> 기준은 <b>‘경기도(도 단위)’</b>이지 ‘성남시’가 아닙니다. 성남시 기준은 §Q1의 물량배정에만 쓰이는 별개 개념. (성남=경기도라 회원님은 2년↑ → 3점)</div></div>
+      <div class="callout warn" style="margin-top:10px"><span class="ic">i</span><div>동점 시 추첨. 거주·통장 만점자는 흔해 <b>소득에서 갈립니다.</b> 7점(소득 1점)은 저소득(8~9점) 대비 1단계에선 다소 불리할 수 있으나, 낙첨해도 2·3단계로 이어집니다.</div></div>
+    </div>
+
+    <div class="card">
+      <h3>2단계 일반공급 <span class="muted" style="font-weight:600; font-size:.85rem">(1단계 낙첨 시 자동 이월)</span><span class="tag">표9 · 만점 12점</span></h3>
+      <div class="tbl-wrap" style="margin-top:12px; border:none">
+        <table style="min-width:480px">
+          <thead><tr><th>배점항목</th><th>3점</th><th>2점</th><th>1점</th><th>0점</th></tr></thead>
+          <tbody>
+            <tr><td>미성년 자녀수</td><td>3명↑</td><td>2명</td><td>1명</td><td>0명</td></tr>
+            <tr><td>무주택기간 <span class="muted">(만30세부터 산정)</span></td><td>3년↑</td><td>1~3년</td><td>1년↓</td><td>해당없음</td></tr>
+            <tr><td>경기도 연속 거주기간</td><td>2년↑</td><td>1~2년</td><td>1년↓</td><td>미거주</td></tr>
+            <tr><td>청약통장 납입횟수</td><td>24회↑</td><td>12~23회</td><td>6~11회</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn" style="margin-top:14px"><span class="ic">!</span><div>예비신혼부부 주의 — 자녀 없으면 자녀수 0점. <b>공고일 현재 만 30세 미만이면서 미혼이면 무주택기간 가점도 0점</b> 처리됩니다.</div></div>
+    </div>
+
+    <div class="card">
+      <h3>소득 구간 — 회원님 적용 결과<span class="tag">맞벌이 · 3인↓ · 월</span></h3>
+      <div class="tbl-wrap" style="margin-top:12px; border:none">
+        <table>
+          <thead><tr><th>합산 월소득(세전)</th><th class="num">기준</th><th class="num">가점</th></tr></thead>
+          <tbody>
+            <tr><td>~6,027,010 (맞벌이 80%)</td><td class="num muted">3점선</td><td class="num"><span class="score-badge sb-3">3</span></td></tr>
+            <tr><td>~8,287,139 (맞벌이 110%)</td><td class="num muted">2점선</td><td class="num"><span class="score-badge sb-2">2</span></td></tr>
+            <tr class="me-row"><td><strong>8,287,139 초과</strong> — 회원님 <strong>9,033,333원</strong>(확인)</td><td class="num me">110% 초과</td><td class="num"><span class="score-badge sb-1">1</span></td></tr>
+            <tr><td>10,547,268 초과 (맞벌이 140%)</td><td class="num" style="color:var(--crit)">상한</td><td class="num" style="color:var(--crit); font-weight:800">부적격</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout good" style="margin-top:14px"><span class="ic">✓</span><div>합산 월소득 <b>9,033,333원</b>(확인) → 110% 초과라 <b>소득 1점</b>. 자격선(맞벌이 140% = 월 10,547,268원)보다 <b>약 151만원 낮아 여유 통과</b> → <b>신청 자격 충족</b>. (2점선 8,287,139원은 약 75만 차이로 초과) 소득 판정은 ‘세전 총급여(비과세 제외)÷12’ 기준이라 세후로 낮아지지 않습니다.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== 4. 체크리스트 ===== -->
+  <section class="reveal">
+    <div class="sec-head"><span class="num">✓</span><h2>미리 챙길 체크리스트</h2></div>
+    <p class="muted">탭하면 체크·저장됩니다(이 브라우저에 한함). 자격은 공고일로 고정 — 대부분 ‘확인’이 목적.</p>
+    <div class="card" style="margin-top:14px">
+      <ul class="checks" id="checklist">
+        <li class="grouphdr"><span class="gl">A</span> 청약 전 확인</li>
+        <li><input type="checkbox" id="c1"><label for="c1"><span class="lt">소득 구간 확인</span> — 두 분 합산 월소득(세전 총급여÷12). 건강보험 보수월액(☎1577-1000)으로 확정</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2"><span class="lt">무주택 확인</span> — 두 분 + 등본상 직계존비속 전원 주택·분양권·입주권 무소유(배우자 측 포함)</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3"><span class="lt">총자산 3.62억 이하</span> — 전세보증금·차량·예금·주식 등 합산 − 부채</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4"><span class="lt">청약홈 순위확인서</span> — 납입횟수(89회)·순위, 재당첨·과거 특별공급 이력 조회 <span class="muted">(특공은 평생 1회)</span></label></li>
+        <li><input type="checkbox" id="c5"><label for="c5"><span class="lt">예비배우자 당첨 이력</span> — 혼인 전 당첨·특공도 영향 → 함께 조회</label></li>
+
+        <li class="grouphdr"><span class="gl">B</span> 청약 신청 시 (7.13~7.14)</li>
+        <li><input type="checkbox" id="c6"><label for="c6"><span class="lt">‘혼인으로 구성될 세대’ 정확 입력</span> — 청약 후 변경 불가, 이 세대로 검증</label></li>
+        <li><input type="checkbox" id="c7"><label for="c7"><span class="lt">가점 항목 정확 선택</span> — 소득구간·경기도 거주기간·통장횟수(착오 시 부적격)</label></li>
+        <li><input type="checkbox" id="c8"><label for="c8"><span class="lt">인증서·모바일 청약 점검</span> — LH 청약플러스 ‘청약연습’으로 사전 확인</label></li>
+
+        <li class="grouphdr"><span class="gl">C</span> 당첨 후 서류 (8.7~8.17) · <span style="color:var(--crit); font-weight:700">모두 공고일(5.29) 이후 발급분만 인정</span></li>
+        <li><input type="checkbox" id="c9"><label for="c9"><span class="lt">신분증 · 주민등록표 등본·초본(전부 포함)</span></label></li>
+        <li><input type="checkbox" id="c10"><label for="c10"><span class="lt">가족관계증명서(상세)</span> · 주민번호 별표 없이 전체표기</label></li>
+        <li><input type="checkbox" id="c11"><label for="c11"><span class="lt">혼인관계증명서(상세)</span> — ‘현재 혼인 중 아님’ 확인용, <strong>예비배우자 것도 제출</strong></label></li>
+        <li><input type="checkbox" id="c12"><label for="c12"><span class="lt">출입국에 관한 사실증명</span> — 생년월일~공고일, 기록출력 Y</label></li>
+        <li><input type="checkbox" id="c13"><label for="c13"><span class="lt">개인정보 제공동의서</span> — 구성될 세대 전원 서명(미제출 시 소득·자산 조회 불가→계약 불가)</label></li>
+
+        <li class="grouphdr"><span class="gl">D</span> 당첨 후 의무 (인지)</li>
+        <li><input type="checkbox" id="c14"><label for="c14"><span class="lt">수익공유형 모기지 의무가입</span> — 주택가 362백만 초과 → <strong>주택가격의 30% 이상 의무</strong></label></li>
+        <li><input type="checkbox" id="c15"><label for="c15"><span class="lt">1년 내 혼인신고 후 증명</span> — ≈2027.05.28까지 (미증명 시 계약 취소)</label></li>
+        <li><input type="checkbox" id="c16"><label for="c16"><span class="lt">전매제한 3년 · 거주의무 5년 · 재당첨제한 10년</span> + 향후 5년 투기·청약과열지구 1순위 제한</label></li>
+      </ul>
+      <button class="reset" id="resetBtn" type="button">체크 초기화</button>
+    </div>
+  </section>
+
+  <!-- ===== 5. 일정 ===== -->
+  <section class="reveal">
+    <div class="sec-head"><span class="num">📅</span><h2>주요 일정</h2></div>
+    <div class="card">
+      <ul class="tl">
+        <li class="done"><span class="when">2026.05.29</span><span class="what">입주자모집공고 <span class="s">자격 판단 기준일 (이미 지남)</span></span></li>
+        <li><span class="when">07.13~07.14</span><span class="what">본청약 접수 <span class="s">월 10:00 ~ 화 17:00 · 인터넷 청약 (야간 가능)</span></span></li>
+        <li><span class="when">07.31</span><span class="what">당첨자 발표 <span class="s">14:00 이후 · LH 청약플러스 / ARS 1661-7700</span></span></li>
+        <li><span class="when">08.07~08.17</span><span class="what">당첨자 서류접수 <span class="s">주택전시관 방문 (용인 수지구 동천동 855-2)</span></span></li>
+        <li><span class="when">11.07~11.13</span><span class="what">계약체결 <span class="s">현장 계약</span></span></li>
+        <li><span class="when">2029.02</span><span class="what">입주 예정 <span class="s">기반시설 공사에 따라 지연 가능</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 6. 전략 ===== -->
+  <section class="reveal">
+    <div class="sec-head"><span class="num">★</span><h2>지금 바꿀 수 있는 것 — 전략</h2></div>
+    <p class="muted">가점은 공고일로 고정이라 못 바꿉니다. 실제 선택 가능한 레버는 둘뿐입니다.</p>
+    <div class="twocol" style="margin-top:14px">
+      <div class="card">
+        <h3>① 신청자 지정</h3>
+        <p>거주(경기 2년↑)·통장(24회↑)을 <strong>둘 다 만족</strong>한다면, <span class="hl">만 30세 이상이면서 무주택기간이 긴 쪽</span>을 신청자로. 2단계 무주택기간 가점은 ‘신청자’ 본인 기준(만30세부터 산정)이라 유리해집니다.</p>
+        <p class="note">단, 신청자의 거주·통장이 ‘성남 2년+89회’인 분이어야 1단계 6점 유지. 둘 다 30세 미만 미혼이면 무주택기간은 0점.</p>
+      </div>
+      <div class="card">
+        <h3>② 주택형(타입) 선택</h3>
+        <p>가점이 7점으로 고정이라, 당락 레버는 <strong>어느 타입에 넣느냐</strong>입니다. 인기 타입(전용 59 등)은 가점컷이 높고, 소형(51·55)은 낮을 수 있습니다.</p>
+        <p class="note">7/3 견본주택 오픈 후 타입별 공급세대수 대비 경쟁 분위기를 보고, 덜 몰리는 타입을 고르면 7점으로도 확률이 오릅니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>근거</b> · 「e편한세상 분당 퍼스트빌리지(성남낙생지구 A-1BL)」 LH 입주자모집공고문(공고일 2026.05.29, 주택관리번호 2026820004). 거주요건·표8·표9·소득/자산/통장·모기지·규제는 원문 줄단위 교차검증 완료.</p>
+    <p><b>유의</b> · 본 문서는 공고문 요약·해석이며 참고용입니다. 최종 자격·점수는 반드시 <a href="https://apply.lh.or.kr">LH 청약플러스</a> 공고문 원본과 <a href="https://www.applyhome.co.kr">청약홈</a>으로 직접 확인하세요. 소득/자산은 당첨 후 사회보장정보시스템 조회로 확정됩니다.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY='snmhope-checklist-v1';
+  var boxes=[].slice.call(document.querySelectorAll('#checklist input[type=checkbox]'));
+  try{
+    var saved=JSON.parse(localStorage.getItem(KEY)||'{}');
+    boxes.forEach(function(b){ if(saved[b.id]) b.checked=true; });
+  }catch(e){}
+  function save(){
+    var s={}; boxes.forEach(function(b){ if(b.checked) s[b.id]=1; });
+    try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){}
+  }
+  boxes.forEach(function(b){ b.addEventListener('change',save); });
+  var rb=document.getElementById('resetBtn');
+  if(rb) rb.addEventListener('click',function(){
+    boxes.forEach(function(b){ b.checked=false; });
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
