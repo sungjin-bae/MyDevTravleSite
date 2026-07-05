@@ -96,6 +96,24 @@
   .score-badge{display:inline-block; min-width:22px; text-align:center; font-weight:800; border-radius:6px; padding:1px 7px; font-size:.86rem}
   .sb-3{background:var(--good-bg); color:var(--good)} .sb-2{background:var(--tint); color:var(--teal-deep)} .sb-1{background:var(--warn-bg); color:var(--warn)} .sb-0{background:#EEF1F3; color:var(--faint)}
 
+  /* ---------- STAGE ALLOCATION ---------- */
+  .stages{display:flex; flex-direction:column; gap:10px}
+  .stage{display:grid; grid-template-columns:104px 1fr; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--card)}
+  .stage .pct-cell{background:var(--tint-2); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px 8px; border-right:1px solid var(--border)}
+  .stage .pct{font-size:1.5rem; font-weight:800; color:var(--teal-deep); line-height:1}
+  .stage .cnt{font-size:.74rem; color:var(--muted); margin-top:5px; font-weight:700; white-space:nowrap}
+  .stage .body{padding:13px 16px}
+  .stage .st-name{font-weight:800; font-size:1rem; letter-spacing:-.01em}
+  .stage .st-tag{font-size:.7rem; font-weight:700; color:var(--teal); background:var(--tint); border-radius:5px; padding:2px 7px; margin-left:6px; vertical-align:middle}
+  .stage .st-desc{font-size:.86rem; color:var(--muted); margin-top:4px; line-height:1.55}
+  .stage .st-desc b{color:var(--ink)}
+  .here-badge{display:inline-block; margin-top:9px; font-size:.78rem; font-weight:800; color:var(--teal-deep); background:var(--tint); border:1px solid var(--border); border-radius:999px; padding:3px 11px}
+  .stage.here{border:1.5px solid var(--teal); box-shadow:0 0 0 3px var(--tint)}
+  .stage.here .pct-cell{background:linear-gradient(160deg,var(--teal-deep),var(--teal)); border-right-color:transparent}
+  .stage.here .pct{color:#fff} .stage.here .cnt{color:#BFE0E3}
+  .here-badge.now{color:#fff; background:var(--teal-deep); border-color:transparent}
+  @media(max-width:440px){ .stage{grid-template-columns:84px 1fr} .stage .pct{font-size:1.25rem} }
+
   /* checklist */
   .checks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
   .checks li{display:flex; gap:12px; align-items:flex-start; padding:11px 6px; border-bottom:1px solid var(--border)}
@@ -206,7 +224,36 @@
   <!-- ===== 3. 가점 ===== -->
   <section class="reveal">
     <div class="sec-head"><span class="num">Q3</span><h2>가점(배점) — 어떻게 되나</h2></div>
-    <p class="lead-p">선정은 <strong>1단계 우선공급(30%) → 2단계 일반공급(60%) → 3단계 추첨(잔여)</strong> 순. 예비신혼부부는 <strong>1단계부터 경쟁</strong>하고, 낙첨 시 2단계로 자동 이월됩니다.</p>
+    <p class="lead-p">선정은 <strong>1단계 우선공급(30%) → 2단계 일반공급(60%) → 3단계 추첨(잔여 ≈10%)</strong> 순. 예비신혼부부는 <strong>1단계부터 경쟁</strong>하고, 낙첨 시 다음 단계로 자동 이월됩니다.</p>
+
+    <!-- 단계별 물량 배분 & 회원님 위치 -->
+    <div class="stages" style="margin-top:16px" aria-label="단계별 물량 배분과 회원님 위치">
+      <div class="stage here">
+        <div class="pct-cell"><span class="pct">30%</span><span class="cnt">≈ 282호</span></div>
+        <div class="body">
+          <div class="st-name">1단계 우선공급<span class="st-tag">표8 · 9점</span></div>
+          <div class="st-desc">예비신혼부부 · 혼인 2년 이내 · 만 2세↓ 자녀 → 배점 다득점순, 동점 시 추첨</div>
+          <span class="here-badge now">▶ 회원님 진입 단계 — 7점으로 여기서 경쟁</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="pct-cell"><span class="pct">60%</span><span class="cnt">≈ 562호</span></div>
+        <div class="body">
+          <div class="st-name">2단계 일반공급<span class="st-tag">표9 · 12점</span></div>
+          <div class="st-desc">혼인 2~7년 · 만 3~6세 자녀 <b>＋ 1단계 낙첨자 전원</b> → 배점 다득점순, 동점 추첨</div>
+          <span class="here-badge">1단계 낙첨 시 자동 이월 → 재경쟁</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="pct-cell"><span class="pct">≈10%</span><span class="cnt">≈ 89호</span></div>
+        <div class="body">
+          <div class="st-name">3단계 추첨공급<span class="st-tag">잔여물량</span></div>
+          <div class="st-desc">자격자 <b>＋ 2단계 낙첨자 전원</b> → <b>가점 무관 · 순수 무작위 추첨</b></div>
+          <span class="here-badge">최종 이월 → 추첨 기회</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout info" style="margin-top:12px"><span class="ic">i</span><div><b>회원님 위치 = 1단계(우선공급 30%) 진입</b>. 성남 2년↑라 세 단계 모두 <b>지역우선 100% 대상</b>이고, 각 단계에서 떨어져도 다음 단계로 <b>자동 이월</b>됩니다. 총 933세대 기준 <b>1단계 ≈282호 · 2단계 ≈562호 · 3단계 ≈89호</b> (전용 51·55·59㎡ 타입별 30/60/10% 올림 합산 — 실제 경쟁은 타입별로 분리).</div></div>
 
     <div class="card" style="margin-top:16px">
       <h3>1단계 우선공급<span class="tag">표8 · 만점 9점</span></h3>
