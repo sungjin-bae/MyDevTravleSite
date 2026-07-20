@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>송파동 석촌역 올전세 원룸 — 매물·전세대출 정리</title>
+<meta name="description" content="서울 송파구 송파동 석촌역 도보 7분 분리형 원룸(전세 1억 7,500만원) 매물 검토와 전세대출·서울시 이자지원 옵션, 계약 전 체크리스트 (2026.07 기준)">
+<style>
+  :root{
+    --paper:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF1EC;
+    --ink:#1A211E;
+    --muted:#5B635E;
+    --faint:#8A938D;
+    --line:#E1E5DF;
+    --accent:#0F5B52;
+    --accent-deep:#0A4942;
+    --accent-soft:#E2EFEB;
+    --amber:#8A5A12;
+    --amber-soft:#FBF1DA;
+    --amber-line:#EBD6A8;
+    --alert:#9E3B2C;
+    --alert-soft:#F8E6E1;
+    --alert-line:#EBC6BC;
+    --sans:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;
+    --mono:'SFMono-Regular',ui-monospace,'Cascadia Mono','Segoe UI Mono',Menlo,monospace;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.68;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    word-break:keep-all;
+  }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:56px 22px 96px;
+  }
+
+  /* ---- typography ---- */
+  .eyebrow{
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  h1{
+    font-size:clamp(28px,5vw,42px);
+    line-height:1.18;
+    font-weight:800;
+    letter-spacing:-.02em;
+    margin:0 0 16px;
+    text-wrap:balance;
+  }
+  .lede{
+    font-size:17.5px;
+    color:var(--muted);
+    margin:0 0 22px;
+    max-width:60ch;
+  }
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    font-size:13px;
+    color:var(--faint);
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .meta b{color:var(--muted);font-weight:600;}
+
+  h2{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 6px;
+  }
+  .sec-title{
+    font-size:clamp(21px,3.2vw,27px);
+    font-weight:780;
+    letter-spacing:-.015em;
+    margin:0 0 18px;
+    line-height:1.25;
+    text-wrap:balance;
+  }
+  section{margin-top:64px;}
+  p{margin:0 0 14px;}
+  a{color:var(--accent-deep);text-underline-offset:3px;text-decoration-thickness:1px;}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+
+  .backlink{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--accent-deep);text-decoration:none;margin-bottom:26px;}
+  .backlink:hover{text-decoration:underline;}
+
+  /* ---- key takeaway ---- */
+  .keybox{
+    margin-top:38px;
+    display:grid;
+    gap:14px;
+  }
+  .key{
+    display:flex;
+    gap:15px;
+    padding:18px 20px;
+    border-radius:14px;
+    background:var(--surface);
+    border:1px solid var(--line);
+  }
+  .key .tag{
+    flex:0 0 auto;
+    align-self:flex-start;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:999px;
+    margin-top:2px;
+  }
+  .tag.alert{background:var(--alert-soft);color:var(--alert);}
+  .tag.note{background:var(--accent-soft);color:var(--accent-deep);}
+  .tag.amber{background:var(--amber-soft);color:var(--amber);}
+  .key p{margin:0;font-size:15px;}
+  .key strong{font-weight:720;}
+
+  /* ---- listing spec ---- */
+  .spec{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 26px;
+  }
+  .spec .name{font-size:20px;font-weight:760;letter-spacing:-.01em;margin:0 0 3px;}
+  .spec .loc{font-size:13px;color:var(--faint);margin:0 0 18px;}
+  .spec dl{
+    margin:0;display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:16px 22px;
+  }
+  .spec dt{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:3px;}
+  .spec dd{margin:0;font-size:15px;font-variant-numeric:tabular-nums;line-height:1.45;}
+  .spec .memo{margin:18px 0 0;padding-top:14px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted);line-height:1.55;}
+
+  /* ---- checklist ---- */
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+  }
+  .panel.warn{background:var(--amber-soft);border-color:var(--amber-line);}
+  .panel.warn .panel-h{color:var(--amber);}
+  .panel-h{
+    font-size:14px;font-weight:730;letter-spacing:.01em;margin:0 0 12px;
+    display:flex;align-items:center;gap:9px;
+  }
+  ul.check{list-style:none;margin:0;padding:0;display:grid;gap:11px;}
+  ul.check li{position:relative;padding-left:27px;font-size:14.5px;line-height:1.55;}
+  ul.check li::before{
+    content:"";position:absolute;left:0;top:7px;width:15px;height:15px;border-radius:5px;
+    background:var(--accent-soft);border:1.5px solid var(--accent);
+  }
+  ul.check li::after{
+    content:"";position:absolute;left:4.5px;top:9.5px;width:4px;height:8px;
+    border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(40deg);
+  }
+  ul.check.warnlist li::before{background:#fff;border-color:var(--amber);}
+  ul.check.warnlist li::after{border-color:var(--amber);}
+  ul.check b{font-weight:700;}
+  .subnote{font-size:13px;color:var(--muted);margin:14px 0 0;}
+
+  /* ---- loan explainer ---- */
+  .explainer{
+    background:var(--alert-soft);
+    border:1px solid var(--alert-line);
+    border-left:4px solid var(--alert);
+    border-radius:12px;
+    padding:18px 22px;
+    margin-bottom:24px;
+  }
+  .explainer .h{font-weight:740;color:var(--alert);margin:0 0 8px;font-size:15.5px;}
+  .explainer p{font-size:14.5px;margin:0 0 8px;}
+  .explainer p:last-child{margin:0;}
+  .explainer.ok{background:var(--accent-soft);border-color:var(--accent);border-left-color:var(--accent);}
+  .explainer.ok .h{color:var(--accent-deep);}
+  .explainer.ok p{color:var(--ink);}
+
+  /* ---- table ---- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px;}
+  caption{text-align:left;font-size:12.5px;color:var(--faint);padding:12px 16px 0;caption-side:bottom;}
+  th,td{text-align:left;padding:12px 15px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.5;}
+  thead th{
+    position:sticky;top:0;
+    background:var(--accent);color:#fff;font-weight:680;font-size:13px;
+    border-bottom:none;letter-spacing:-.005em;
+  }
+  thead th:first-child{background:var(--accent-deep);}
+  tbody th{
+    background:var(--surface-2);font-weight:680;color:var(--ink);white-space:nowrap;
+    font-size:12.5px;letter-spacing:.01em;
+  }
+  tbody td{font-variant-numeric:tabular-nums;}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:none;}
+  .col-pick{background:var(--accent-soft);}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent-deep);}
+  .pill.x{background:var(--alert-soft);color:var(--alert);}
+
+  /* ---- timeline ---- */
+  .timeline{list-style:none;margin:0;padding:0;position:relative;}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line);}
+  .timeline li{position:relative;padding:0 0 20px 34px;}
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{
+    content:"";position:absolute;left:3px;top:4px;width:14px;height:14px;border-radius:50%;
+    background:var(--surface);border:3px solid var(--accent);
+  }
+  .timeline li.crit::before{border-color:var(--alert);background:var(--alert-soft);}
+  .timeline .when{font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:2px;}
+  .timeline li.crit .when{color:var(--alert);}
+  .timeline .what{font-size:14.5px;line-height:1.5;}
+  .timeline .what b{font-weight:720;}
+
+  /* ---- sources / footer ---- */
+  .srcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 28px;font-size:13px;}
+  .srcgrid div b{display:block;color:var(--muted);font-weight:600;margin-bottom:4px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+  .srcgrid a{display:block;color:var(--accent-deep);word-break:break-all;line-height:1.5;}
+  .disclaimer{
+    margin-top:32px;font-size:12.5px;color:var(--faint);line-height:1.6;
+    border-top:1px solid var(--line);padding-top:18px;
+  }
+
+  @media (max-width:560px){
+    .wrap{padding:40px 16px 72px;}
+    .key{flex-direction:column;gap:10px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="backlink" href="index.html">← 가이드 목록</a>
+
+  <header>
+    <p class="eyebrow">서울 송파 · 빌라 전세 · 전세대출</p>
+    <h1>송파동 석촌역 도보 7분 올전세 원룸 — 매물·전세대출 정리</h1>
+    <p class="lede">피터팬 매물(서울 송파구 송파동, 석촌역 도보 7분 분리형 원룸, 전세 1억 7,500만원)의 조건을 정리하고, 매물이 안내한 전세대출·서울시 이자지원 옵션과 계약 전 확인할 것을 함께 묶었습니다.</p>
+    <div class="meta">
+      <span><b>대상 매물</b> 송파동 분리형 원룸 · 전세 1억 7,500만원</span>
+      <span><b>기준일</b> 2026-07-20 (매물 확인일 2026.07.01)</span>
+      <span><b>성격</b> 참고용 정리 (조건·금리·자격·시세는 계약/신청 전 공식 채널 재확인 필요)</span>
+    </div>
+  </header>
+
+  <div class="keybox">
+    <div class="key">
+      <span class="tag note">전제조건은 갖춰짐</span>
+      <p>매물상 <strong>전입신고 OK · 확정일자 OK</strong>, <strong>전세보증보험 가능</strong>, <strong>융자금 없음(-)</strong>으로 표기돼 전세대출·보증의 <strong>기본 전제가 갖춰진 매물</strong>입니다. 다만 이 표기는 광고 기준이므로, <strong>등기부등본·전세가율은 계약 전 직접 확인</strong>하세요(Step 4).</p>
+    </div>
+    <div class="key">
+      <span class="tag amber">한도·자기자본</span>
+      <p>전세금 <strong>1억 7,500만원</strong> 기준, 은행 청년대출(보증금 90%)이면 최대 <strong>약 1억 5,750만원</strong>(자기자본 1,750만), 버팀목(80%)이면 <strong>약 1억 4,000만원</strong>(자기자본 3,500만) 수준입니다. 실제 한도는 소득·심사에 따라 달라집니다.</p>
+    </div>
+    <div class="key">
+      <span class="tag alert">즉시입주 = 잔금일 협의가 관건</span>
+      <p><strong>즉시입주 매물</strong>이지만 전세대출은 신청~실행에 보통 <strong>2~3주</strong>가 걸립니다. 잔금일을 <strong>대출 실행 가능일에 맞춰</strong> 임대인과 협의하고, 계약서에 <strong>“대출 미실행 시 계약 취소·계약금 반환”</strong> 특약을 반드시 넣으세요.</p>
+    </div>
+    <div class="key">
+      <span class="tag note">월 부담은 사실상 이자만</span>
+      <p>전세대출은 만기까지 원금을 갚지 않고 <strong>매달 이자만</strong> 냅니다. 1억 4,000만원 대출·연 3.5% 가정 시 <strong>월 약 40.8만원</strong> + 관리비 10만원. 자기자본을 더 넣어 대출을 줄이면 이자가 바로 내려갑니다(Step 3).</p>
+    </div>
+  </div>
+
+  <!-- ========== 매물 ========== -->
+  <section>
+    <h2>Step 1 · 이번 매물</h2>
+    <p class="sec-title">송파동 분리형 원룸 — 석촌역(8·9호선) 도보 7분</p>
+
+    <div class="spec">
+      <p class="name">“석촌역 도보 7분 올전세 · 엘베 있는 풀옵션”</p>
+      <p class="loc">서울특별시 송파구 송파동 · 빌라/주택(분리형 원룸) · <a href="https://www.peterpanz.com/house/19537743" target="_blank" rel="noopener">피터팬 매물 19537743</a></p>
+      <dl>
+        <div><dt>전세보증금</dt><dd>1억 7,500만원</dd></div>
+        <div><dt>관리비</dt><dd>월 10만원 (정액)<br>공용·기타관리비 포함</dd></div>
+        <div><dt>면적</dt><dd>전용 18.63㎡ / 공급 25.18㎡<br>(5.64평 / 7.62평)</dd></div>
+        <div><dt>구조</dt><dd>방 1 / 욕실 1 · 분리형 원룸</dd></div>
+        <div><dt>층 · 방향</dt><dd>2층 / 5층 · 동향</dd></div>
+        <div><dt>입주일</dt><dd>즉시 입주 가능</dd></div>
+        <div><dt>옵션</dt><dd>풀옵션 — 에어컨·세탁기·냉장고·인덕션 등</dd></div>
+        <div><dt>건물</dt><dd>엘리베이터 · 개별난방 · 총 24세대</dd></div>
+        <div><dt>주차</dt><dd>건물 8대 · <b>해당 물건 주차 불가</b></dd></div>
+        <div><dt>사용승인</dt><dd>2012.01.20 · 위반건축물 아님</dd></div>
+      </dl>
+      <p class="memo">매물 설명상 <b>전입신고·확정일자 가능</b>, <b>전세보증보험 가능</b>, <b>전세자금대출 가능(HUG 버팀목·서울시 이자지원 등)</b>, <b>융자금 없음</b>으로 표기돼 있습니다. 문의: <a href="tel:01030788430">010-3078-8430</a> (오현옥) · 집토스부동산중개 송파본점.</p>
+    </div>
+  </section>
+
+  <!-- ========== 대출·지원 옵션 ========== -->
+  <section>
+    <h2>Step 2 · 전세대출·지원 옵션</h2>
+    <p class="sec-title">매물이 안내한 대출·지원 — 어떤 게 있나</p>
+
+    <div class="explainer ok">
+      <p class="h">먼저: 어떤 상품이 유리한지는 “나이·소득”이 정합니다</p>
+      <p>아래 세 갈래 중 자격이 되는 것으로 진행합니다. <b>본인 나이·연소득·무주택/세대주 여부</b>를 알려주시면, 한도·금리를 넣어 어느 쪽이 유리한지 맞춤으로 다시 정리해 드릴게요.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>자격·한도·금리는 정책·심사에 따라 수시로 바뀝니다. 신청 직전 각 공식 채널에서 반드시 재확인하세요. (2026.07 기준·개략)</caption>
+        <thead>
+          <tr>
+            <th scope="col">상품</th>
+            <th scope="col">주요 대상</th>
+            <th scope="col">한도(이 매물 기준)</th>
+            <th scope="col">금리·특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">청년전용 버팀목<br>(주택도시기금)</th>
+            <td>만 19~34세 · 무주택 세대주(예정) · 부부합산 연소득 <b>5,000만원 이하</b>(신혼·다자녀 등 완화) · 순자산 요건</td>
+            <td>보증금 <b>80% 이내</b>, 최대 2억<br>→ 이 매물 <b>약 1억 4,000만</b></td>
+            <td>정부기금 <b>저금리</b>(소득·보증금 구간별 차등). 소득·자산 요건이 엄격.</td>
+          </tr>
+          <tr>
+            <th scope="row">서울시 청년<br>임차보증금 이자지원</th>
+            <td>서울 거주 만 19~39세 청년 · 무주택 · 소득요건</td>
+            <td>협약은행 대출 + <b>서울시 이자 일부 지원</b><br>(한도는 서울주거포털 확인)</td>
+            <td>매물이 직접 안내한 지원. 대상이면 <b>실부담 이자↓</b>. 예산 소진 시 마감될 수 있음.</td>
+          </tr>
+          <tr>
+            <th scope="row">은행 청년 전세대출<br>(카뱅·케뱅 등)</th>
+            <td>만 19~34세 · 부부합산 연소득 <b>7,000만원 이하</b> · 무주택</td>
+            <td>보증금 <b>90% 이내</b>, 최대 2억<br>→ 이 매물 <b>약 1억 5,750만</b></td>
+            <td>연 3%대(변동)·자산심사 없음·비대면 간편. 소득 문턱이 상대적으로 높음.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="subnote">💡 “중소기업 청년” 우대(옛 중기청)는 지금 <b>청년버팀목 안의 우대금리</b>로만 남아 있고 소득요건(단독 3,500만/부부합산 5,000만원 이하)이 있습니다. 소득이 이 문턱을 넘으면 버팀목·우대는 대상에서 빠질 수 있어, 그때는 은행 청년대출이 현실적입니다.</p>
+  </section>
+
+  <!-- ========== 월 이자 ========== -->
+  <section>
+    <h2>Step 3 · 월 이자 계산</h2>
+    <p class="sec-title">전세금 1억 7,500만원 기준 — 매달 얼마?</p>
+
+    <div class="explainer ok">
+      <p class="h">월 이자 = 대출액 × 연금리 ÷ 12</p>
+      <p>전세대출은 만기(보통 2년)까지 원금을 갚지 않고 <b>이자만 매달 납부</b>하다가, 나갈 때 보증금으로 한 번에 상환합니다. 그래서 매달 부담은 사실상 이자뿐입니다.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>월 이자 = 대출액 × 연금리 ÷ 12 근사치(만원 단위 반올림). 연 2.5%(기금 예시)·3.5%(은행 예시)는 실제 심사 결과에 따라 달라지는 예시 금리입니다. 관리비 10만원 별도, 전기·가스·수도 등 개별사용료 미포함.</caption>
+        <thead>
+          <tr>
+            <th scope="col">대출액(보증금 대비)</th>
+            <th scope="col">자기자본</th>
+            <th scope="col" class="col-pick">월 이자 (연 2.5%)</th>
+            <th scope="col" class="col-pick">월 이자 (연 3.5%)</th>
+            <th scope="col">월 이자＋관리비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1억 5,750만 (90%)</th>
+            <td>1,750만원</td>
+            <td class="col-pick">약 32.8만</td>
+            <td class="col-pick"><b>약 46.0만</b></td>
+            <td>약 42.8만 ~ 56.0만</td>
+          </tr>
+          <tr>
+            <th scope="row">1억 4,000만 (80%)</th>
+            <td>3,500만원</td>
+            <td class="col-pick">약 29.2만</td>
+            <td class="col-pick"><b>약 40.8만</b></td>
+            <td>약 39.2만 ~ 50.8만</td>
+          </tr>
+          <tr>
+            <th scope="row">1억 2,000만 (약 69%)</th>
+            <td>5,500만원</td>
+            <td class="col-pick">약 25.0만</td>
+            <td class="col-pick">약 35.0만</td>
+            <td>약 35.0만 ~ 45.0만</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="subnote">💡 자기자본을 더 넣어 대출을 줄이면 이자가 바로 내려갑니다. 서울시 이자지원 대상이면 위 이자에서 지원분만큼 실부담이 더 낮아집니다.</p>
+  </section>
+
+  <!-- ========== 계약 전 확인 ========== -->
+  <section>
+    <h2>Step 4 · 계약 전 확인</h2>
+    <p class="sec-title">빌라 전세, 이건 꼭 짚고 넘어가기</p>
+
+    <div class="panel warn">
+      <p class="panel-h">⚠ 계약 전 반드시 확인 (전세대출·보증·보증금 안전의 전제)</p>
+      <ul class="check warnlist">
+        <li><b>등기부등본 근저당(선순위) 확인</b> — 매물엔 융자금 ‘-’로 표기됐지만, <b>계약 직전·잔금 직전 등기부를 다시 열람</b>해 선순위 채권이 없는지 확인. 선순위 채권＋내 보증금이 시세를 넘지 않아야 합니다.</li>
+        <li><b>전세가율·시세</b> — 전세금 1.75억이 인근 시세·공시가격 대비 과하지 않은지(깡통전세 위험). 국토부 실거래가로 대조.</li>
+        <li><b>전세보증보험(HUG 반환보증) 가입 가능 여부·조건</b> — 매물엔 ‘가능’ 표기. 보증금이 주택가격 대비 한도 이내인지 실제 조건을 HUG에서 확인.</li>
+        <li><b>전입신고·확정일자</b> — 잔금 당일 즉시 처리(우선변제권). 매물상 ‘전입신고 OK·확정일자 OK’.</li>
+        <li><b>건축물대장</b> — ‘위반건축물 아님’ 표기 재확인, 주택 용도인지 확인.</li>
+        <li><b>임대인 확인</b> — 신분·등기 소유자 일치, <b>국세·지방세 완납증명서</b> 요청(체납 시 보증금이 후순위로 밀릴 위험).</li>
+        <li><b>주차 불가</b> — 이 물건은 주차 불가(건물 8대). 차량이 있으면 인근 주차 대책 필요.</li>
+        <li><b>공인중개사 통한 계약</b> — 전세대출·보증은 공인중개업소 계약이 요건입니다.</li>
+      </ul>
+    </div>
+
+    <div class="panel" style="margin-top:18px;">
+      <p class="panel-h">✍ 계약서 특약 문구 (대출 미실행 시 계약 취소)</p>
+      <p class="subnote" style="margin:0 0 12px;">아래 문구를 임대차계약서 <b>특약사항란에 그대로 기재</b>하세요. 대출·보증이 안 나올 경우 계약금을 돌려받는 안전장치입니다.</p>
+      <blockquote style="margin:0;padding:14px 18px;background:var(--surface-2);border-left:4px solid var(--accent);border-radius:8px;font-size:14.5px;line-height:1.62;color:var(--ink);">
+        “본 임대차계약은 임차인의 전세자금대출 실행을 전제로 한다. 임차인의 귀책사유 없이 전세자금대출이 승인·실행되지 않을 경우 본 계약은 무효로 하며, 임대인은 임차인에게 <b>계약금 전액을 즉시 반환</b>한다.”
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ========== 일정 ========== -->
+  <section>
+    <h2>Step 5 · 일정</h2>
+    <p class="sec-title">즉시입주 매물, 이렇게 역산하세요</p>
+
+    <div class="panel">
+      <ul class="timeline">
+        <li class="crit">
+          <span class="when">지금 (즉시) · 계약 전</span>
+          <span class="what"><b>등기부 열람 + 대출 예상 한도·금리 조회.</b> 즉시입주 매물이라, 전세대출은 신청~실행에 <b>2~3주</b>가 걸리는 점을 감안해 <b>잔금일을 대출 실행 가능일에 맞춰</b> 임대인과 협의하세요. → <b>가장 먼저 체크</b>.</span>
+        </li>
+        <li>
+          <span class="when">계약 시점</span>
+          <span class="what">계약 체결 + <b>계약금(보증금 5% 이상) 납입</b> → 영수증 보관. 확정일자·특약 반영. <b>공인중개사</b>를 통해 계약.</span>
+        </li>
+        <li>
+          <span class="when">계약 직후</span>
+          <span class="what"><b>대출 신청·서류 제출</b>(기금e든든 / 은행 앱 / 서울주거포털). <b>전세보증보험</b>도 함께 사전 접수.</span>
+        </li>
+        <li>
+          <span class="when">잔금·입주일 (협의)</span>
+          <span class="what"><b>대출 실행 + 잔금 지급 + 입주.</b> 실행일에 맞춰 잔금 처리.</span>
+        </li>
+        <li class="crit">
+          <span class="when">입주 당일 ~ 며칠 내</span>
+          <span class="what"><b>전입신고 + 확정일자</b> 즉시 처리 — 우선변제권 확보. <b>전세보증보험 가입 완료</b>까지 확인.</span>
+        </li>
+      </ul>
+      <p class="subnote">※ 전세대출은 잔금일 30일 전~15일 이전 신청이 일반적입니다. 즉시입주라도 <b>잔금일</b>을 대출 실행 가능일로 잡아야 대출·잔금·입주가 한 날에 맞물립니다.</p>
+    </div>
+  </section>
+
+  <!-- ========== 출처 ========== -->
+  <section>
+    <h2>참고</h2>
+    <p class="sec-title">직접 확인할 곳 &amp; 출처</p>
+    <div class="srcgrid">
+      <div>
+        <b>매물·중개</b>
+        <a href="https://www.peterpanz.com/house/19537743" target="_blank" rel="noopener">피터팬 매물 원본 (19537743)</a>
+        <a href="tel:01030788430">집토스 송파본점 · 오현옥 010-3078-8430</a>
+      </div>
+      <div>
+        <b>기금·보증(버팀목 검토 시)</b>
+        <a href="https://nhuf.molit.go.kr" target="_blank" rel="noopener">주택도시기금</a>
+        <a href="https://enhuf.molit.go.kr" target="_blank" rel="noopener">기금e든든</a>
+        <a href="https://www.hf.go.kr" target="_blank" rel="noopener">HF 한국주택금융공사</a>
+      </div>
+      <div>
+        <b>서울시 지원</b>
+        <a href="https://housing.seoul.go.kr" target="_blank" rel="noopener">서울주거포털(청년 이자지원)</a>
+      </div>
+      <div>
+        <b>시세·안전성</b>
+        <a href="https://rt.molit.go.kr" target="_blank" rel="noopener">국토부 실거래가</a>
+        <a href="https://www.khug.or.kr" target="_blank" rel="noopener">HUG 전세보증</a>
+        <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24(건축물대장·등본)</a>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      본 자료는 2026-07-20 기준 공개 정보(피터팬 매물 정보·공식 안내 등)를 정리한 참고용이며, 법률·금융 자문이 아닙니다. ① 매물 정보(확인일 2026.07.01)는 변경·거래완료될 수 있으니 중개소에 재확인하세요. ② 전세대출 금리·한도·자격·서류는 정책·심사에 따라 바뀌므로 신청 직전 각 공식 채널(주택도시기금·서울주거포털·해당 은행)에서 재확인하세요. ③ 표의 연 2.5%·3.5%는 계산을 보여주기 위한 예시 금리이며 실제와 다를 수 있습니다. ④ 등기부 근저당·전세가율·전세보증보험 가입 조건·임대인 세금 체납 여부는 보증금 안전과 직결되므로 계약 전 반드시 직접 확인하고, 계약서에 대출 미실행 시 계약 취소 특약을 넣으세요.
+    </p>
+  </section>
+
+</div>
+
+</body>
+</html>
