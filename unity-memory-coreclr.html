@@ -249,6 +249,19 @@
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
   code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 6px;border-radius:6px;color:var(--accent-deep);}
+  html{scroll-behavior:smooth;}
+  section[id]{scroll-margin-top:24px;}
+  /* ---- table of contents ---- */
+  .toc{margin:32px 0 4px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;}
+  .toc-h{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  .toc ol{margin:0;padding:0;list-style:none;display:grid;gap:5px;}
+  .toc a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;line-height:1.45;padding:4px 9px;border-radius:8px;border-left:2px solid transparent;transition:background .15s,color .15s,border-color .15s;}
+  .toc a:hover{color:var(--accent-deep);background:var(--accent-soft);border-left-color:var(--accent);}
+  .toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  @media (min-width:1360px){
+    .toc{position:fixed;top:56px;width:212px;left:max(16px,calc((100vw - 880px)/2 - 236px));margin:0;max-height:calc(100vh - 96px);overflow-y:auto;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
 </head>
 <body>
@@ -267,6 +280,23 @@
       <span><b>성격</b> 개인 스터디 정리 (수치·API는 공식 문서 재확인 권장)</span>
     </div>
   </header>
+
+  <nav class="toc" aria-label="목차">
+    <p class="toc-h">목차</p>
+    <ol>
+      <li><a href="#sec-overview">01 · 큰 그림</a></li>
+      <li><a href="#sec-gc-mark-sweep-compact">02 · GC 동작 원리</a></li>
+      <li><a href="#sec-loh">03 · LOH</a></li>
+      <li><a href="#sec-decommit">04 · Decommit</a></li>
+      <li><a href="#sec-event-delegate-leak">05 · 이벤트 릭</a></li>
+      <li><a href="#sec-nonalloc-api">06 · NonAlloc</a></li>
+      <li><a href="#sec-binary-serialization">07 · 직렬화</a></li>
+      <li><a href="#sec-string-zstring">08 · 문자열</a></li>
+      <li><a href="#sec-native-memory">09 · 네이티브 메모리</a></li>
+      <li><a href="#sec-gpu-instancing">10 · GPU 인스턴싱</a></li>
+      <li><a href="#sec-refs">참고 · 출처</a></li>
+    </ol>
+  </nav>
 
   <div class="keybox">
     <div class="key">
@@ -287,7 +317,7 @@
     </div>
   </div>
 
-  <section>
+  <section id="sec-overview">
     <h2>01 · 큰 그림</h2>
     <p class="sec-title">유니티 메모리 구조와 CoreCLR 전환: 세션 개요</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">Unity의 메모리는 관리 힙 · 네이티브 메모리 · GPU 메모리로 나뉩니다. 그리고 그 관리 힙을 굴리는 GC가 지금의 Boehm(보수적·비세대별·non-compacting)에서 .NET CoreCLR의 정밀·세대별·compacting GC로 갈아타는 중이라는 것이 이 세션 전체를 관통하는 핵심 축입니다.</p>
@@ -343,7 +373,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="sec-gc-mark-sweep-compact">
     <h2>02 · GC 동작 원리</h2>
     <p class="sec-title">Mark → Sweep → Compact: GC가 살아있는 객체를 정리하는 3단계</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">추적형 GC는 도달 가능한 객체를 표시(Mark)하고, 도달 불가능한 객체를 회수(Sweep)한 뒤, 살아남은 객체를 앞으로 밀어 단편화를 없애는(Compact) 3단계로 동작합니다. Compact가 비싼 이유는 객체를 옮기면서 그 객체를 가리키던 모든 참조 주소를 갱신해야 하기 때문이고, 그래서 세대별 GC는 매 수집마다 Compact를 하지 않습니다.</p>
@@ -385,7 +415,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="sec-loh">
     <h2>03 · LOH</h2>
     <p class="sec-title">LOH(Large Object Heap): 큰 객체를 위한 별도 힙</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">85,000바이트 이상의 객체는 CoreCLR/.NET GC에서 일반 힙(SOH)이 아니라 LOH라는 별도 영역에 할당됩니다. LOH는 객체 이동/복사 비용이 커서 기본적으로 compact하지 않고 sweep(free-list 재활용)만 하며, gen2로 취급되어 수집 빈도가 낮습니다. 다만 이 개념은 현재 출시된 Unity의 Boehm GC에는 없고, 앞으로 오는 CoreCLR 백엔드의 GC 특성이라는 점이 중요합니다.</p>
@@ -432,7 +462,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="sec-decommit">
     <h2>04 · Decommit</h2>
     <p class="sec-title">Decommit: GC가 비운 메모리를 OS에 돌려주는 방식 (플랫폼 의존)</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">GC가 회수한 메모리를 실제로 OS에 반환하는 단계가 decommit입니다. Windows는 VirtualFree(MEM_DECOMMIT)로 페이지를 커밋 해제하고, Linux/macOS는 munmap 또는 madvise 계열 힌트를 쓰는데, 특히 macOS에서 쓰이는 MADV_FREE는 지연 회수라 RSS 지표에 늦게 반영됩니다. 강사 말대로 "이런 게 있구나" 수준으로 가볍게 알아두면 충분한 주제입니다.</p>
@@ -493,7 +523,7 @@ UnityEngine.Debug.Log($"committed={committed} heap={heapSize} slack={committed -
     </div>
   </section>
 
-  <section>
+  <section id="sec-event-delegate-leak">
     <h2>05 · 이벤트 릭</h2>
     <p class="sec-title">이벤트/델리게이트 미해제 메모리 릭 — publisher가 subscriber를 붙잡는다</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">C# 이벤트는 publisher가 델리게이트를 통해 subscriber를 강하게 참조합니다. publisher가 더 오래 살면 -= 로 해제하기 전까지 subscriber는 절대 GC되지 않으며, 이건 Boehm이든 CoreCLR이든 GC 종류와 무관하게 동일하게 발생합니다.</p>
@@ -534,7 +564,7 @@ UnityEngine.Debug.Log($"committed={committed} heap={heapSize} slack={committed -
     </div>
   </section>
 
-  <section>
+  <section id="sec-nonalloc-api">
     <h2>06 · NonAlloc</h2>
     <p class="sec-title">NonAlloc API — 매 호출 배열 할당을 없애 GC 스파이크를 줄이는 패턴</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">NonAlloc API는 호출자가 미리 만들어 둔 배열이나 List에 결과를 채워 넣게 해서, 호출할 때마다 힙에 새 배열을 할당하는 것을 피하는 오버로드 패턴입니다. 프레임마다 반복 호출되는 물리 쿼리에서 gen0 가비지를 없애 GC 히칭을 줄이는 것이 목적입니다.</p>
@@ -628,7 +658,7 @@ public class Ground2DProbe : MonoBehaviour
     </div>
   </section>
 
-  <section>
+  <section id="sec-binary-serialization">
     <h2>07 · 직렬화</h2>
     <p class="sec-title">JSON 대신 바이너리 직렬화(MemoryPack)로 GC 부하 줄이기</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">JSON은 문자열 파싱·리플렉션·박싱 때문에 직렬화/역직렬화마다 임시 할당이 폭증합니다. MemoryPack 같은 "zero encoding" 바이너리 직렬화기는 C# 메모리를 거의 그대로 복사하는 방식이라 할당과 CPU 비용을 크게 줄여주고, 리플렉션 대신 소스 제너레이터를 쓰기 때문에 Unity IL2CPP(AOT) 환경에서도 안전하게 동작합니다.</p>
@@ -697,7 +727,7 @@ MemoryPackSerializer.Deserialize(bytes, ref reused);</pre>
     </div>
   </section>
 
-  <section>
+  <section id="sec-string-zstring">
     <h2>08 · 문자열</h2>
     <p class="sec-title">string → StringBuilder → ZString: 문자열 조립의 할당 진화</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">C#에서 문자열을 반복 조립할 때 발생하는 GC 할당을 줄이는 세 단계 진화입니다. 불변(immutable) string의 + 연결은 매번 새 객체를 낳고, StringBuilder는 중간 할당을 버퍼로 줄이며, ZString은 풀링/스택 버퍼로 최종 문자열 외의 할당을 사실상 0으로 만듭니다.</p>
@@ -777,7 +807,7 @@ void UpdateScoreZeroAlloc(int score) {
     </div>
   </section>
 
-  <section>
+  <section id="sec-native-memory">
     <h2>09 · 네이티브 메모리</h2>
     <p class="sec-title">GC가 안 건드리는 영역: Destroy와 Dispose를 구분해서 직접 정리하기</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">Unity에는 C# GC가 관리하지 않는 두 종류의 네이티브 메모리가 있습니다. UnityEngine.Object(GameObject·Texture·Mesh 등)는 관리 껍데기 + C++ 실체의 이중 구조라 Object.Destroy()로 실체를 지워야 하고, NativeArray/NativeList 같은 NativeContainer는 언매니지드 힙에 있어 Dispose()(또는 using)로 직접 해제해야 합니다. 둘 다 "GC가 안 봐준다"는 점은 같지만 해제 API가 완전히 다릅니다.</p>
@@ -821,7 +851,7 @@ void UpdateScoreZeroAlloc(int score) {
     </div>
   </section>
 
-  <section>
+  <section id="sec-gpu-instancing">
     <h2>10 · GPU 인스턴싱</h2>
     <p class="sec-title">RenderMesh와 GPU Instancing — "인스턴스"는 재활용이 아니라 드로우 콜 병합입니다</p>
     <p style="font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:64ch;">여기서 말하는 "인스턴스"는 오브젝트 풀링 같은 메모리 재활용이 아니라, 같은 메시+머티리얼 조합의 여러 복사본을 인스턴스드 드로우 콜 하나로 GPU에 그려 CPU 오버헤드를 줄이는 GPU Instancing입니다. 인스턴싱 ≠ 풀링입니다.</p>
@@ -882,7 +912,7 @@ v2f vert(appdata v) {
   </section>
 
   <!-- ========== 참고 ========== -->
-  <section>
+  <section id="sec-refs">
     <h2>참고</h2>
     <p class="sec-title">출처 &amp; 더 볼 곳</p>
     <div class="srcgrid">
