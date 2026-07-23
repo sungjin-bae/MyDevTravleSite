@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>송파동 석촌역 올전세 원룸 — 매물·전세대출 정리</title>
-<meta name="description" content="서울 송파구 송파동 석촌역 도보 7분 분리형 원룸(전세 1억 7,500만원) 매물 검토와 전세대출·서울시 이자지원 옵션, 계약 전 체크리스트 (2026.07 기준)">
+<title>송파동 석촌역 반전세 원룸 — 계약 완료 · 카카오뱅크 전세대출 준비</title>
+<meta name="description" content="서울 송파구 송파동 석촌역 도보 7분 분리형 원룸, 반전세(보증금 1억 5,200만원 + 월세 12만원)로 계약 완료. 보증보험·전세대출 안전을 위한 반전세 전환 배경과 카카오뱅크 전세대출 준비서류·신청 절차 정리 (2026.07 기준)">
 <style>
   :root{
     --paper:#F5F7F4;
@@ -153,6 +153,7 @@
   .spec dt{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:3px;}
   .spec dd{margin:0;font-size:15px;font-variant-numeric:tabular-nums;line-height:1.45;}
   .spec .memo{margin:18px 0 0;padding-top:14px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted);line-height:1.55;}
+  .spec dd .was{color:var(--faint);text-decoration:line-through;font-size:13px;margin-right:6px;}
 
   /* ---- checklist ---- */
   .panel{
@@ -219,6 +220,22 @@
   .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent-deep);}
   .pill.x{background:var(--alert-soft);color:var(--alert);}
 
+  /* ---- steps (신청 절차) ---- */
+  .steps{list-style:none;margin:0;padding:0;counter-reset:step;display:grid;gap:12px;}
+  .steps li{
+    position:relative;padding:16px 18px 16px 58px;
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    font-size:14.5px;line-height:1.55;
+  }
+  .steps li::before{
+    counter-increment:step;content:counter(step);
+    position:absolute;left:16px;top:15px;width:28px;height:28px;border-radius:50%;
+    background:var(--accent);color:#fff;font-weight:700;font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps li b{font-weight:720;}
+  .steps .st-h{display:block;font-weight:730;margin-bottom:2px;}
+
   /* ---- timeline ---- */
   .timeline{list-style:none;margin:0;padding:0;position:relative;}
   .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line);}
@@ -229,6 +246,7 @@
     background:var(--surface);border:3px solid var(--accent);
   }
   .timeline li.crit::before{border-color:var(--alert);background:var(--alert-soft);}
+  .timeline li.done::before{border-color:var(--accent);background:var(--accent);}
   .timeline .when{font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:2px;}
   .timeline li.crit .when{color:var(--alert);}
   .timeline .what{font-size:14.5px;line-height:1.5;}
@@ -257,212 +275,221 @@
   <a class="backlink" href="index.html">← 가이드 목록</a>
 
   <header>
-    <p class="eyebrow">서울 송파 · 빌라 전세 · 전세대출</p>
-    <h1>송파동 석촌역 도보 7분 올전세 원룸 — 매물·전세대출 정리</h1>
-    <p class="lede">피터팬 매물(서울 송파구 송파동, 석촌역 도보 7분 분리형 원룸, 전세 1억 7,500만원)의 조건을 정리하고, 매물이 안내한 전세대출·서울시 이자지원 옵션과 계약 전 확인할 것을 함께 묶었습니다.</p>
+    <p class="eyebrow">서울 송파 · 반전세 · 카카오뱅크 전세대출</p>
+    <h1>송파동 석촌역 반전세 원룸 — 계약 완료 · 카카오뱅크 전세대출 준비</h1>
+    <p class="lede">석촌역 도보 7분 분리형 원룸을 <strong>반전세(보증금 1억 5,200만원 + 월세 12만원)로 계약 완료</strong>했습니다. 보증보험·전세대출에 문제가 없도록 올전세(1.75억)에서 반전세로 전환한 배경과, 이제 카카오뱅크 전세대출을 받기 위해 무엇을 준비하고 어떻게 신청하는지를 정리했습니다.</p>
     <div class="meta">
-      <span><b>대상 매물</b> 송파동 분리형 원룸 · 전세 1억 7,500만원</span>
-      <span><b>기준일</b> 2026-07-20 (매물 확인일 2026.07.01)</span>
-      <span><b>성격</b> 참고용 정리 (조건·금리·자격·시세는 계약/신청 전 공식 채널 재확인 필요)</span>
+      <span><b>계약</b> 반전세 · 보증금 1억 5,200만원 + 월세 12만원 (계약 완료)</span>
+      <span><b>기준일</b> 2026-07-23</span>
+      <span><b>성격</b> 대출 신청 준비 정리 (금리·한도·서류는 신청 직전 공식 채널 재확인 필요)</span>
     </div>
   </header>
 
   <div class="keybox">
     <div class="key">
-      <span class="tag note">전제조건은 갖춰짐</span>
-      <p>매물상 <strong>전입신고 OK · 확정일자 OK</strong>, <strong>전세보증보험 가능</strong>, <strong>융자금 없음(-)</strong>으로 표기돼 전세대출·보증의 <strong>기본 전제가 갖춰진 매물</strong>입니다. 다만 이 표기는 광고 기준이므로, <strong>등기부등본·전세가율은 계약 전 직접 확인</strong>하세요(Step 4).</p>
+      <span class="tag note">✅ 계약 완료 · 반전세로 확정</span>
+      <p><strong>보증금 1억 5,200만원 + 월세 12만원</strong>의 반전세로 계약을 마쳤습니다. 처음 검토했던 <strong>올전세 1억 7,500만원</strong> 대비 보증금을 <strong>2,300만원 낮추고</strong>, 그 차액을 <strong>월세 12만원</strong>으로 돌린 구조입니다.</p>
     </div>
     <div class="key">
-      <span class="tag amber">한도·자기자본</span>
-      <p>전세금 <strong>1억 7,500만원</strong> 기준, 은행 청년대출(보증금 90%)이면 최대 <strong>약 1억 5,750만원</strong>(자기자본 1,750만), 버팀목(80%)이면 <strong>약 1억 4,000만원</strong>(자기자본 3,500만) 수준입니다. 실제 한도는 소득·심사에 따라 달라집니다.</p>
+      <span class="tag amber">왜 반전세로 바꿨나</span>
+      <p><strong>전세보증보험 가입과 전세대출 승인에 문제가 없도록</strong> 하기 위해서입니다. 보증금을 낮추면 <strong>전세가율(집값 대비 보증금)이 내려가</strong> HUG/HF 보증 가입 한도 안에 들어오고, 대출·보증 심사도 통과가 쉬워집니다. 낮춘 보증금만큼은 월세로 부담합니다.</p>
     </div>
     <div class="key">
-      <span class="tag alert">즉시입주 = 잔금일 협의가 관건</span>
-      <p><strong>즉시입주 매물</strong>이지만 전세대출은 신청~실행에 보통 <strong>2~3주</strong>가 걸립니다. 잔금일을 <strong>대출 실행 가능일에 맞춰</strong> 임대인과 협의하고, 계약서에 <strong>“대출 미실행 시 계약 취소·계약금 반환”</strong> 특약을 반드시 넣으세요.</p>
+      <span class="tag note">카카오뱅크 전세대출로 진행</span>
+      <p><strong>카카오뱅크 청년 전월세보증금대출</strong>(만 19~34세·부부합산 무주택·연소득 7천만원 이하)로 진행합니다. 반전세도 <strong>보증금(1.52억)에 대해</strong> 대출이 나오며, 보증금 90%면 <strong>최대 약 1억 3,680만원</strong>까지 가능합니다. 월세 12만원은 매달 임대인에게 별도로 냅니다.</p>
     </div>
     <div class="key">
-      <span class="tag note">월 부담은 사실상 이자만</span>
-      <p>전세대출은 만기까지 원금을 갚지 않고 <strong>매달 이자만</strong> 냅니다. 1억 4,000만원 대출·연 3.5% 가정 시 <strong>월 약 40.8만원</strong> + 관리비 10만원. 자기자본을 더 넣어 대출을 줄이면 이자가 바로 내려갑니다(Step 3).</p>
+      <span class="tag amber">월 부담 = 대출이자 + 월세 + 관리비</span>
+      <p>반전세는 <strong>대출이자에 월세가 더해집니다.</strong> 예로 대출 1억 2,160만원(보증금 80%)·연 3.56% 가정 시 <strong>이자 약 36만 + 월세 12만 + 관리비 10만 = 월 약 58만원</strong>. 자기자본을 더 넣어 대출을 줄이면 이자가 바로 내려갑니다(Step 3).</p>
     </div>
   </div>
 
-  <!-- ========== 매물 ========== -->
+  <!-- ========== 계약 내용 ========== -->
   <section>
-    <h2>Step 1 · 이번 매물</h2>
-    <p class="sec-title">송파동 분리형 원룸 — 석촌역(8·9호선) 도보 7분</p>
+    <h2>Step 1 · 계약 내용</h2>
+    <p class="sec-title">송파동 분리형 원룸 — 반전세로 계약 완료</p>
 
     <div class="spec">
-      <p class="name">“석촌역 도보 7분 올전세 · 엘베 있는 풀옵션”</p>
+      <p class="name">“석촌역 도보 7분 · 엘베 있는 풀옵션 원룸” — 반전세 계약</p>
       <p class="loc">서울특별시 송파구 송파동 · 빌라/주택(분리형 원룸) · <a href="https://www.peterpanz.com/house/19537743" target="_blank" rel="noopener">피터팬 매물 19537743</a></p>
       <dl>
-        <div><dt>전세보증금</dt><dd>1억 7,500만원</dd></div>
+        <div><dt>계약 형태</dt><dd><span class="was">올전세 1.75억</span> 반전세로 변경</dd></div>
+        <div><dt>보증금</dt><dd><span class="was">1억 7,500만원</span>1억 5,200만원</dd></div>
+        <div><dt>월세</dt><dd>12만원</dd></div>
         <div><dt>관리비</dt><dd>월 10만원 (정액)<br>공용·기타관리비 포함</dd></div>
         <div><dt>면적</dt><dd>전용 18.63㎡ / 공급 25.18㎡<br>(5.64평 / 7.62평)</dd></div>
         <div><dt>구조</dt><dd>방 1 / 욕실 1 · 분리형 원룸</dd></div>
         <div><dt>층 · 방향</dt><dd>2층 / 5층 · 동향</dd></div>
-        <div><dt>입주일</dt><dd>즉시 입주 가능</dd></div>
         <div><dt>옵션</dt><dd>풀옵션 — 에어컨·세탁기·냉장고·인덕션 등</dd></div>
         <div><dt>건물</dt><dd>엘리베이터 · 개별난방 · 총 24세대</dd></div>
         <div><dt>주차</dt><dd>건물 8대 · <b>해당 물건 주차 불가</b></dd></div>
         <div><dt>사용승인</dt><dd>2012.01.20 · 위반건축물 아님</dd></div>
       </dl>
-      <p class="memo">매물 설명상 <b>전입신고·확정일자 가능</b>, <b>전세보증보험 가능</b>, <b>전세자금대출 가능(HUG 버팀목·서울시 이자지원 등)</b>, <b>융자금 없음</b>으로 표기돼 있습니다. 문의: <a href="tel:01030788430">010-3078-8430</a> (오현옥) · 집토스부동산중개 송파본점.</p>
+      <p class="memo">매물 설명상 <b>전입신고·확정일자 가능</b>, <b>전세보증보험 가능</b>, <b>전세자금대출 가능</b>, <b>융자금 없음</b>. 보증금을 1.52억으로 낮춰 <b>전세가율을 보증·대출 한도 안으로</b> 맞춘 것이 이번 반전세 전환의 핵심입니다. 중개: <a href="tel:01030788430">010-3078-8430</a> (오현옥) · 집토스부동산중개 송파본점.</p>
     </div>
   </section>
 
-  <!-- ========== 대출·지원 옵션 ========== -->
+  <!-- ========== 카카오뱅크 상품 ========== -->
   <section>
-    <h2>Step 2 · 전세대출·지원 옵션</h2>
-    <p class="sec-title">매물이 안내한 대출·지원 — 어떤 게 있나</p>
+    <h2>Step 2 · 카카오뱅크 청년 전월세보증금대출</h2>
+    <p class="sec-title">반전세 보증금 1.52억, 카뱅으로 이렇게 받는다</p>
 
     <div class="explainer ok">
-      <p class="h">먼저: 어떤 상품이 유리한지는 “나이·소득”이 정합니다</p>
-      <p>아래 세 갈래 중 자격이 되는 것으로 진행합니다. <b>본인 나이·연소득·무주택/세대주 여부</b>를 알려주시면, 한도·금리를 넣어 어느 쪽이 유리한지 맞춤으로 다시 정리해 드릴게요.</p>
+      <p class="h">반전세도 “전월세보증금대출” 대상입니다</p>
+      <p>카카오뱅크 <b>청년 전월세보증금대출</b>은 전세뿐 아니라 <b>반전세(보증금+월세)</b>도 대상입니다. 대출은 <b>보증금(1억 5,200만원)에 대해</b> 실행되고, <b>월세 12만원은 매달 임대인에게 별도로 납부</b>합니다. 즉 대출이자 + 월세 + 관리비가 매달 나가는 구조입니다.</p>
     </div>
 
     <div class="tablewrap">
       <table>
-        <caption>자격·한도·금리는 정책·심사에 따라 수시로 바뀝니다. 신청 직전 각 공식 채널에서 반드시 재확인하세요. (2026.07 기준·개략)</caption>
-        <thead>
-          <tr>
-            <th scope="col">상품</th>
-            <th scope="col">주요 대상</th>
-            <th scope="col">한도(이 매물 기준)</th>
-            <th scope="col">금리·특징</th>
-          </tr>
-        </thead>
+        <caption>금리·한도는 6개월 변동이며 심사·우대 결과에 따라 달라집니다. 신청 직전 카카오뱅크 앱에서 예상 금리/한도 재조회 필수. (2026.07 기준·개략)</caption>
         <tbody>
-          <tr>
-            <th scope="row">청년전용 버팀목<br>(주택도시기금)</th>
-            <td>만 19~34세 · 무주택 세대주(예정) · 부부합산 연소득 <b>5,000만원 이하</b>(신혼·다자녀 등 완화) · 순자산 요건</td>
-            <td>보증금 <b>80% 이내</b>, 최대 2억<br>→ 이 매물 <b>약 1억 4,000만</b></td>
-            <td>정부기금 <b>저금리</b>(소득·보증금 구간별 차등). 소득·자산 요건이 엄격.</td>
-          </tr>
-          <tr>
-            <th scope="row">서울시 청년<br>임차보증금 이자지원</th>
-            <td>서울 거주 만 19~39세 청년 · 무주택 · 소득요건</td>
-            <td>협약은행 대출 + <b>서울시 이자 일부 지원</b><br>(한도는 서울주거포털 확인)</td>
-            <td>매물이 직접 안내한 지원. 대상이면 <b>실부담 이자↓</b>. 예산 소진 시 마감될 수 있음.</td>
-          </tr>
-          <tr>
-            <th scope="row">은행 청년 전세대출<br>(카뱅·케뱅 등)</th>
-            <td>만 19~34세 · 부부합산 연소득 <b>7,000만원 이하</b> · 무주택</td>
-            <td>보증금 <b>90% 이내</b>, 최대 2억<br>→ 이 매물 <b>약 1억 5,750만</b></td>
-            <td>연 3%대(변동)·자산심사 없음·비대면 간편. 소득 문턱이 상대적으로 높음.</td>
-          </tr>
+          <tr><th scope="row">대상</th><td>만 19~34세 내국인 · 부부합산 무주택 · 세대주(예정 포함)</td></tr>
+          <tr><th scope="row">소득요건</th><td>배우자 포함 <b>연소득 7,000만원 이하</b></td></tr>
+          <tr><th scope="row">재직요건</th><td>근로소득자 재직 <b>1개월 이상</b> (무소득·사업·기타소득도 상품에 따라 가능)</td></tr>
+          <tr><th scope="row">한도</th><td>보증금의 <b>최대 90%</b>, 최대 2억원 → 이 계약(보증금 1.52억) 기준 <b>최대 약 1억 3,680만원</b></td></tr>
+          <tr><th scope="row">금리(연)</th><td><b>약 3.18 ~ 3.56%</b> (6개월 변동, 2026.07 시점)</td></tr>
+          <tr><th scope="row">자기자본</th><td>보증금 90% 대출 시 <b>최소 약 1,520만원</b> + 계약금(보증금의 5% 이상 선납)</td></tr>
+          <tr><th scope="row">신청 시기</th><td>임대차계약서상 <b>잔금일 30일 전 ~ 15일 이전</b> (예상 금리/한도는 3개월 전부터 조회 가능)</td></tr>
+          <tr><th scope="row">신청 방법</th><td>카카오뱅크 앱 <b>비대면</b> (예상조회 → 서류제출 → 심사 → 약정 → 실행)</td></tr>
+          <tr><th scope="row">실행 후 의무</th><td><b>전입신고 · 확정일자 필수</b> (대출·우선변제권의 전제)</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="subnote">💡 “중소기업 청년” 우대(옛 중기청)는 지금 <b>청년버팀목 안의 우대금리</b>로만 남아 있고 소득요건(단독 3,500만/부부합산 5,000만원 이하)이 있습니다. 소득이 이 문턱을 넘으면 버팀목·우대는 대상에서 빠질 수 있어, 그때는 은행 청년대출이 현실적입니다.</p>
+    <p class="subnote">💡 만약 <b>부부합산 연소득 5,000만원 이하</b>라면 정부기금 <b>청년버팀목 전세자금대출</b>(주택도시기금·기금e든든)이 금리 면에서 더 유리할 수 있습니다. 청년(만19~34) 요건이 안 되면 카뱅 <b>일반 전월세보증금대출</b>로도 가능합니다.</p>
   </section>
 
-  <!-- ========== 월 이자 ========== -->
+  <!-- ========== 월 부담 ========== -->
   <section>
-    <h2>Step 3 · 월 이자 계산</h2>
-    <p class="sec-title">전세금 1억 7,500만원 기준 — 매달 얼마?</p>
+    <h2>Step 3 · 월 부담 계산</h2>
+    <p class="sec-title">반전세는 “대출이자 + 월세 + 관리비”</p>
 
     <div class="explainer ok">
-      <p class="h">월 이자 = 대출액 × 연금리 ÷ 12</p>
-      <p>전세대출은 만기(보통 2년)까지 원금을 갚지 않고 <b>이자만 매달 납부</b>하다가, 나갈 때 보증금으로 한 번에 상환합니다. 그래서 매달 부담은 사실상 이자뿐입니다.</p>
+      <p class="h">월 부담 = (대출액 × 연금리 ÷ 12) + 월세 12만 + 관리비 10만</p>
+      <p>전세대출은 만기(보통 2년)까지 원금을 갚지 않고 <b>이자만 매달 납부</b>하다가, 나갈 때 보증금으로 한 번에 상환합니다. 반전세라 여기에 <b>월세 12만원과 관리비 10만원</b>이 매달 더해집니다.</p>
     </div>
 
     <div class="tablewrap">
       <table>
-        <caption>월 이자 = 대출액 × 연금리 ÷ 12 근사치(만원 단위 반올림). 연 2.5%(기금 예시)·3.5%(은행 예시)는 실제 심사 결과에 따라 달라지는 예시 금리입니다. 관리비 10만원 별도, 전기·가스·수도 등 개별사용료 미포함.</caption>
+        <caption>월 이자 = 대출액 × 연금리 ÷ 12 근사치(만원 단위 반올림). 연 3.18%·3.56%는 2026.07 시점의 예시 금리로 실제 심사 결과와 다를 수 있습니다. ‘총 월부담’은 이자 + 월세 12만 + 관리비 10만이며, 전기·가스·수도 등 개별사용료는 미포함.</caption>
         <thead>
           <tr>
             <th scope="col">대출액(보증금 대비)</th>
             <th scope="col">자기자본</th>
-            <th scope="col" class="col-pick">월 이자 (연 2.5%)</th>
-            <th scope="col" class="col-pick">월 이자 (연 3.5%)</th>
-            <th scope="col">월 이자＋관리비</th>
+            <th scope="col" class="col-pick">월 이자 (3.18%)</th>
+            <th scope="col" class="col-pick">월 이자 (3.56%)</th>
+            <th scope="col">총 월부담 (＋월세＋관리비)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1억 5,750만 (90%)</th>
-            <td>1,750만원</td>
-            <td class="col-pick">약 32.8만</td>
-            <td class="col-pick"><b>약 46.0만</b></td>
-            <td>약 42.8만 ~ 56.0만</td>
+            <th scope="row">1억 3,680만 (90%)</th>
+            <td>1,520만원</td>
+            <td class="col-pick">약 36.3만</td>
+            <td class="col-pick"><b>약 40.6만</b></td>
+            <td>약 58.3만 ~ 62.6만</td>
           </tr>
           <tr>
-            <th scope="row">1억 4,000만 (80%)</th>
-            <td>3,500만원</td>
-            <td class="col-pick">약 29.2만</td>
-            <td class="col-pick"><b>약 40.8만</b></td>
-            <td>약 39.2만 ~ 50.8만</td>
+            <th scope="row">1억 2,160만 (80%)</th>
+            <td>3,040만원</td>
+            <td class="col-pick">약 32.2만</td>
+            <td class="col-pick"><b>약 36.1만</b></td>
+            <td>약 54.2만 ~ 58.1만</td>
           </tr>
           <tr>
-            <th scope="row">1억 2,000만 (약 69%)</th>
-            <td>5,500만원</td>
-            <td class="col-pick">약 25.0만</td>
-            <td class="col-pick">약 35.0만</td>
-            <td>약 35.0만 ~ 45.0만</td>
+            <th scope="row">1억 (약 66%)</th>
+            <td>5,200만원</td>
+            <td class="col-pick">약 26.5만</td>
+            <td class="col-pick">약 29.7만</td>
+            <td>약 48.5만 ~ 51.7만</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="subnote">💡 자기자본을 더 넣어 대출을 줄이면 이자가 바로 내려갑니다. 서울시 이자지원 대상이면 위 이자에서 지원분만큼 실부담이 더 낮아집니다.</p>
+    <p class="subnote">💡 자기자본을 더 넣어 대출을 줄이면 이자가 바로 내려갑니다. 월세 12만원과 관리비 10만원은 대출액과 무관하게 매달 고정으로 나갑니다.</p>
   </section>
 
-  <!-- ========== 계약 전 확인 ========== -->
+  <!-- ========== 준비물 & 신청방법 ========== -->
   <section>
-    <h2>Step 4 · 계약 전 확인</h2>
-    <p class="sec-title">빌라 전세, 이건 꼭 짚고 넘어가기</p>
+    <h2>Step 4 · 무엇을 준비하나</h2>
+    <p class="sec-title">카뱅에 낼 서류 — 계약이 끝났으니 지금부터 챙기기</p>
 
-    <div class="panel warn">
-      <p class="panel-h">⚠ 계약 전 반드시 확인 (전세대출·보증·보증금 안전의 전제)</p>
-      <ul class="check warnlist">
-        <li><b>등기부등본 근저당(선순위) 확인</b> — 매물엔 융자금 ‘-’로 표기됐지만, <b>계약 직전·잔금 직전 등기부를 다시 열람</b>해 선순위 채권이 없는지 확인. 선순위 채권＋내 보증금이 시세를 넘지 않아야 합니다.</li>
-        <li><b>전세가율·시세</b> — 전세금 1.75억이 인근 시세·공시가격 대비 과하지 않은지(깡통전세 위험). 국토부 실거래가로 대조.</li>
-        <li><b>전세보증보험(HUG 반환보증) 가입 가능 여부·조건</b> — 매물엔 ‘가능’ 표기. 보증금이 주택가격 대비 한도 이내인지 실제 조건을 HUG에서 확인.</li>
-        <li><b>전입신고·확정일자</b> — 잔금 당일 즉시 처리(우선변제권). 매물상 ‘전입신고 OK·확정일자 OK’.</li>
-        <li><b>건축물대장</b> — ‘위반건축물 아님’ 표기 재확인, 주택 용도인지 확인.</li>
-        <li><b>임대인 확인</b> — 신분·등기 소유자 일치, <b>국세·지방세 완납증명서</b> 요청(체납 시 보증금이 후순위로 밀릴 위험).</li>
-        <li><b>주차 불가</b> — 이 물건은 주차 불가(건물 8대). 차량이 있으면 인근 주차 대책 필요.</li>
-        <li><b>공인중개사 통한 계약</b> — 전세대출·보증은 공인중개업소 계약이 요건입니다.</li>
+    <div class="panel" style="margin-bottom:18px;">
+      <p class="panel-h">📄 카카오뱅크 제출 서류</p>
+      <ul class="check">
+        <li><b>임대차(반전세)계약서 원본</b> — <b>확정일자 필수</b>. 보증금·월세·잔금일·특약이 정확히 기재됐는지 확인.</li>
+        <li><b>계약금 납입영수증</b> — 보증금의 <b>5% 이상</b> 선납 내역(계좌이체 내역).</li>
+        <li><b>주민등록등본 · 초본</b> — 무주택·세대주(예정) 확인용.</li>
+        <li><b>가족관계증명서</b> / (기혼 시) <b>혼인관계증명서</b> — 부부합산 소득·무주택 확인.</li>
+        <li><b>재직 확인 서류</b> — 재직증명서(필요 시 건강보험 자격득실확인서).</li>
+        <li><b>소득 증빙</b> — 소득금액증명원 또는 근로소득 원천징수영수증.</li>
+        <li><b>확정일자 부여현황</b> · (요청 시) <b>중개대상물 확인·설명서</b>.</li>
       </ul>
+      <p class="subnote">※ 카뱅은 인증서(공동·금융인증서) 연동으로 등본·소득 등 상당수 서류를 <b>앱에서 자동 제출</b>합니다. 실제로 이미지로 올릴 것은 대개 <b>계약서·계약금 영수증</b> 정도입니다. 앱 안내를 그대로 따라 진행하세요.</p>
     </div>
 
-    <div class="panel" style="margin-top:18px;">
-      <p class="panel-h">✍ 계약서 특약 문구 (대출 미실행 시 계약 취소)</p>
-      <p class="subnote" style="margin:0 0 12px;">아래 문구를 임대차계약서 <b>특약사항란에 그대로 기재</b>하세요. 대출·보증이 안 나올 경우 계약금을 돌려받는 안전장치입니다.</p>
-      <blockquote style="margin:0;padding:14px 18px;background:var(--surface-2);border-left:4px solid var(--accent);border-radius:8px;font-size:14.5px;line-height:1.62;color:var(--ink);">
-        “본 임대차계약은 임차인의 전세자금대출 실행을 전제로 한다. 임차인의 귀책사유 없이 전세자금대출이 승인·실행되지 않을 경우 본 계약은 무효로 하며, 임대인은 임차인에게 <b>계약금 전액을 즉시 반환</b>한다.”
-      </blockquote>
+    <h2 style="margin-top:34px;">Step 4-1 · 어떻게 신청하나</h2>
+    <p class="sec-title" style="margin-bottom:14px;">카카오뱅크 앱 비대면 5단계</p>
+    <ol class="steps">
+      <li><span class="st-h">예상 한도·금리 조회</span>카뱅 앱 → <b>대출 → 전월세보증금 대출 → 청년 전월세보증금대출</b>. 계약서 없이도 <b>예상 조회</b>가 되니, 보증금 1.52억으로 한도·금리를 먼저 확인. (잔금일 3개월 전부터)</li>
+      <li><span class="st-h">서류 제출</span>인증서 연동으로 소득·재직·등본이 자동 제출. <b>반전세 계약서·계약금 영수증</b>만 사진으로 업로드.</li>
+      <li><span class="st-h">심사</span>은행·보증기관(HF/HUG/SGI) 심사. 임차 물건의 <b>등기·전세가율·전입 가능 여부</b>를 함께 확인 → 반전세로 보증금을 낮춘 덕에 통과가 수월.</li>
+      <li><span class="st-h">약정(계약)</span>승인되면 앱에서 <b>대출 약정</b> 체결. 금리·한도·실행일(잔금일) 최종 확정.</li>
+      <li><span class="st-h">실행</span>잔금일에 <b>대출금이 임대인 계좌로 직접 입금</b>. 자기자본은 미리 준비해 함께 지급.</li>
+    </ol>
+    <p class="subnote">⏱ <b>신청 창</b>은 임대차계약서상 <b>잔금일 30일 전 ~ 15일 이전</b>입니다. 카뱅은 하루 서류 접수량 제한이 있으니, 신청 창이 열리면 <b>가능한 앞쪽 날짜에 서둘러</b> 접수하세요.</p>
+  </section>
+
+  <!-- ========== 잔금 전 최종 확인 ========== -->
+  <section>
+    <h2>Step 5 · 잔금 치르기 전 최종 확인</h2>
+    <p class="sec-title">계약은 끝났지만, 보증금 안전은 잔금 직전에 다시 본다</p>
+
+    <div class="panel warn">
+      <p class="panel-h">⚠ 대출 실행·잔금 전 반드시 확인</p>
+      <ul class="check warnlist">
+        <li><b>등기부등본 재열람 (잔금 당일 아침)</b> — 계약 후 잔금 사이에 <b>새 근저당·가압류</b>가 걸리지 않았는지 확인. 선순위 채권 + 내 보증금이 시세를 넘지 않아야 안전.</li>
+        <li><b>전세보증보험(HUG/HF·SGI) 가입</b> — 보증금을 1.52억으로 낮춰 가입 조건에 들어왔는지 최종 확인하고, <b>실제 가입까지 완료</b>. 반환보증이 있어야 보증금이 안전합니다.</li>
+        <li><b>임대인 세금 완납</b> — <b>국세·지방세 완납증명서</b> 요청(체납 시 보증금이 후순위로 밀릴 위험).</li>
+        <li><b>임대인 본인 확인</b> — 등기부상 소유자와 잔금 받는 사람(계좌)이 일치하는지. 대리인이면 위임장·인감.</li>
+        <li><b>특약 이행 확인</b> — “전세자금대출 미실행 시 계약 무효·계약금 반환” 특약이 계약서에 있는지 재확인(대출 부결 대비).</li>
+        <li><b>대출 실행일 = 잔금일 일치</b> — 카뱅 대출금은 잔금일에 임대인 계좌로 입금되므로, 실행일과 잔금일을 반드시 같은 날로 맞추기.</li>
+      </ul>
     </div>
   </section>
 
   <!-- ========== 일정 ========== -->
   <section>
-    <h2>Step 5 · 일정</h2>
-    <p class="sec-title">즉시입주 매물, 이렇게 역산하세요</p>
+    <h2>Step 6 · 일정</h2>
+    <p class="sec-title">잔금일 기준 역산 타임라인</p>
 
     <div class="panel">
       <ul class="timeline">
+        <li class="done">
+          <span class="when">완료</span>
+          <span class="what"><b>반전세 계약 체결 완료</b> — 보증금 1억 5,200만원 + 월세 12만원. 계약금 납입·확정일자·특약 반영.</span>
+        </li>
         <li class="crit">
-          <span class="when">지금 (즉시) · 계약 전</span>
-          <span class="what"><b>등기부 열람 + 대출 예상 한도·금리 조회.</b> 즉시입주 매물이라, 전세대출은 신청~실행에 <b>2~3주</b>가 걸리는 점을 감안해 <b>잔금일을 대출 실행 가능일에 맞춰</b> 임대인과 협의하세요. → <b>가장 먼저 체크</b>.</span>
+          <span class="when">지금 (즉시)</span>
+          <span class="what"><b>카뱅 앱에서 예상 한도·금리부터 조회.</b> 잔금일을 확정하고, 아래 신청 창(잔금일 30일 전~15일 이전)을 달력에 표시. → <b>가장 먼저 체크</b>.</span>
+        </li>
+        <li class="crit">
+          <span class="when">잔금일 D-30 ~ D-15</span>
+          <span class="what"><b>카뱅 대출 신청·서류 제출.</b> 접수량 제한이 있으니 <b>D-30에 가깝게 서둘러</b> 접수. 계약서·계약금 영수증 업로드.</span>
         </li>
         <li>
-          <span class="when">계약 시점</span>
-          <span class="what">계약 체결 + <b>계약금(보증금 5% 이상) 납입</b> → 영수증 보관. 확정일자·특약 반영. <b>공인중개사</b>를 통해 계약.</span>
+          <span class="when">D-15 ~ D-3</span>
+          <span class="what"><b>심사 → 승인 → 약정.</b> 금리·한도·실행일(잔금일) 최종 확정. 전세보증보험 가입도 병행.</span>
         </li>
-        <li>
-          <span class="when">계약 직후</span>
-          <span class="what"><b>대출 신청·서류 제출</b>(기금e든든 / 은행 앱 / 서울주거포털). <b>전세보증보험</b>도 함께 사전 접수.</span>
-        </li>
-        <li>
-          <span class="when">잔금·입주일 (협의)</span>
-          <span class="what"><b>대출 실행 + 잔금 지급 + 입주.</b> 실행일에 맞춰 잔금 처리.</span>
+        <li class="crit">
+          <span class="when">잔금일 (D-day)</span>
+          <span class="what"><b>등기부 재열람 → 대출 실행(임대인 계좌 입금) + 자기자본 잔금 지급 + 입주.</b></span>
         </li>
         <li class="crit">
           <span class="when">입주 당일 ~ 며칠 내</span>
-          <span class="what"><b>전입신고 + 확정일자</b> 즉시 처리 — 우선변제권 확보. <b>전세보증보험 가입 완료</b>까지 확인.</span>
+          <span class="what"><b>전입신고 + 확정일자</b> 즉시 처리 — 우선변제권 확보. 전세보증보험 가입 완료까지 확인.</span>
         </li>
       </ul>
-      <p class="subnote">※ 전세대출은 잔금일 30일 전~15일 이전 신청이 일반적입니다. 즉시입주라도 <b>잔금일</b>을 대출 실행 가능일로 잡아야 대출·잔금·입주가 한 날에 맞물립니다.</p>
+      <p class="subnote">※ 신청 창(D-30~D-15)은 <b>잔금일</b> 기준입니다. 실제 잔금일을 확정한 뒤 그 날짜로 역산해 달력에 표시하세요.</p>
     </div>
   </section>
 
@@ -472,9 +499,9 @@
     <p class="sec-title">직접 확인할 곳 &amp; 출처</p>
     <div class="srcgrid">
       <div>
-        <b>매물·중개</b>
-        <a href="https://www.peterpanz.com/house/19537743" target="_blank" rel="noopener">피터팬 매물 원본 (19537743)</a>
-        <a href="tel:01030788430">집토스 송파본점 · 오현옥 010-3078-8430</a>
+        <b>카카오뱅크</b>
+        <a href="https://www.kakaobank.com/products/leaseLoan" target="_blank" rel="noopener">전월세보증금 대출 안내</a>
+        <a href="https://www.kakaobank.com/products/leaseLoanMovement" target="_blank" rel="noopener">전월세대출 갈아타기</a>
       </div>
       <div>
         <b>기금·보증(버팀목 검토 시)</b>
@@ -487,7 +514,8 @@
         <a href="https://housing.seoul.go.kr" target="_blank" rel="noopener">서울주거포털(청년 이자지원)</a>
       </div>
       <div>
-        <b>시세·안전성</b>
+        <b>매물·시세·안전성</b>
+        <a href="https://www.peterpanz.com/house/19537743" target="_blank" rel="noopener">피터팬 매물 원본 (19537743)</a>
         <a href="https://rt.molit.go.kr" target="_blank" rel="noopener">국토부 실거래가</a>
         <a href="https://www.khug.or.kr" target="_blank" rel="noopener">HUG 전세보증</a>
         <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24(건축물대장·등본)</a>
@@ -495,7 +523,7 @@
     </div>
 
     <p class="disclaimer">
-      본 자료는 2026-07-20 기준 공개 정보(피터팬 매물 정보·공식 안내 등)를 정리한 참고용이며, 법률·금융 자문이 아닙니다. ① 매물 정보(확인일 2026.07.01)는 변경·거래완료될 수 있으니 중개소에 재확인하세요. ② 전세대출 금리·한도·자격·서류는 정책·심사에 따라 바뀌므로 신청 직전 각 공식 채널(주택도시기금·서울주거포털·해당 은행)에서 재확인하세요. ③ 표의 연 2.5%·3.5%는 계산을 보여주기 위한 예시 금리이며 실제와 다를 수 있습니다. ④ 등기부 근저당·전세가율·전세보증보험 가입 조건·임대인 세금 체납 여부는 보증금 안전과 직결되므로 계약 전 반드시 직접 확인하고, 계약서에 대출 미실행 시 계약 취소 특약을 넣으세요.
+      본 자료는 2026-07-23 기준 공개 정보(카카오뱅크 공식 안내·매물 정보 등)를 정리한 참고용이며, 법률·금융 자문이 아닙니다. ① 계약은 반전세(보증금 1억 5,200만원 + 월세 12만원)로 완료됐으며, 올전세(1.75억)에서 보증금을 낮춘 것은 전세보증보험 가입·전세대출 승인 조건(전세가율)을 맞추기 위함입니다. ② 카뱅 금리·한도·소득요건·서류는 수시로 바뀌므로 신청 직전 앱에서 재확인하세요. ③ 카뱅 신청 창(잔금일 30일 전~15일 이전)은 확정된 잔금일 기준으로 계산합니다. ④ 등기부 근저당·전세가율·전세보증보험 실제 가입·임대인 세금 체납 여부는 보증금 안전과 직결되므로 <b>잔금 지급 직전</b> 다시 확인하고, 대출 실행일과 잔금일을 같은 날로 맞추세요.
     </p>
   </section>
 
