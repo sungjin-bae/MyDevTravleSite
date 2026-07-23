@@ -1,10 +1,18 @@
 # MyDevTravleSite
 
-거주·전세대출·청약 정리 가이드 (GitHub Pages 정적 사이트).
+개발 스터디 노트 & 거주·전세대출·청약 정리 가이드 (GitHub Pages 정적 사이트).
 
 ## 페이지
 
-- `index.html` — 가이드 모음(허브)
+- `index.html` — 노트·가이드 모음(허브)
+
+### 개발 노트
+
+- `ai-era-unity-architecture.html` — AI 코딩 시대의 유니티 대규모 프로젝트 설계: 검수 비용 관점, 클린 아키텍처의 이득·비용, 함수형 코어·데이터 지향, 계층 분리(blast radius), Data/ViewEntity/View 3계층 테스트
+- `unity-memory-coreclr.html` — Unity 메모리 구조와 CoreCLR: GC(mark-sweep-compact·LOH·decommit)·네이티브 메모리·최적화(이벤트 해제·NonAlloc·바이너리 직렬화·ZString·GPU 인스턴싱) 정리
+
+### 주거 가이드
+
 - `seongnam-naksaeng-newlywed.html` — 성남낙생 신혼희망타운 예비신혼부부 청약 가이드
 - `seongnam-arista-kakao-jeonse.html` — 성남아리스타 전세 + 카카오뱅크 청년 전세대출 준비 가이드
 - `songpa-seokchon-villa-jeonse.html` — 송파동 석촌역 올전세 원룸 매물 + 전세대출 정리
