@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ / C# 게임 개발자 면접 예상문제 — Unity · Unreal</title>
+<meta name="description" content="Unity·Unreal 기반 게임 개발자 면접 대비 C++/C# 예상문제 시험지. 도메인별 출제 후 기술 검수를 거친 모범답안·채점 포인트 포함 (총 48문항).">
+<style>
+  :root{
+    --paper:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF1EC;
+    --ink:#1A211E; --muted:#5B635E; --faint:#8A938D; --line:#E1E5DF;
+    --accent:#0F5B52; --accent-deep:#0A4942; --accent-soft:#E2EFEB;
+    --amber:#8A5A12; --amber-soft:#FBF1DA; --amber-line:#EBD6A8;
+    --alert:#9E3B2C; --alert-soft:#F8E6E1; --alert-line:#EBC6BC;
+    --teal:#13616E; --teal-deep:#0C434C;
+    --code-bg:#0E1B18; --code-ink:#D6E4DE;
+    --shadow:0 1px 2px rgba(20,34,43,.04),0 8px 28px rgba(20,34,43,.07);
+    --sans:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;
+    --mono:'SFMono-Regular',ui-monospace,'Cascadia Mono','Segoe UI Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.68;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;word-break:keep-all;}
+  .wrap{max-width:900px;margin:0 auto;padding:56px 22px 96px;}
+
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:0 0 14px;}
+  h1{font-size:clamp(28px,5vw,42px);line-height:1.18;font-weight:800;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance;}
+  .lede{font-size:17.5px;color:var(--muted);margin:0 0 22px;max-width:62ch;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--faint);padding-top:18px;border-top:1px solid var(--line);}
+  .meta b{color:var(--muted);font-weight:600;}
+  a{color:var(--accent-deep);text-underline-offset:3px;}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+  .backlink{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--accent-deep);text-decoration:none;margin-bottom:26px;}
+  .backlink:hover{text-decoration:underline;}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:34px;}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+  .stat .num{font-size:26px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+  .stat .lbl{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-top:2px;}
+  .stat.jr .num{color:var(--accent-deep);} .stat.mid .num{color:var(--amber);} .stat.sr .num{color:var(--alert);}
+
+  /* how-to panel */
+  .howto{margin-top:22px;background:var(--accent-soft);border:1px solid var(--accent);border-left:4px solid var(--accent);
+    border-radius:12px;padding:16px 20px;}
+  .howto .h{font-weight:740;color:var(--accent-deep);margin:0 0 8px;font-size:15px;}
+  .howto p{margin:0 0 6px;font-size:14px;color:var(--ink);} .howto p:last-child{margin:0;}
+
+  /* toolbar */
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .btn{font-family:var(--sans);font-size:13.5px;font-weight:700;cursor:pointer;border-radius:999px;
+    padding:9px 16px;border:1px solid var(--accent);background:var(--surface);color:var(--accent-deep);
+    transition:background .15s,color .15s;}
+  .btn:hover{background:var(--accent);color:#fff;}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  /* toc */
+  .toc{margin:30px 0 4px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;}
+  .toc-h{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  .toc ol{margin:0;padding:0;list-style:none;display:grid;gap:5px;counter-reset:sec;}
+  .toc a{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted);text-decoration:none;
+    font-size:13.5px;line-height:1.4;padding:6px 10px;border-radius:8px;border-left:2px solid transparent;
+    transition:background .15s,color .15s,border-color .15s;}
+  .toc a:hover{color:var(--accent-deep);background:var(--accent-soft);border-left-color:var(--accent);}
+  .toc a::before{counter-increment:sec;content:counter(sec,decimal-leading-zero) " ";font-weight:700;color:var(--accent);margin-right:6px;}
+  .toc-n{font-size:11.5px;font-weight:700;color:var(--faint);background:var(--surface-2);border-radius:999px;padding:2px 9px;flex:0 0 auto;}
+
+  /* sections */
+  .qsec{margin-top:60px;}
+  section[id]{scroll-margin-top:20px;}
+  h2{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;}
+  .sec-title{font-size:clamp(20px,3.2vw,26px);font-weight:780;letter-spacing:-.015em;margin:0 0 6px;line-height:1.25;text-wrap:balance;}
+  .sec-blurb{font-size:14px;color:var(--muted);margin:0 0 22px;} .sec-blurb b{color:var(--accent-deep);font-weight:700;}
+
+  /* question card */
+  .qcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow);}
+  .qhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line);}
+  .qnum{font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;background:var(--accent-deep);border-radius:8px;padding:3px 9px;letter-spacing:-.01em;}
+  .qid{font-family:var(--mono);font-size:11.5px;color:var(--faint);}
+  .qtopic{font-size:12.5px;color:var(--muted);margin-left:auto;text-align:right;}
+  .badge{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+  .badge.type{background:var(--surface-2);color:var(--muted);}
+  .badge.diff-jr{background:var(--accent-soft);color:var(--accent-deep);}
+  .badge.diff-mid{background:var(--amber-soft);color:var(--amber);}
+  .badge.diff-sr{background:var(--alert-soft);color:var(--alert);}
+  .qbody{font-size:15.5px;} .qbody p{margin:0 0 12px;} .qbody p:last-child{margin:0;}
+  .qbody ul,.qbody ol{margin:0 0 12px;padding-left:22px;} .qbody li{margin:0 0 5px;}
+
+  /* code blocks */
+  pre.code{margin:14px 0;background:var(--code-bg);border-radius:12px;padding:16px 18px;overflow-x:auto;border:1px solid #10302a;}
+  pre.code code{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--code-ink);background:none;padding:0;white-space:pre;}
+  code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 6px;border-radius:6px;color:var(--accent-deep);}
+
+  /* answer details */
+  details.ans{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;}
+  details.ans>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    font-size:13.5px;font-weight:700;color:var(--accent-deep);background:var(--accent-soft);
+    border:1px solid var(--accent);border-radius:999px;padding:7px 15px;user-select:none;transition:background .15s,color .15s;}
+  details.ans>summary::-webkit-details-marker{display:none;}
+  details.ans>summary::before{content:"▸";font-size:11px;transition:transform .15s;}
+  details.ans[open]>summary::before{transform:rotate(90deg);}
+  details.ans[open]>summary{background:var(--accent);color:#fff;border-color:var(--accent);}
+  details.ans>summary:hover{background:var(--accent);color:#fff;}
+  .ans-body{margin-top:16px;padding:18px 20px;background:#FAFBFA;border:1px solid var(--line);border-radius:12px;font-size:15px;}
+  .ans-body>p:first-child{margin-top:0;} .ans-body p{margin:0 0 12px;} .ans-body p:last-child{margin-bottom:0;}
+  .ans-body ul,.ans-body ol{margin:0 0 12px;padding-left:22px;} .ans-body li{margin:0 0 6px;}
+  .gradepoints{margin-top:16px;padding:14px 16px;background:var(--accent-soft);border-radius:10px;}
+  .gp-h{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 9px;}
+  .gradepoints ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  .gradepoints li{position:relative;padding-left:24px;font-size:13.5px;line-height:1.5;color:var(--ink);}
+  .gradepoints li::before{content:"";position:absolute;left:0;top:5px;width:13px;height:13px;border-radius:4px;background:#fff;border:1.5px solid var(--accent);}
+  .gradepoints li::after{content:"";position:absolute;left:4px;top:7px;width:3.5px;height:7px;border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(40deg);}
+
+  .disclaimer{margin-top:44px;font-size:12.5px;color:var(--faint);line-height:1.6;border-top:1px solid var(--line);padding-top:18px;}
+
+  @media (max-width:560px){ .wrap{padding:40px 16px 72px;} .qcard{padding:18px 16px;} .qtopic{margin-left:0;width:100%;text-align:left;} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;} html{scroll-behavior:auto;}}
+  @media print{
+    body{background:#fff;} .toolbar,.backlink,.toc{display:none;}
+    .qcard{box-shadow:none;break-inside:avoid;} details.ans>summary{display:none;}
+    pre.code{background:#f3f4f2;border-color:#ddd;} pre.code code{color:#1a211e;}
+    .ans-body{background:#fafafa;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="backlink" href="index.html">← 목록으로</a>
+
+  <header>
+    <p class="eyebrow">Interview Prep · C++ / C#</p>
+    <h1>C++ / C# 게임 개발자 면접 예상문제</h1>
+    <p class="lede">Unity·Unreal 기반 게임 개발자 채용 면접을 대비한 필기 시험지입니다. 먼저 문제를 풀고, 각 문항의 <b>“모범답안 보기”</b>를 눌러 핵심과 채점 포인트를 확인하세요.</p>
+    <div class="meta">
+      <span><b>대상</b> 게임 개발자 (Unity / Unreal)</span>
+      <span><b>영역</b> C++ · C# · 엔진 · 게임 공통</span>
+      <span><b>문항</b> 총 48문항</span>
+      <span><b>기준일</b> 2026-08-03</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="num">48</div><div class="lbl">총 문항</div></div>
+    <div class="stat jr"><div class="num">18</div><div class="lbl">주니어</div></div>
+    <div class="stat mid"><div class="num">18</div><div class="lbl">미들</div></div>
+    <div class="stat sr"><div class="num">12</div><div class="lbl">시니어</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">섹션</div></div>
+  </div>
+
+  <div class="howto">
+    <p class="h">이렇게 활용하세요</p>
+    <p>1. 문제를 먼저 입으로 대답해보고(백보드 면접처럼), 그 다음 “모범답안 보기”로 대조하세요.</p>
+    <p>2. 난이도 배지: <span class="badge diff-jr">주니어</span> 기본기 · <span class="badge diff-mid">미들</span> 실무 · <span class="badge diff-sr">시니어</span> 심화·설계.</p>
+    <p>3. 모든 모범답안은 도메인별 출제 후 <b>2차 기술 검수</b>를 거쳤지만, 표준·엔진 버전에 따라 세부는 달라질 수 있으니 공식 문서로 재확인하세요.</p>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" id="toggleAll" type="button">모범답안 모두 펼치기</button>
+    <button class="btn" id="printBtn" type="button">인쇄 / PDF 저장</button>
+  </div>
+
+  <nav class="toc" aria-label="목차">
+    <p class="toc-h">섹션</p>
+    <ol>
+      <li><a href="#sec-cpp-core">C++ 코어 — 언어 · 메모리 · 객체 수명 <span class="toc-n">8</span></a></li>
+      <li><a href="#sec-cpp-advanced">C++ 고급 — 동시성 · 성능 · 최신 표준 <span class="toc-n">8</span></a></li>
+      <li><a href="#sec-unreal-cpp">Unreal Engine — C++ · 게임플레이 프레임워크 <span class="toc-n">8</span></a></li>
+      <li><a href="#sec-csharp-core">C# 코어 — 타입 시스템 · GC · 비동기 <span class="toc-n">8</span></a></li>
+      <li><a href="#sec-unity-csharp">Unity — MonoBehaviour · 코루틴 · 메모리 · DOTS <span class="toc-n">8</span></a></li>
+      <li><a href="#sec-game-common">게임 공통 — 수학 · 네트워크 · 패턴 · 아키텍처 <span class="toc-n">8</span></a></li>
+    </ol>
+  </nav>
+
+  <section class="qsec" id="sec-cpp-core">
+    <h2>Section 01</h2>
+    <p class="sec-title">C++ 코어 — 언어 · 메모리 · 객체 수명</p>
+    <p class="sec-blurb">스택/힙, RAII, 스마트 포인터, 이동 시맨틱, 가상함수, 템플릿, STL, UB 등 C++ 기본기. <b>· 8문항</b></p>
+    <article class="qcard" id="q1">
+      <div class="qhead">
+        <span class="qnum">Q1</span>
+        <span class="qid">CPP-01</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">스택 vs 힙 메모리</span>
+      </div>
+      <div class="qbody">
+<p>스택(stack)과 힙(heap) 메모리의 차이를 <strong>할당/해제 방식, 속도, 크기, 수명 관리</strong> 관점에서 설명하세요. 그리고 다음 코드에서 <strong>벡터 객체 <code>v</code> 자체</strong>와 <strong><code>v</code>가 담는 실제 요소 데이터</strong>는 각각 어느 영역에 놓이는지 답하세요.</p>
+<pre class="code"><code class="lang-cpp">void Update() {
+    std::vector&lt;int&gt; v;
+    v.push_back(10);
+    v.push_back(20);
+}</code></pre>
+<p>마지막으로, 게임 코드에서 스택과 힙을 각각 언제 쓰는 것이 적절한지 예를 들어 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>스택(자동 저장 기간)</strong>: 함수 호출 프레임에 자동 할당되고 스코프를 벗어나면 자동 소멸(RAII의 기반). 스택 포인터만 이동하면 되어 할당/해제가 매우 빠르지만, 크기가 제한적(스레드 스택은 보통 수백 KB~수 MB 수준, 예: Windows 메인 스레드 기본 1MB)이라 큰 배열이나 깊은 재귀는 스택 오버플로 위험이 있다. 지역 변수와 함수 매개변수가 여기에 놓인다.</li><li><strong>힙(동적 저장 기간, 자유 저장소)</strong>: <code>new</code>/<code>malloc</code>으로 런타임에 할당하고 수명을 프로그래머(또는 스마트 포인터/컨테이너)가 관리한다. 크기가 크지만 할당 비용이 높고 단편화가 생길 수 있으며, 해제를 놓치면 누수가 발생한다.</li><li><strong>위 코드</strong>: <code>v</code>라는 벡터 <strong>헤더(내부 포인터·size·capacity)는 스택</strong>에 있지만, <code>push_back</code>으로 담은 <strong>요소 버퍼(10, 20)는 힙</strong>에 있다. 스코프 종료 시 <code>v</code>의 소멸자가 힙 버퍼를 해제한다.</li><li><strong>게임 예시</strong>: 프레임마다 계산하는 작은 임시 벡터/행렬 값은 스택, 개수가 런타임에 정해지고 수명이 스코프를 넘어가는 엔티티·리소스는 힙(가급적 <code>std::vector</code>/<code>unique_ptr</code>로 관리).</li><li><strong>오개념 교정</strong>: &quot;<code>new</code>를 안 쓰면 무조건 스택&quot;은 부정확하다. 전역/<code>static</code>은 정적 저장 기간(별도 영역)이고, 멤버 변수는 소속 객체가 놓인 곳(스택 객체면 스택, 힙 객체면 힙)에 따라간다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>자동 저장 기간 vs 동적 저장 기간</li><li>속도·크기·수명관리·오버플로 차이</li><li>vector 헤더는 스택, 요소 버퍼는 힙</li><li>전역/static은 별도 정적 영역</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q2">
+      <div class="qhead">
+        <span class="qnum">Q2</span>
+        <span class="qid">CPP-02</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">단답형</span>
+        <span class="qtopic">const 정확성 / constexpr / 참조 vs 포인터</span>
+      </div>
+      <div class="qbody">
+<p>다음 네 가지 짧은 질문에 각각 간결히 답하세요.</p>
+<ol><li><code>const int* p</code> 와 <code>int* const p</code> 의 차이는?</li><li><code>const</code> 와 <code>constexpr</code> 의 핵심 차이는? <code>constexpr</code> <strong>함수</strong>는 항상 컴파일 타임에 평가되나요?</li><li>참조(reference)와 포인터(pointer)의 차이를 2가지 이상 드세요.</li><li>멤버 함수 뒤에 붙는 <code>const</code>(예: <code>int Size() const;</code>)는 무엇을 보장하나요?</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li><strong><code>const int* p</code></strong>: 가리키는 <em>대상</em>이 const → 대상 값 변경 불가, 포인터 재지정은 가능. <strong><code>int* const p</code></strong>: <em>포인터 자체</em>가 const → 재지정 불가, 대상 값 변경은 가능. (오른쪽에서 왼쪽으로 읽으면 쉽다. <code>const int* const p</code>는 둘 다 const.)</li><li><strong><code>const</code></strong> 는 &quot;읽기 전용(불변)&quot;을 보장할 뿐 컴파일 타임 상수라는 보장은 아니다(런타임 초기화도 가능). <strong><code>constexpr</code></strong> 는 컴파일 타임 상수 평가가 가능함을 뜻한다. <code>constexpr</code> <strong>변수</strong>는 반드시 컴파일 타임 상수지만, <code>constexpr</code> <strong>함수</strong>는 상수 인자로 상수 문맥에서 호출되면 컴파일 타임에, 런타임 인자로 호출되면 런타임에 평가된다(<strong>항상 컴파일 타임 아님</strong>). 항상 컴파일 타임을 강제하려면 C++20의 <code>consteval</code>.</li><li>참조는 (a) 반드시 초기화되고 이후 <strong>재바인딩 불가</strong>, (b) 정상적으로는 <strong>null이 될 수 없음</strong>, (c) 대상 그 자체처럼 문법상 사용(역참조·주소 연산 불필요). 포인터는 null 가능, 재지정 가능, 포인터 산술 가능, 자기 자신도 크기를 가진 객체.</li><li>그 멤버 함수가 (mutable이 아닌) 객체 상태를 수정하지 않음을 보장하고, <code>this</code>가 <code>const T*</code>가 되어 <strong>const 객체에서도 호출 가능</strong>해진다.</li></ol>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>const 위치는 오른쪽→왼쪽으로 해석</li><li>constexpr 함수는 문맥에 따라 CT 또는 RT</li><li>참조=재바인딩 불가·null 불가</li><li>const 멤버함수=비변경 보장·const 객체 호출 가능</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q3">
+      <div class="qhead">
+        <span class="qnum">Q3</span>
+        <span class="qid">CPP-03</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">가상 소멸자 / vtable / 소멸 순서</span>
+      </div>
+      <div class="qbody">
+<p>다음 코드에서 <code>delete e;</code> 시점에 무슨 문제가 발생하나요? 근본 원인과 수정 방법을 설명하고, <code>override</code> 키워드의 역할, 그리고 (수정 후) 객체가 소멸되는 순서를 서술하세요.</p>
+<pre class="code"><code class="lang-cpp">class Entity {
+public:
+    ~Entity() { /* 공통 정리 */ }        // (1)
+    virtual void Update() {}
+};
+
+class Player : public Entity {
+    std::vector&lt;int&gt; inventory_;         // 힙을 소유하는 멤버
+public:
+    ~Player() { /* Player 자원 해제 */ }
+    void Update() override {}
+};
+
+int main() {
+    Entity* e = new Player();
+    e-&gt;Update();
+    delete e;                            // (2)
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>문제 (2)</strong>: <code>~Entity()</code>가 가상(virtual)이 아니므로, 기반 클래스 포인터로 파생 객체를 <code>delete</code> 하는 것은 <strong>미정의 동작(UB)</strong> 이다. 표준은 &quot;정적 타입과 동적 타입이 다르고 정적 타입의 소멸자가 non-virtual이면 UB&quot;라고 규정한다. 실제 구현 대부분에서는 <code>~Entity()</code>만 실행되고 <code>~Player()</code>가 호출되지 않아, <code>inventory_</code>(vector)를 포함한 파생 멤버 자원이 정리되지 않는 <strong>누수</strong>가 생긴다.</li><li><strong>수정</strong>: 다형적으로(기반 포인터로 delete) 쓸 기반 클래스는 <strong>가상 소멸자 필수</strong>. <code>virtual ~Entity() = default;</code> 로 선언한다.</li><li><strong>vtable/vptr</strong>: 가상 함수가 하나라도 있으면 클래스마다 vtable이 생기고 객체에 vptr이 심긴다. 소멸자가 virtual이면 vtable을 통해 <strong>런타임 동적 타입의 소멸자부터</strong> 올바르게 호출된다.</li><li><strong>소멸 순서(수정 후)</strong>: <code>~Player()</code> 본문 실행 → <code>Player</code>의 멤버(<code>inventory_</code>) 소멸 → <code>~Entity()</code> 본문 실행. 즉 생성의 정확한 역순이다.</li><li><strong><code>override</code></strong>: <code>Update</code>가 기반의 가상 함수를 실제로 재정의하는지 컴파일러가 검증해 준다(시그니처 오타 등을 컴파일 에러로 잡음). <code>final</code>은 추가 재정의/상속을 금지한다.</li><li><strong>오개념 교정</strong>: &quot;가상 함수가 있으니 소멸자도 자동으로 가상이 된다&quot;는 틀렸다. 소멸자는 반드시 명시적으로 <code>virtual</code> 선언해야 한다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>non-virtual dtor로 base 포인터 delete = UB(파생 멤버 누수)</li><li>수정: virtual ~Entity()</li><li>소멸 순서=파생→멤버→기반(생성의 역순)</li><li>override는 재정의 시그니처 검증(자동 virtual 아님)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q4">
+      <div class="qhead">
+        <span class="qnum">Q4</span>
+        <span class="qid">CPP-04</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">스마트 포인터 / 순환참조 / 제어 블록</span>
+      </div>
+      <div class="qbody">
+<p><code>std::unique_ptr</code>, <code>std::shared_ptr</code>, <code>std::weak_ptr</code>의 용도와 차이를 설명하세요. 이어서 <code>shared_ptr</code>의 <strong>순환 참조(cyclic reference)</strong> 가 왜 메모리 누수를 유발하는지, <code>weak_ptr</code>로 어떻게 해결하는지 설명하고, <code>shared_ptr</code>의 <strong>제어 블록(control block)</strong> 이 무엇인지 답하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>unique_ptr</strong>: 단독 소유. 복사 불가, 이동만 가능. 오버헤드가 사실상 없어(커스텀 deleter 없으면 raw 포인터 크기) <strong>기본 선택지</strong>.</li><li><strong>shared_ptr</strong>: 공유 소유. strong 참조 카운트가 0이 되면 대상을 삭제한다. 객체 포인터 + 제어 블록 포인터로 보통 포인터 2개 크기.</li><li><strong>weak_ptr</strong>: 소유하지 않는 관찰자. strong count에 영향을 주지 않으며, <code>lock()</code> 호출 시점에 대상이 살아 있으면 <code>shared_ptr</code>를 얻는다(아니면 빈 것).</li><li><strong>순환 참조</strong>: A가 B를, B가 A를 서로 <code>shared_ptr</code>로 잡으면 외부 참조가 모두 사라져도 서로의 strong count를 1 이상 유지시켜 카운트가 0이 되지 않는다 → 둘 다 해제되지 않아 누수. 게임에서 부모↔자식, 옵저버 상호 참조에서 흔하다.</li><li><strong>해결</strong>: 소유 방향만 <code>shared_ptr</code>로 두고, 역방향(소유하지 않는 쪽, 예: 자식→부모)을 <strong><code>weak_ptr</code></strong> 로 만들어 사이클을 끊는다.</li><li><strong>제어 블록</strong>: <code>shared_ptr</code>가 관리하는 별도의 (힙) 블록으로, <strong>strong count, weak count, deleter/allocator</strong> 를 담는다. 객체 메모리는 strong count가 0이면 해제되지만, weak_ptr가 남아 있으면 제어 블록은 weak count가 0이 될 때까지 유지된다. <code>make_shared</code>는 객체와 제어 블록을 <strong>한 번의 할당</strong>으로 합쳐 성능·지역성 이점이 있다(단 weak_ptr가 살아 있는 동안 객체 메모리도 함께 잡혀 있는 트레이드오프).</li><li><strong>오개념 교정</strong>: &quot;shared_ptr는 스레드 세이프&quot;는 절반만 맞다. 참조 카운트 증감은 원자적이라 안전하지만, <strong>가리키는 객체의 데이터 접근은 별도 동기화가 필요</strong>하다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>unique=단독소유, shared=공유(strong count), weak=비소유 관찰</li><li>순환참조 시 strong count가 0이 안 되어 누수</li><li>역참조를 weak_ptr로 끊어 해결</li><li>제어 블록=strong/weak count+deleter, make_shared 단일할당</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q5">
+      <div class="qhead">
+        <span class="qnum">Q5</span>
+        <span class="qid">CPP-05</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">반복자 무효화 (iterator invalidation)</span>
+      </div>
+      <div class="qbody">
+<p>다음 코드는 짝수를 제거하려는 의도입니다. 무슨 문제가 있으며 왜 위험한지 설명하고, 올바른 수정안을 제시하세요. 또한 <code>std::vector</code>에서 반복자/포인터가 무효화되는 규칙을 정리하세요.</p>
+<pre class="code"><code class="lang-cpp">std::vector&lt;int&gt; v = {1, 2, 4, 6, 3, 8};
+for (auto it = v.begin(); it != v.end(); ++it) {
+    if (*it % 2 == 0) {
+        v.erase(it);   // 짝수 제거
+    }
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>버그</strong>: <code>vector::erase(it)</code>는 지워진 위치 이후의 <strong>모든 반복자·참조·포인터를 무효화</strong>한다. 무효화된 <code>it</code>을 그대로 <code>++it</code> 하는 것은 UB이며, 실무적으로도 요소를 건너뛴다. 위 예처럼 연속된 짝수(2,4,6, …)를 지나면 erase 직후 다음 원소로 밀려온 값을 <code>++it</code>로 뛰어넘어 일부 짝수가 남는다.</li><li><strong>수정 1 (erase 반환값 사용)</strong>: erase는 다음 유효 반복자를 반환한다.</li></ul>
+<pre class="code"><code class="lang-cpp">for (auto it = v.begin(); it != v.end(); ) {
+    if (*it % 2 == 0) it = v.erase(it);
+    else ++it;
+}</code></pre>
+<ul><li><strong>수정 2 (권장, erase-remove 관용구, O(n))</strong>:</li></ul>
+<pre class="code"><code class="lang-cpp">v.erase(std::remove_if(v.begin(), v.end(),
+        [](int x){ return x % 2 == 0; }), v.end());
+// C++20이면: std::erase_if(v, [](int x){ return x % 2 == 0; });</code></pre>
+<ul><li><strong>vector 무효화 규칙</strong>: <code>push_back</code>/<code>insert</code>가 capacity를 초과해 <strong>재할당하면 모든</strong> 반복자·참조·포인터가 무효화된다. <code>erase</code>는 <strong>지운 지점부터 end까지</strong> 무효화된다.</li><li><strong>노드 기반 컨테이너와의 차이</strong>: <code>std::list</code>/<code>std::map</code>/<code>std::set</code>은 노드 기반이라 <code>erase</code>가 <strong>삭제된 원소의 반복자·참조만</strong> 무효화하고 나머지 반복자·참조는 유지된다. 다만 삭제된 <code>it</code> 자체는 무효화되므로, 위 루프처럼 <code>erase(it)</code> 후 다시 <code>++it</code> 하는 것은 이들 컨테이너에서도 <strong>여전히 UB</strong>다 — <code>it = c.erase(it)</code>(C++11+) 또는 옛 관용구 <code>c.erase(it++)</code>로 다음 반복자를 받아야 한다. <code>unordered_map</code>은 rehash 시 <strong>반복자만</strong> 무효화되고(원소에 대한 포인터·참조는 유지) 그 외에는 삭제 원소만 무효화된다.</li><li><strong>오개념 교정</strong>: <code>v.erase(it); ++it;</code> 가 &quot;그냥 다음으로 넘어간다&quot;는 생각은 위험하다 — 어떤 컨테이너든 삭제된 반복자를 다시 증가시키면 안 되고, 반드시 erase의 반환값을 받아야 한다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>erase는 지운 지점 이후 반복자 무효화 → ++it은 UB</li><li>수정: it = v.erase(it) 반환값 사용</li><li>권장: erase-remove / std::erase_if</li><li>재할당 시 vector 전체 무효; list/map은 삭제 원소만 무효(나머지 유지)이나 erase 반환값은 여전히 필요</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q6">
+      <div class="qhead">
+        <span class="qnum">Q6</span>
+        <span class="qid">CPP-06</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">이동 시맨틱 / std::move / rule of 0·3·5 / 완벽전달</span>
+      </div>
+      <div class="qbody">
+<p>이동 시맨틱(move semantics)과 <code>std::move</code>가 무엇인지 설명하세요. 특히 &quot;<code>std::move</code>가 실제로 무언가를 이동시킨다&quot;는 표현이 왜 부정확한지, 이동 후 원본 객체의 상태는 어떤지 서술하세요. 이어서 <strong>rule of 0/3/5</strong> 를 설명하고, <strong>완벽 전달(perfect forwarding)</strong> 에서 <code>std::forward</code>의 역할이 <code>std::move</code>와 어떻게 다른지 답하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>이동 시맨틱</strong>: 임시(rvalue)나 더 이상 쓰지 않을 객체의 자원(힙 버퍼 등)을 깊은 복사 대신 &quot;빼앗아&quot; 넘기는 것. 이동 생성자/이동 대입 연산자(<code>T(T&amp;&amp;)</code>, <code>T&amp; operator=(T&amp;&amp;)</code>)가 이를 구현한다. 예: vector 이동은 내부 포인터만 옮기고 원본을 빈 상태로 둔다.</li><li><strong>std::move</strong>: 실제로 이동을 수행하지 않는다. 인자를 <strong>rvalue 참조로 캐스팅만</strong> 하는 것(<code>static_cast&lt;T&amp;&amp;&gt;</code>)이다. 그 결과 오버로드 해석이 이동 생성자/대입을 선택하게 만들 뿐이며, 실제 이동은 그 생성자/대입 본문 안에서 일어난다.</li><li><strong>이동 후 원본</strong>: <strong>유효하지만 미지정(valid-but-unspecified)</strong> 상태다. 다시 대입하거나 소멸시키는 것은 안전하지만, 값에 의존하는 사용(use-after-move)은 논리 버그다.</li><li><strong>rule of 0</strong>: 자원을 직접 관리하지 말고 <code>vector</code>/<code>unique_ptr</code> 같은 RAII 멤버로만 구성해 특수 멤버 함수를 하나도 선언하지 않는 것(가장 권장). <strong>rule of 3</strong>: 소멸자·복사 생성자·복사 대입 중 하나를 직접 정의하면 대개 셋 다 필요하다. <strong>rule of 5</strong>: 이동까지 고려하면 이동 생성자·이동 대입을 더해 5개를 함께 고려한다. 주의: 사용자가 소멸자나 복사 연산을 선언하면 <strong>이동 연산이 자동 생성되지 않는다</strong>.</li><li><strong>완벽 전달</strong>: 템플릿의 <code>T&amp;&amp;</code>(전달 참조/forwarding reference)로 받은 인자의 값 카테고리(lvalue/rvalue)를 하위 함수로 <strong>그대로</strong> 넘기기 위해 <code>std::forward&lt;T&gt;(x)</code>를 쓴다. <code>std::move</code>는 <strong>무조건</strong> rvalue로 캐스팅하는 반면, <code>std::forward</code>는 원본이 lvalue면 lvalue로, rvalue면 rvalue로 <strong>조건부</strong> 캐스팅한다.</li><li><strong>오개념 교정</strong>: &quot;std::move가 이동을 실행한다&quot;, &quot;이동 후 원본을 자유롭게 써도 된다&quot;는 모두 틀리다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>std::move는 이동이 아니라 rvalue로의 캐스팅</li><li>이동 후 원본=valid-but-unspecified</li><li>rule of 0/3/5, 소멸자·복사 선언 시 이동 자동생성 안 됨</li><li>forward는 조건부·move는 무조건 rvalue 캐스팅</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q7">
+      <div class="qhead">
+        <span class="qnum">Q7</span>
+        <span class="qid">CPP-07</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">STL 컨테이너 시간복잡도 / 메모리 레이아웃</span>
+      </div>
+      <div class="qbody">
+<p>게임 서버에서 수만 개의 엔티티를 관리합니다. 핵심 요구는 (a) <strong>ID로 빠른 조회</strong>, (b) <strong>매 프레임 전체 순회하며 업데이트</strong> 두 가지입니다.</p>
+<p><code>std::vector</code>, <code>std::map</code>, <code>std::unordered_map</code>의 <strong>시간 복잡도</strong>와 <strong>메모리 레이아웃(캐시 지역성)</strong> 을 비교하고, 어떤 컨테이너(또는 조합)를 선택할지 트레이드오프와 함께 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>시간 복잡도</strong>: <code>vector</code> — 인덱스 접근 O(1), 끝 삽입 amortized O(1), 값 검색 O(n), 임의 위치 삽입/삭제 O(n). <code>map</code>(균형 이진 트리) — 조회/삽입/삭제 O(log n), 키 정렬 유지. <code>unordered_map</code>(해시) — 평균 O(1), 최악 O(n)(충돌·리해시), 순서 없음.</li><li><strong>메모리 레이아웃</strong>: <code>vector</code>는 연속 메모리라 전체 순회 시 <strong>캐시 지역성이 최고</strong>이고 프리페치에 유리하다. <code>map</code>/<code>unordered_map</code>은 요소마다 별도 노드를 할당하는 <strong>노드 기반</strong>이라 순회 시 pointer chasing으로 캐시 미스가 잦다. <code>unordered_map</code>은 버킷 배열 + 노드 구조라 순회가 메모리상 흩어진다.</li><li><strong>권장 설계(하이브리드)</strong>: 매 프레임 도는 (b) 업데이트가 hot path이므로 <strong>엔티티 본체는 연속 배열(<code>vector</code> 혹은 SoA)</strong> 에 두어 순회 캐시 효율을 확보하고, (a) 조회는 <strong>ID→인덱스 매핑용 <code>unordered_map</code></strong> (또는 ID가 조밀하면 vector 인덱스/slot map)을 별도로 둔다. 이러면 조회는 평균 O(1), 순회는 연속 접근으로 둘 다 만족한다.</li><li><strong>실무 팁</strong>: 크기를 알면 <code>reserve()</code>로 재할당(및 반복자/포인터 무효화)을 방지한다. <code>unordered_map</code>은 rehash 시 반복자 무효화·노드 할당 비용이 있다. 정렬이 정말 필요할 때만 <code>map</code>. vector 중간 삭제가 잦으면 순서 무관 시 swap-and-pop, 안정 ID가 필요하면 slot map을 고려한다.</li><li><strong>오개념 교정</strong>: &quot;unordered_map이 항상 map보다 빠르다&quot;는 단정은 위험하다(작은 N, 정렬 필요, 최악 케이스, 캐시 특성에 따라 다름). &quot;O(1)이면 실제로도 항상 빠르다&quot;도 상수·캐시를 무시한 오해다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>vector 연속=캐시 지역성·O(1) 접근 / map O(log n) 정렬 / unordered_map 평균 O(1)</li><li>노드 기반은 pointer chasing으로 캐시 미스</li><li>하이브리드: 연속 저장 순회 + ID→인덱스 맵</li><li>reserve로 재할당·무효화 방지, 복잡도≠실측 속도</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q8">
+      <div class="qhead">
+        <span class="qnum">Q8</span>
+        <span class="qid">CPP-08</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">미정의 동작 / 객체 수명 / 무효화 / use-after-move</span>
+      </div>
+      <div class="qbody">
+<p>다음 세 함수에는 각각 서로 다른 원인의 미정의 동작(UB)이 숨어 있습니다. <code>(1)</code>, <code>(2)</code>, <code>(3)</code> 각각의 원인을 진단하고 수정안을 제시한 뒤, 이들을 관통하는 공통 원칙을 서술하세요.</p>
+<pre class="code"><code class="lang-cpp">const std::string&amp; FindName(int id) {
+    std::string name = LookupName(id);
+    return name;                     // (1)
+}
+
+void Tick(std::vector&lt;Actor&gt;&amp; actors) {
+    Actor* boss = &amp;actors[0];
+    actors.push_back(Actor{});       // (2)
+    boss-&gt;Update();
+}
+
+void Give(std::unique_ptr&lt;Item&gt; item) {
+    g_inventory.push_back(std::move(item));
+    item-&gt;OnEquip();                 // (3)
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>(1) 지역 변수 참조 반환 → dangling</strong>: <code>name</code>은 함수 반환과 함께 소멸하는데 그 참조를 반환한다. 호출부가 그 참조를 사용하면 수명이 끝난 객체 접근(UB)이다. <strong>수정</strong>: 값으로 반환(<code>std::string FindName(int id)</code>) — RVO/이동으로 비용이 크지 않다.</li><li><strong>(2) 재할당에 의한 포인터 무효화</strong>: <code>&amp;actors[0]</code>로 얻은 <code>boss</code>는 <code>push_back</code>이 capacity를 넘겨 재할당하면 기존 버퍼가 해제되어 dangling이 된다(vector 재할당 시 모든 포인터·참조·반복자 무효화). <strong>수정</strong>: push_back 이후 인덱스로 다시 접근(<code>actors[0].Update();</code>), 또는 미리 <code>reserve()</code>로 재할당 방지, 또는 순회 중 컨테이너 크기 변경을 피한다.</li><li><strong>(3) use-after-move</strong>: <code>std::move</code>로 소유권을 넘긴 뒤 <code>item</code>은 <code>unique_ptr</code> 규약상 <strong>nullptr</strong>이다. <code>item-&gt;OnEquip()</code>는 널 역참조(UB). <strong>수정</strong>: 이동 <em>전에</em> 필요한 호출을 하거나, 컨테이너에 넣은 뒤 새 소유자를 통해 접근한다(<code>g_inventory.back()-&gt;OnEquip();</code>).</li><li><strong>공통 원칙</strong>: 참조·포인터·반복자는 <strong>대상 객체의 수명</strong>과 (컨테이너의 경우) <strong>재할당 여부</strong>에 종속되는 &quot;빌린 핸들&quot;이다. 핸들의 유효 구간을 항상 의식하고, 소유권을 이전(move)한 뒤에는 원본을 값 용도로 쓰지 않아야 한다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>(1) 지역 변수 참조 반환=dangling → 값 반환</li><li>(2) push_back 재할당으로 포인터 무효 → reserve/인덱스 재접근</li><li>(3) move 후 unique_ptr는 nullptr → 널 역참조</li><li>빌린 핸들의 수명·무효화·소유권 이전 인식</li></ul></div>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <section class="qsec" id="sec-cpp-advanced">
+    <h2>Section 02</h2>
+    <p class="sec-title">C++ 고급 — 동시성 · 성능 · 최신 표준</p>
+    <p class="sec-blurb">멀티스레딩, 메모리 모델, 캐시/데이터 지향, C++11~20 신기능, 게임 서버 성능 관점. <b>· 8문항</b></p>
+    <article class="qcard" id="q9">
+      <div class="qhead">
+        <span class="qnum">Q9</span>
+        <span class="qid">CPX-01</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">단답형</span>
+        <span class="qtopic">람다 캡처</span>
+      </div>
+      <div class="qbody">
+<p>아래 세 람다는 <strong>어떤 클래스의 멤버 함수 안</strong>에 있고, 본문에서 지역 변수와 멤버 변수를 사용한다고 가정한다. 세 캡처 절의 의미를 각각 한 줄로 설명하고, 이 람다를 <code>std::thread</code>나 이벤트 콜백처럼 <strong>자신을 생성한 스코프보다 오래 사는 곳</strong>에 넘길 때 어떤 캡처가 위험한지 답하시오.</p>
+<pre class="code"><code class="lang-cpp">auto a = [=]   { /* ... */ };
+auto b = [&amp;]   { /* ... */ };
+auto c = [this]{ /* ... */ };</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><code>[=]</code>: 람다가 사용하는 외부 변수를 <strong>캡처 시점의 값(복사본)</strong>으로 저장한다. 복사본은 기본적으로 const이며 <code>mutable</code>을 붙이면 람다 내부에서만 수정 가능(원본엔 영향 없음).</li><li><code>[&amp;]</code>: 외부 변수를 <strong>참조</strong>로 잡아 원본을 직접 읽고 쓴다.</li><li><code>[this]</code>: 멤버 접근을 위해 <strong><code>this</code> 포인터를 값으로 복사</strong>한다(객체 자체가 아니라 포인터). 결과적으로 멤버는 참조처럼 접근된다.</li></ul>
+<p>스코프보다 오래 사는 곳에 넘길 때 위험한 것은 <strong><code>[&amp;]</code>(그리고 <code>[this]</code>)</strong>다. 지역 변수/객체가 파괴된 뒤 dangling reference에 접근해 UB가 된다. 이 경우 필요한 것만 값 캡처하거나, 수명이 필요하면 <code>shared_ptr</code>를 캡처하거나 <code>[obj = std::move(x)]</code> 같은 초기화 캡처(C++14)를 쓴다. 객체 자체의 복사가 필요하면 <code>[*this]</code>(C++17)로 객체를 복사할 수 있다.</p>
+<p>흔한 오해: <code>[=]</code>면 <code>this</code>까지 값 복사되어 안전하다는 생각 — <code>[=]</code>도 멤버 접근 시엔 <strong><code>this</code> 포인터만</strong> 복사하므로 객체 수명 문제는 그대로다. (C++20에서 <code>[=]</code>의 암시적 <code>this</code> 캡처는 deprecated이고 <code>[=, this]</code>를 명시하도록 권장한다.)</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>[=] 값복사 / [&amp;] 참조 / [this] 포인터 복사 정확 구분</li><li>오래 사는 콜백에서 [&amp;]·[this]는 dangling → UB</li><li>[=]도 this는 포인터만 복사(객체 수명 미해결) 오해 교정, 객체 복사는 [*this]</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q10">
+      <div class="qhead">
+        <span class="qnum">Q10</span>
+        <span class="qid">CPX-02</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">데이터 레이스 / mutex</span>
+      </div>
+      <div class="qbody">
+<p>(1) <strong>데이터 레이스(data race)</strong>의 정의를 말하고, 왜 이것이 단순히 &quot;값이 좀 틀리는&quot; 수준이 아니라 <strong>정의되지 않은 동작(UB)</strong>인지 설명하시오. (2) <code>std::mutex</code> + <code>std::lock_guard</code>로 어떻게 방지하는지, (3) <code>std::lock_guard</code>와 <code>std::unique_lock</code>의 차이를 설명하시오.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>데이터 레이스</strong>: 둘 이상의 스레드가 <strong>같은 메모리 위치</strong>에 접근하고, 그중 <strong>최소 하나가 쓰기</strong>이며, 그 접근들 사이에 <strong>happens-before 관계(동기화)가 없는</strong> 상태. C++ 표준상 이는 <strong>정의되지 않은 동작</strong>이다. &quot;값이 찢어지는(torn)&quot; 정도로 끝나지 않는 이유는, 컴파일러가 &quot;레이스는 없다&quot;를 전제로 레지스터 캐싱·명령 재배열 등 공격적 최적화를 하기 때문이다. 따라서 무한 루프, 크래시 등 임의의 결과가 표준상 허용된다. <code>volatile</code>은 원자성도 스레드 간 가시성·순서도 주지 않으므로 해결책이 아니다.</li><li><strong>lock_guard로 방지</strong>: RAII 객체로, 생성 시 <code>lock()</code>, 소멸 시 <code>unlock()</code>을 자동 호출한다. <code>{ std::lock_guard&lt;std::mutex&gt; lk(m); /* 임계 영역 */ }</code>처럼 감싸면 예외가 나도 스코프 이탈 시 안전하게 해제된다.</li><li><strong>lock_guard vs unique_lock</strong>: <code>lock_guard</code>는 가볍고 스코프 내내 잠금 고정, 이동·수동 unlock 불가. <code>unique_lock</code>은 유연 — <code>std::defer_lock</code>으로 지연 잠금, 중간 unlock/relock, <code>try_lock</code>, 이동 가능하며 <strong><code>condition_variable::wait</code>에 필수</strong>(대기 중 뮤텍스를 풀었다 다시 잠가야 하므로). 유연성 대신 소유 여부 플래그만큼의 약간의 오버헤드가 있어, 기본은 <code>lock_guard</code>(또는 다중 뮤텍스 데드락을 피하는 C++17 <code>std::scoped_lock</code>)를 쓰고 필요할 때만 <code>unique_lock</code>을 쓴다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>데이터 레이스 3요소(같은 위치·1개 이상 쓰기·동기화 없음)와 UB</li><li>volatile은 해결책 아님 명시</li><li>lock_guard=RAII / unique_lock=유연·cv.wait 필수 차이</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q11">
+      <div class="qhead">
+        <span class="qnum">Q11</span>
+        <span class="qid">CPX-03</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">원자성 / atomic</span>
+      </div>
+      <div class="qbody">
+<p>아래 코드는 8개 스레드가 전역 카운터를 각 10만 번씩 증가시켜 800000을 기대한다.</p>
+<pre class="code"><code class="lang-cpp">#include &lt;thread&gt;
+#include &lt;vector&gt;
+#include &lt;cstdio&gt;
+
+int g_kill_count = 0;   // 여러 몬스터 처치 스레드가 누적
+
+void worker() {
+    for (int i = 0; i &lt; 100000; ++i)
+        ++g_kill_count;
+}
+
+int main() {
+    std::vector&lt;std::thread&gt; ts;
+    for (int i = 0; i &lt; 8; ++i) ts.emplace_back(worker);
+    for (auto&amp; t : ts) t.join();
+    printf(&quot;%d\n&quot;, g_kill_count);   // 기대: 800000
+    return 0;
+}</code></pre>
+<p>출력이 800000이 아닐 수 있는 이유는? <code>int</code>를 <code>volatile int</code>로 바꾸면 해결되는가? 올바른 수정을 <strong>두 가지</strong> 제시하시오.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>원인</strong>: <code>++g_kill_count</code>는 읽기→수정→쓰기(read-modify-write) 3단계라 <strong>원자적이지 않다</strong>. 여러 스레드가 동기화 없이 접근하므로 <strong>데이터 레이스(UB)</strong>이고, 실제로는 증가가 서로 덮여 유실되어 800000보다 작은(그리고 실행마다 달라지는) 값이 나오는 것이 전형적이다.</li><li><strong><code>volatile</code>은 해결책이 아니다</strong>: <code>volatile</code>은 컴파일러의 일부 최적화(레지스터 캐싱 제거 등)만 막을 뿐, <strong>원자성도, 스레드 간 happens-before(가시성·순서)도 보장하지 않는다.</strong> RMW 자체가 여전히 쪼개져 UB가 남는다. (<code>volatile</code>은 MMIO 등 하드웨어 접근용이지 스레드 동기화 도구가 아니다.)</li><li><strong>올바른 수정 2가지</strong>:</li></ul>
+<ol><li><code>std::atomic&lt;int&gt; g_kill_count{0};</code>로 바꾼다. <code>++g_kill_count</code>가 원자적 RMW가 된다. 이 카운터는 최종 합만 필요하고 다른 데이터와 순서 의존이 없으며 최종 읽기는 <code>join()</code>(happens-before 제공) 이후이므로 <code>g_kill_count.fetch_add(1, std::memory_order_relaxed);</code>로 완화해 더 빠르게 할 수 있다.</li><li><code>std::mutex</code>로 보호하고 <code>lock_guard</code> 스코프 안에서 증가시킨다. 정확하지만 단순 카운터엔 atomic보다 과하다.</li></ol>
+<ul><li>가점: 이 케이스에선 atomic이 mutex보다 적합하며 <code>relaxed</code>로 최적화 가능하다는 점을 짚으면 좋다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>++는 비원자 RMW → 데이터 레이스로 증가 유실</li><li>volatile은 원자성·가시성 미보장(해결 아님)</li><li>atomic(가능하면 relaxed) 또는 mutex 두 수정 제시</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q12">
+      <div class="qhead">
+        <span class="qnum">Q12</span>
+        <span class="qid">CPX-04</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">SoA vs AoS / 캐시 지역성</span>
+      </div>
+      <div class="qbody">
+<p>아래처럼 총 128바이트인 엔티티 수만 개를 매 프레임 순회하며 <strong>위치만</strong> 갱신(<code>pos += vel * dt</code>)하는 루프가 있다.</p>
+<pre class="code"><code class="lang-cpp">struct Entity { Vec3 pos; Vec3 vel; Quat rot; Mesh* mesh; float hp; /* ... 총 128B */ };</code></pre>
+<p>AoS(Array of Structs)와 SoA(Struct of Arrays)의 차이를 설명하고, 이 루프에서 어느 쪽이 캐시 관점에서 유리한지 <strong>캐시 라인/프리페치</strong> 관점으로 설명하시오. 또한 SoA가 항상 정답이 아닌 경우를 하나 드시오.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>AoS</strong>: 한 <code>Entity</code>에 모든 필드가 모여 배열로 나열(<code>Entity arr[N]</code>). <strong>SoA</strong>: 필드별로 분리된 병렬 배열(<code>Vec3 pos[N]; Vec3 vel[N]; ...</code>).</li><li><strong>이 루프에선 SoA가 유리</strong>하다. 캐시 라인(보통 64B)에 실제로 읽고 쓰는 <code>pos</code>/<code>vel</code>만 조밀하게 담겨 라인 활용률이 높고, 순차 접근이라 하드웨어 프리페처가 잘 예측한다. 반면 AoS는 128B 구조체에서 <code>pos</code>/<code>vel</code>만 필요해도 <code>rot</code>/<code>mesh</code>/<code>hp</code>까지 같은 라인에 끌려와 메모리 대역폭을 낭비하고 캐시 미스가 늘어난다. 덤으로 SoA는 동일 타입이 연속이라 SIMD 벡터화도 쉬워진다.</li><li><strong>SoA가 항상 정답은 아니다</strong>: 한 엔티티의 <strong>여러 필드를 함께</strong> 자주 접근하는 경우(예: 충돌 처리에서 한 객체의 <code>pos</code>·<code>radius</code>·<code>mask</code>를 묶어 사용), 또는 개별 엔티티를 랜덤 접근하거나 삽입·삭제가 잦은 경우엔 AoS가 지역성·코드 단순성에서 낫다. 핵심은 <strong>&quot;무엇을 함께 읽는가&quot;라는 접근 패턴에 맞춰 고르는 것</strong>(데이터 지향 설계의 요지)이지, &quot;SoA가 무조건 빠르다&quot;가 아니다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>AoS/SoA 메모리 배치 정확 정의</li><li>핫 필드만 순회 시 SoA가 캐시 라인 활용·프리페치·SIMD 유리</li><li>함께 읽는 필드·랜덤 접근 많으면 AoS(접근 패턴이 기준)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q13">
+      <div class="qhead">
+        <span class="qnum">Q13</span>
+        <span class="qid">CPX-05</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">string_view 수명</span>
+      </div>
+      <div class="qbody">
+<p>다음 코드의 (A), (B), (C) 지점에서 각각 무엇이 문제인지 <code>std::string_view</code>의 본질과 함께 설명하고, 수정 방향을 제시하시오.</p>
+<pre class="code"><code class="lang-cpp">#include &lt;string&gt;
+#include &lt;string_view&gt;
+
+std::string_view make_greeting(const std::string&amp; name) {
+    std::string s = &quot;Hello, &quot; + name;   // 지역 std::string
+    return s;                            // (A)
+}
+
+std::string_view pick(std::string_view a, std::string_view b, bool use_a) {
+    return use_a ? a : b;
+}
+
+int main() {
+    std::string_view g = make_greeting(&quot;world&quot;);                  // (B)
+    std::string_view p = pick(&quot;abc&quot;, std::string(&quot;xyz&quot;), false);  // (C)
+    // 이후 g, p 사용...
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>핵심</strong>: <code>std::string_view</code>는 <strong>비소유(non-owning)</strong> 타입이다. 포인터 + 길이만 들고 있고, 가리키는 문자 버퍼의 수명은 관리하지 않는다.</li><li><strong>(A)/(B)</strong>: 지역 <code>std::string s</code>는 <code>make_greeting</code> 반환과 동시에 파괴된다. 반환된 view는 곧바로 <strong>dangling</strong>이 되고, <code>g</code>(B)를 통해 접근하면 UB다. 수정: 반환 타입을 값 <code>std::string</code>으로 바꾸거나(가장 간단), 버퍼 수명을 호출자가 소유하도록 설계한다.</li><li><strong>(C)</strong>: <code>use_a</code>가 false이므로 <code>pick</code>은 <code>b</code>를 반환하는데, <code>b</code>는 인자로 넘긴 임시 <code>std::string(&quot;xyz&quot;)</code>를 가리킨다. 이 임시는 그 full expression(세미콜론)까지만 살아 있으므로, <code>pick</code>이 반환한 view를 <code>p</code>에 담은 직후 임시가 파괴되어 <code>p</code>는 dangling이 된다. 반면 <code>&quot;abc&quot;</code>는 문자열 리터럴이라 정적 수명이라 그 자체는 안전하다(문제는 <code>std::string(...)</code> 임시 쪽). 수정: 임시 대신 수명이 충분한 <code>std::string</code> 변수를 넘기거나, view가 아니라 값을 보관한다.</li><li><strong>결론</strong>: <code>string_view</code>/<code>span</code>은 읽기 전용 <strong>함수 파라미터</strong>엔 훌륭하지만, <strong>소유가 필요한 곳(멤버 저장, 소유를 넘기는 반환값)에 쓰면 안 된다.</strong> 파라미터엔 <code>string_view</code>, 저장·반환엔 <code>string</code>이 원칙이다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>string_view=비소유(포인터+길이), 수명 미관리</li><li>(A)/(B) 지역 string 반환·(C) use_a=false로 반환된 b가 임시 인자 참조 → dangling UB</li><li>리터럴은 정적 수명이라 안전, 파라미터엔 view·저장엔 string</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q14">
+      <div class="qhead">
+        <span class="qnum">Q14</span>
+        <span class="qid">CPX-06</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">틱 루프 / 락 최소화</span>
+      </div>
+      <div class="qbody">
+<p>게임 서버가 4 FPS(250ms) <strong>단일 스레드 틱 루프</strong>에서 모든 게임 로직을 처리하고, 네트워크 수신(I/O)과 DB/Redis 작업은 별도 스레드 풀에서 돈다. 팀에서 &quot;성능을 위해 게임 로직 스레드를 여러 개로 쪼개고 락으로 공유 상태를 보호하자&quot;는 제안이 나왔다. 이 접근의 위험과, 실무에서 더 선호되는 대안(메시지 패싱·큐, 작업 위임)을 설명하고, 왜 <strong>단일 스레드 + 오프로딩</strong>이 오히려 유리할 수 있는지 논하시오.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>로직을 멀티스레드+락으로 쪼갤 때의 위험</strong>: 게임 상태는 상호 참조가 많아(플레이어·몬스터·존이 서로를 건드림) 세밀한 락 분할이 어렵다. 락 경합으로 오히려 느려지고, 락 순서 실수로 인한 <strong>데드락</strong>, false sharing, 재현 불가능한 레이스 등으로 복잡도와 리스크가 급증한다. &quot;락을 잘 거는 것&quot;보다 어렵고 위험하다.</li><li><strong>선호 패턴</strong>: <strong>단일 스레드 게임 로직 + 무거운 작업 위임.</strong> I/O 스레드는 수신 패킷을 lock-free 또는 locked 큐에 넣고, 게임 스레드는 매 틱 시작에 큐를 드레인해 순차 처리한다(액터/메시지 패싱). DB·Redis 요청은 워커 스레드로 던지고(비동기·논블로킹), 결과를 다시 큐로 받아 다음 틱에 반영한다. 즉 <strong>공유 가변 상태 자체를 없애</strong> 로직 경로에 락이 필요 없게 만든다.</li><li><strong>단일 스레드 + 오프로딩의 이점</strong>: 로직에 락이 없으니 경합·데드락이 사라지고, 실행이 결정적(deterministic)이라 버그 재현·디버깅이 쉽다. 락을 줄이는 최선은 잘게 거는 것이 아니라 <strong>공유를 제거하는 것</strong>이다. 확장은 스레드 쪼개기가 아니라 <strong>존/샤드 단위로 프로세스·인스턴스를 나누는 것</strong>으로 한다.</li><li>(이 프로젝트의 <code>GameWorker</code> 단일 스레드 + <code>DBWorker</code>/<code>RedisWorker</code> 풀 구조가 정확히 이 패턴이다.)</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>로직 멀티스레드+락은 경합·데드락·재현불가 리스크</li><li>단일 스레드 로직 + 큐 드레인/워커 위임으로 공유 제거</li><li>확장은 락 세분화가 아니라 존·샤드 분리로</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q15">
+      <div class="qhead">
+        <span class="qnum">Q15</span>
+        <span class="qid">CPX-07</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">memory_order / lock-free 핸드오프</span>
+      </div>
+      <div class="qbody">
+<p>한 스레드가 큰 결과 버퍼를 채운 뒤 <code>ready</code> 플래그를 세우고, 다른 스레드가 그 플래그를 폴링하다 true가 되면 버퍼를 읽는 lock-free 핸드오프를 만든다. <code>relaxed / acquire / release / seq_cst</code>의 의미를 설명하고, 아래 코드에서 <strong>왜 <code>relaxed</code>가 틀렸는지</strong>, 올바른 memory_order 조합을 제시하시오.</p>
+<pre class="code"><code class="lang-cpp">std::atomic&lt;bool&gt; ready{false};
+Buffer g_buf;   // 비원자 데이터
+
+// 생산자
+void produce() {
+    fill(g_buf);                                   // (1) 버퍼 채우기
+    ready.store(true, std::memory_order_relaxed);  // (2)
+}
+// 소비자
+void consume() {
+    while (!ready.load(std::memory_order_relaxed)) {} // (3)
+    use(g_buf);                                        // (4)
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>의미</strong>:</li><li><code>relaxed</code>: 원자성만 보장하고, 다른 메모리 연산과의 <strong>순서·가시성은 보장하지 않는다</strong>(순수 카운터 등에 적합).</li><li><code>release</code>(store 측): 이 store <strong>이전에</strong> 발생한 모든 읽기/쓰기가 이 store 뒤로 재배열되지 않게 하고, 짝이 되는 acquire로 이 값을 읽은 스레드에게 그 쓰기들이 보이도록 보장한다.</li><li><code>acquire</code>(load 측): 이 load <strong>이후의</strong> 접근이 load 앞으로 재배열되지 않게 하고, 짝 release 이전의 쓰기들을 관측하게 한다.</li><li><code>seq_cst</code>: acquire/release 효과에 더해 모든 seq_cst 연산에 대한 <strong>단일 전역 순서</strong>까지 보장한다. atomic 연산의 기본값이며 가장 강하고 약간 비싸다.</li><li><strong>왜 relaxed가 틀렸나</strong>: relaxed store/load는 (1)의 버퍼 쓰기와 (2)의 플래그 쓰기 사이에 아무 순서·가시성 관계를 만들지 않는다. 따라서 소비자가 (3)에서 <code>true</code>를 관측하더라도 (1)의 버퍼 내용이 아직 그 스레드에 보이지 않을 수 있고(컴파일러·CPU 재배열), (4)에서 오래된/부분적인 데이터를 읽어 <strong>데이터 레이스(UB)</strong>가 된다.</li><li><strong>올바른 조합</strong>: 생산자 <code>ready.store(true, std::memory_order_release)</code>, 소비자 <code>ready.load(std::memory_order_acquire)</code>. 이 <strong>release-acquire 짝</strong>이 happens-before를 형성해 (1)의 모든 쓰기가 (4)에서 보이도록 보장한다. <code>seq_cst</code>로 둬도 정확하지만 이 단일 플래그 핸드오프엔 acquire/release로 충분하고 더 저렴하다.</li><li>오해 교정: relaxed는 &quot;느슨해도 결국 순서가 맞겠지&quot;가 아니라 <strong>명시적으로 순서·가시성이 없는</strong> 것이다. 또한 while 스핀은 코어를 태우므로 실전에선 C++20 <code>atomic::wait/notify</code>나 <code>condition_variable</code>을 고려한다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>relaxed/acquire/release/seq_cst 의미 정확 구분</li><li>relaxed는 (1)↔(2) 순서·가시성 없어 (4)가 오래된 데이터 읽음(UB)</li><li>release-acquire 짝이 happens-before 형성(seq_cst는 과함)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q16">
+      <div class="qhead">
+        <span class="qnum">Q16</span>
+        <span class="qid">CPX-08</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">false sharing</span>
+      </div>
+      <div class="qbody">
+<p>아래에서 <code>a</code>와 <code>b</code>는 서로 다른 변수라 두 스레드가 각각 독립적으로 증가시키는데도, 둘을 <strong>동시에</strong> 돌리면 각각 따로 돌릴 때보다 훨씬 느리다. 정확성 문제(계산 결과)는 없다. 왜 느린가? 원인의 이름과 하드웨어 메커니즘을 설명하고, C++11/C++17 표준을 활용한 수정을 제시하시오.</p>
+<pre class="code"><code class="lang-cpp">#include &lt;atomic&gt;
+#include &lt;thread&gt;
+
+struct Counters {
+    std::atomic&lt;long&gt; a{0};
+    std::atomic&lt;long&gt; b{0};
+};
+Counters g;
+
+void hammer_a() { for (long i=0;i&lt;10&#x27;000&#x27;000;++i) g.a.fetch_add(1, std::memory_order_relaxed); }
+void hammer_b() { for (long i=0;i&lt;10&#x27;000&#x27;000;++i) g.b.fetch_add(1, std::memory_order_relaxed); }
+// 스레드1: hammer_a, 스레드2: hammer_b</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>원인: false sharing(거짓 공유).</strong> <code>a</code>와 <code>b</code>가 같은 캐시 라인(보통 64바이트)에 함께 놓여 있어, 논리적으로는 독립이어도 캐시 일관성 프로토콜(MESI 등) 입장에선 두 코어가 <strong>같은 라인</strong>을 번갈아 쓰는 것으로 취급된다. 한 코어가 라인을 수정하면 다른 코어의 라인 사본이 무효화(invalidate)되어, 상대는 다음 접근 때 라인을 다시 가져와야 한다. 이 소유권 핑퐁이 매 반복 일어나 원자 연산은 정확하지만 성능이 처참해진다.</li><li><strong>수정: 두 카운터를 서로 다른 캐시 라인으로 분리(패딩/정렬).</strong></li></ul>
+<pre class="code"><code class="lang-cpp">// C++11: 명시적 정렬 (alignas는 크기도 정렬 배수로 패딩하므로 각 카운터가 64B를 차지)
+struct alignas(64) PaddedCounter { std::atomic&lt;long&gt; v{0}; };
+struct Counters { PaddedCounter a, b; };</code></pre>
+<pre class="code"><code class="lang-cpp">// C++17: 하드웨어 상수 사용
+#include &lt;new&gt;
+struct Counters {
+    alignas(std::hardware_destructive_interference_size) std::atomic&lt;long&gt; a{0};
+    alignas(std::hardware_destructive_interference_size) std::atomic&lt;long&gt; b{0};
+};</code></pre>
+<ul><li><strong>더 나은 설계</strong>: 애초에 <strong>스레드 로컬 카운터</strong>로 각자 누적한 뒤 마지막에 한 번만 합치면, 공유 자체가 사라져 false sharing과 원자 연산 비용이 모두 없어진다.</li><li>채점: 원인 명명(false sharing) + 캐시 라인/무효화 메커니즘 설명 + <code>alignas</code>(또는 <code>hardware_destructive_interference_size</code>)나 thread-local 합산 중 하나 이상 제시.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>원인=false sharing(같은 캐시 라인 공유)</li><li>MESI 무효화·라인 소유권 핑퐁으로 성능 저하 설명</li><li>alignas(64)/hardware_destructive_interference_size 또는 thread-local 합산</li></ul></div>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <section class="qsec" id="sec-unreal-cpp">
+    <h2>Section 03</h2>
+    <p class="sec-title">Unreal Engine — C++ · 게임플레이 프레임워크</p>
+    <p class="sec-blurb">UObject 리플렉션, UE 가비지 컬렉션, 컨테이너, Actor/Component, 델리게이트, 리플리케이션. <b>· 8문항</b></p>
+    <article class="qcard" id="q17">
+      <div class="qhead">
+        <span class="qnum">Q17</span>
+        <span class="qid">UE-01</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">단답형</span>
+        <span class="qtopic">리플렉션 매크로</span>
+      </div>
+      <div class="qbody">
+<p>언리얼의 리플렉션 매크로 <code>UCLASS()</code>, <code>USTRUCT()</code>, <code>UPROPERTY()</code>, <code>UFUNCTION()</code>, <code>GENERATED_BODY()</code>는 각각 무슨 역할을 하나요? 특히 <code>UPROPERTY()</code>가 단순한 &#x27;에디터 노출용&#x27;이 아니라 엔진 동작에 필수인 이유를 한 가지 이상 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>이 매크로들은 컴파일 전 <strong>UHT(Unreal Header Tool)</strong> 가 스캔해 리플렉션 메타데이터와 보일러플레이트 코드를 생성하는 표식입니다.</p>
+<ul><li><strong>GENERATED_BODY()</strong>: UHT가 생성한 코드(생성자 헬퍼, 리플렉션 글루)를 클래스 본문에 삽입하는 자리. <code>UCLASS</code>/<code>USTRUCT</code>마다 필수입니다.</li><li><strong>UCLASS()</strong>: UObject 파생 클래스를 리플렉션 대상으로 등록 → GC, 직렬화, CDO(Class Default Object), 블루프린트 노출이 가능해집니다.</li><li><strong>USTRUCT()</strong>: 구조체를 리플렉션 대상으로 만듭니다. UObject가 아니라 값 타입이며 구조체 자체는 GC 대상이 아닙니다(단, 도달 가능한 USTRUCT 안의 UPROPERTY UObject 포인터는 GC가 추적합니다).</li><li><strong>UPROPERTY()</strong>: 멤버를 리플렉션에 노출합니다. 에디터/BP 노출·직렬화·네트워크 리플리케이션뿐 아니라 <strong>GC가 UObject 참조를 추적</strong>하게 만듭니다. UPROPERTY로 표시된 UObject 포인터만 GC 도달성 그래프에 포함되어 대상이 살아있고, 대상이 파괴되면 포인터가 자동 null로 정리됩니다. 그래서 단순 노출용이 아니라 &#x27;참조 유지&#x27;에 필수입니다.</li><li><strong>UFUNCTION()</strong>: 함수를 리플렉션에 노출 → <code>BlueprintCallable</code>, RPC(Server/Client/NetMulticast) 지정, 다이나믹 델리게이트 바인딩(<code>AddDynamic</code>) 등에 필요합니다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>UHT가 매크로를 스캔해 리플렉션/보일러플레이트 생성, GENERATED_BODY는 삽입 지점</li><li>UPROPERTY는 GC 도달성 추적에 필수(단순 에디터 노출 아님)</li><li>UFUNCTION은 BP 노출·RPC·다이나믹 델리게이트 바인딩에 필요</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q18">
+      <div class="qhead">
+        <span class="qnum">Q18</span>
+        <span class="qid">UE-02</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">액터 생명주기</span>
+      </div>
+      <div class="qbody">
+<p><code>AActor</code>의 주요 생명주기 콜백을 호출 순서대로 나열하고, 각각 어떤 초기화 코드를 넣어야 하는지 설명하세요. 특히 <strong>생성자(Constructor)</strong> 와 <strong><code>BeginPlay()</code></strong> 중 게임플레이 초기화는 어디에 두어야 하며 그 이유는 무엇인가요?</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>대략적인 순서는 <strong>생성자 → 컴포넌트 등록/<code>PostInitializeComponents</code> → <code>BeginPlay</code> → 매 프레임 <code>Tick</code>(bCanEverTick 시) → <code>EndPlay</code> → 파괴(<code>BeginDestroy</code>) → GC</strong> 입니다.</p>
+<ul><li><strong>생성자</strong>: 인스턴스뿐 아니라 <strong>CDO 생성 시에도 호출</strong>되고, 이 시점엔 월드나 다른 액터가 아직 없을 수 있습니다. 따라서 <code>CreateDefaultSubobject</code>로 컴포넌트를 만들고 기본값을 세팅하는 용도로만 씁니다. 월드/다른 액터에 의존하는 로직은 금지입니다.</li><li><strong>BeginPlay()</strong>: 액터가 &#x27;플레이가 시작된 월드&#x27;에 스폰·배치되어 게임이 시작될 때 한 번 호출됩니다. 이때는 월드와 다른 액터가 유효하므로 참조 캐싱, 타이머 시작, 델리게이트 바인딩 등 <strong>게임플레이 초기화</strong>는 여기에 둡니다.</li><li><strong>Destroy()</strong> 는 즉시 메모리를 해제하지 않습니다. <code>EndPlay(사유)</code> 호출 후 pending kill(garbage)로 표시되고, 실제 파괴(<code>BeginDestroy</code>/<code>FinishDestroy</code>)는 이후 GC가 수행합니다.</li></ul>
+<p>흔한 오해: 생성자에서 <code>GetWorld()</code>로 다른 액터를 찾거나 초기화하는 것 → CDO/에디터 로드 시점에 크래시하거나 미정의 동작을 유발합니다. 게임플레이 초기화는 반드시 BeginPlay에서 하세요.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>순서: 생성자 → BeginPlay → Tick → EndPlay → 파괴/GC</li><li>생성자=CDO에서도 호출·컴포넌트 생성/기본값 전용, 월드 의존 금지</li><li>BeginPlay=월드/타 액터 유효, 게임플레이 초기화 위치</li><li>Destroy는 즉시 해제 아님(EndPlay→pending kill→GC)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q19">
+      <div class="qhead">
+        <span class="qnum">Q19</span>
+        <span class="qid">UE-03</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">단답형</span>
+        <span class="qtopic">게임플레이 프레임워크</span>
+      </div>
+      <div class="qbody">
+<p>게임플레이 프레임워크에서 <code>APawn</code>, <code>AController</code>(특히 <code>APlayerController</code>/<code>AAIController</code>), <code>AGameModeBase</code>, <code>AGameStateBase</code>의 역할을 각각 한두 문장으로 구분해 설명하세요. 또 이 중 <strong>서버(권한)에만 존재</strong>하며 클라이언트에 복제되지 않는 클래스는 무엇인가요?</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>APawn</strong>: 월드에서 컨트롤러가 빙의(Possess)해 조종하는 물리적 존재(플레이어/AI의 &#x27;몸&#x27;). <code>ACharacter</code>는 캡슐 + 이동 컴포넌트를 갖춘 Pawn 특화형입니다.</li><li><strong>AController</strong>: Pawn을 소유·조종하는 &#x27;두뇌&#x27;. <code>APlayerController</code>는 사람 플레이어의 입력·카메라·UI를, <code>AAIController</code>는 AI 로직을 담당합니다. 컨트롤러는 Pawn과 분리되어 있어 빙의 대상을 교체할 수 있습니다.</li><li><strong>AGameModeBase / AGameMode</strong>: 게임 규칙·승패·스폰·플레이어 클래스 지정을 담당합니다. <strong>서버(권한)에만 존재하며 클라이언트에는 복제되지 않습니다.</strong></li><li><strong>AGameStateBase / AGameState</strong>: 모든 클라이언트가 공유해야 하는 게임 전역 상태(매치 상태, 점수, 접속 중인 PlayerState 목록 등)를 담고, 서버가 관리해 클라이언트로 <strong>복제</strong>됩니다.</li></ul>
+<p>서버 전용은 <strong>GameMode</strong> 입니다. (개별 플레이어의 복제 상태는 <code>APlayerState</code>가 담당합니다. 참고로 <code>AAIController</code>도 통상 서버에만 존재하지만 질문의 &#x27;전역 규칙&#x27; 클래스는 GameMode입니다.)</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>Pawn=몸 / Controller=두뇌 분리, PlayerController vs AIController</li><li>GameMode=규칙, 서버 전용·미복제</li><li>GameState=클라로 복제되는 전역 상태</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q20">
+      <div class="qhead">
+        <span class="qnum">Q20</span>
+        <span class="qid">UE-04</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">GC와 UPROPERTY</span>
+      </div>
+      <div class="qbody">
+<p>다음 오브젝트 풀 코드에는 잠재적 크래시 버그가 있습니다. 원인과 수정 방법을 설명하세요.</p>
+<pre class="code"><code class="lang-cpp">UCLASS()
+class AProjectilePool : public AActor
+{
+    GENERATED_BODY()
+
+private:
+    // 미리 스폰해 재사용할 발사체 풀
+    TArray&lt;AProjectile*&gt; PooledProjectiles;
+
+public:
+    void Prewarm()
+    {
+        for (int32 i = 0; i &lt; 20; ++i)
+        {
+            AProjectile* P = GetWorld()-&gt;SpawnActor&lt;AProjectile&gt;();
+            P-&gt;SetActorHiddenInGame(true);
+            PooledProjectiles.Add(P);
+        }
+    }
+
+    AProjectile* Acquire()
+    {
+        AProjectile* P = PooledProjectiles.Pop();
+        P-&gt;SetActorHiddenInGame(false);
+        return P; // 수 초/수 프레임 뒤 실제 사용
+    }
+};</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>버그</strong>: <code>PooledProjectiles</code>가 <code>UPROPERTY()</code>로 표시되어 있지 않습니다. GC는 <strong>UPROPERTY로 표시된 참조만</strong> 도달성 그래프에서 추적하고, 대상이 파괴될 때 그 포인터를 자동으로 null로 정리해 줍니다. 이 <code>TArray</code>는 그 대상이 아닙니다.</p>
+<p>여기서 <strong>담기는 것이 월드에 스폰된 AActor</strong>라는 점이 중요합니다. 스폰된 액터는 소속 <code>ULevel</code>의 액터 배열(엔진 내부 UPROPERTY)이 참조하므로, UPROPERTY 누락만으로 <strong>다음 GC 사이클에 곧바로 수거되지는 않습니다</strong>. 따라서 &#x27;언젠가 GC가 다 지워서 크래시&#x27;라는 설명은 정확하지 않습니다.</p>
+<p>진짜 결함은 그 액터가 <strong>어떤 이유로든 파괴될 때</strong> 드러납니다 — 명시적 <code>Destroy()</code>, 레벨 스트리밍/언로드, 월드 종료 등. 이때 <code>PooledProjectiles</code>는 UPROPERTY가 아니므로 GC가 raw 포인터를 자동 null 처리해 주지 않고, 배열에는 파괴된 액터를 가리키는 <strong>댕글링 포인터</strong>가 남습니다. <code>Acquire()</code>나 이후 사용 시점에 이 포인터를 역참조하면 크래시합니다. (만약 풀에 담는 것이 액터가 아니라 <code>NewObject</code>로 만든 일반 UObject였다면, 이를 붙잡는 UPROPERTY 참조가 하나도 없으므로 <strong>다음 GC에서 즉시 수거</strong>되어 훨씬 즉각적으로 터집니다.)</p>
+<p>어느 경우든 &#x27;월드가 대신 살려주니 괜찮다&#x27;에 기대는 것은 위험합니다 — 파괴 경로에서 auto-null 보장이 없기 때문입니다.</p>
+<p><strong>수정</strong>: 멤버를 <code>UPROPERTY()</code>로 표시하고, UE5에서는 <code>TObjectPtr</code>를 사용합니다.</p>
+<pre class="code"><code class="lang-cpp">UPROPERTY()
+TArray&lt;TObjectPtr&lt;AProjectile&gt;&gt; PooledProjectiles;</code></pre>
+<p>이렇게 하면 GC가 참조를 추적해 대상을 살려두고, 대상이 파괴되면 포인터를 자동으로 null로 정리해 댕글링을 막습니다. <code>TObjectPtr</code>는 에디터 빌드에서 접근 추적/인크리멘털 GC를 지원하고 쉬핑에서는 raw 포인터로 최적화되며, GC 시맨틱 자체는 <code>UPROPERTY</code> raw 포인터와 동일합니다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>UPROPERTY 누락 → GC 추적/파괴 시 auto-null 대상에서 제외됨</li><li>스폰 액터는 ULevel이 참조해 즉시 GC되진 않지만, 파괴 시 auto-null이 안 돼 댕글링 발생(비-액터 UObject였다면 즉시 수거)</li><li>&#x27;월드가 잡아주는 참조&#x27;에 의존하면 안 됨</li><li>UPROPERTY + TObjectPtr(TArray&lt;TObjectPtr&lt;&gt;&gt;)로 수정, 파괴 시 자동 null</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q21">
+      <div class="qhead">
+        <span class="qnum">Q21</span>
+        <span class="qid">UE-05</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">델리게이트/BP 상호운용</span>
+      </div>
+      <div class="qbody">
+<p>다음 다이나믹 멀티캐스트 델리게이트 바인딩 코드는 컴파일은 통과하지만 <strong>런타임에 델리게이트가 브로드캐스트될 때 크래시/실패</strong>합니다. 원인과 수정 방법을 설명하고, <strong>다이나믹 델리게이트</strong>와 <strong>일반(비-다이나믹) 델리게이트</strong>의 차이도 함께 언급하세요.</p>
+<pre class="code"><code class="lang-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChanged, float, NewHealth);
+
+UCLASS()
+class AHealthActor : public AActor
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY(BlueprintAssignable)
+    FOnHealthChanged OnHealthChanged;
+};
+
+UCLASS()
+class UHealthWidget : public UUserWidget
+{
+    GENERATED_BODY()
+public:
+    void Bind(AHealthActor* Actor)
+    {
+        Actor-&gt;OnHealthChanged.AddDynamic(this, &amp;UHealthWidget::HandleHealthChanged);
+    }
+
+    void HandleHealthChanged(float NewHealth);   // 여기 주목
+};</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>원인</strong>: <code>AddDynamic</code>은 다이나믹 델리게이트 전용 바인딩으로, 함수를 <strong>이름(FName) 기반으로 리플렉션을 통해</strong> 찾아 호출합니다(<code>AddDynamic(obj, &amp;Class::Func)</code> 매크로는 함수 포인터와 함께 <code>&quot;Func&quot;</code> 문자열을 FName으로 넘깁니다). 따라서 핸들러 <code>HandleHealthChanged</code>는 반드시 <code>UFUNCTION()</code>으로 표시되어 리플렉션 시스템에 등록되어야 합니다.</p>
+<p>중요한 뉘앙스: <code>UFUNCTION</code>이 없어도 <strong>컴파일 자체는 통과</strong>합니다. 문제는 런타임입니다 — 델리게이트가 <code>Broadcast()</code>될 때 각 바인딩이 <code>FindFunctionChecked(FName)</code>으로 대상 UFunction을 찾는데, 등록된 UFUNCTION이 없어 개발 빌드에서 <strong>assert/크래시</strong>(쉬핑에서는 조용히 실행되지 않거나 미정의 동작)합니다. 즉 &#x27;빌드 에러&#x27;가 아니라 &#x27;런타임 바인딩/호출 실패&#x27;입니다.</p>
+<p><strong>수정</strong>:</p>
+<pre class="code"><code class="lang-cpp">UFUNCTION()
+void HandleHealthChanged(float NewHealth);</code></pre>
+<p><strong>다이나믹 vs 일반 델리게이트 차이</strong>:</p>
+<ul><li><strong>다이나믹</strong>(<code>DECLARE_DYNAMIC_*</code>): 이름 기반이라 느리지만 <strong>블루프린트에 노출/직렬화가 가능</strong>합니다. <code>BlueprintAssignable</code>로 BP에서 바인딩할 수 있고, C++에서는 <code>AddDynamic</code>/<code>RemoveDynamic</code>으로 바인딩하되 <strong>핸들러에 UFUNCTION이 필수</strong>입니다.</li><li><strong>일반</strong>(<code>DECLARE_MULTICAST_DELEGATE_*</code>): C++ 전용이고 빠르지만 BP 노출/직렬화가 안 됩니다. <code>AddUObject</code>/<code>AddSP</code>/<code>AddLambda</code> 등으로 바인딩하며 <strong>UFUNCTION이 필요 없습니다</strong>.</li></ul>
+<p>보너스: UObject 대상은 <code>AddDynamic</code>/<code>AddUObject</code>로 바인딩하면 대상 파괴 시 안전하게 처리되지만, raw 델리게이트에 람다로 캡처한 상태는 수명에 주의해야 합니다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>AddDynamic은 FName(리플렉션) 기반 호출이라 핸들러에 UFUNCTION 필수</li><li>UFUNCTION 누락은 컴파일 통과·런타임 Broadcast 시 FindFunctionChecked assert(빌드 에러 아님)</li><li>수정: HandleHealthChanged에 UFUNCTION() 추가</li><li>다이나믹=BP 노출·직렬화·느림 / 일반=C++ 전용·빠름·UFUNCTION 불필요</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q22">
+      <div class="qhead">
+        <span class="qnum">Q22</span>
+        <span class="qid">UE-06</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">프로퍼티 리플리케이션</span>
+      </div>
+      <div class="qbody">
+<p>멀티플레이어 게임에서 서버가 <code>Health</code> 값을 바꿨는데 클라이언트의 체력바에 반영되지 않습니다. 프로퍼티 리플리케이션이 동작하기 위한 <strong>필수 조건들</strong>을 체크리스트로 설명하고, <code>ReplicatedUsing</code>(RepNotify)의 동작 — 특히 <strong>서버에서도 OnRep이 자동 호출되는지</strong> — 를 정확히 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>체크리스트</strong>:</p>
+<ol><li><strong>액터가 복제 대상</strong>: 생성자에서 <code>bReplicates = true;</code>(또는 런타임 <code>SetReplicates(true)</code>). 아니면 아무 것도 복제되지 않습니다.</li><li><strong>프로퍼티 표시</strong>: <code>UPROPERTY(Replicated)</code> 또는 <code>UPROPERTY(ReplicatedUsing = OnRep_Health)</code>.</li><li><strong><code>GetLifetimeReplicatedProps</code> 오버라이드 + 등록</strong>: <code>#include &quot;Net/UnrealNetwork.h&quot;</code> 후 <code>Super::GetLifetimeReplicatedProps(...)</code> 호출, <code>DOREPLIFETIME(AMyActor, Health);</code> 추가. <strong>이걸 빠뜨리는 것이 가장 흔한 원인</strong>입니다.</li><li><strong>값 변경은 서버에서만</strong>: 프로퍼티 리플리케이션은 서버→클라 <strong>단방향</strong>입니다. <code>HasAuthority()</code>인 서버에서 바꿔야 하고, 클라에서 바꿔봐야 반영되지 않으며 다음 복제로 덮어써집니다.</li><li><strong>관련성(relevancy)/연결</strong>: 액터가 해당 클라에 relevant해야 하고 NetUpdate가 발생해야 합니다(도먼시/컬링/거리 확인).</li></ol>
+<p><strong>RepNotify(OnRep_) 동작</strong>:</p>
+<ul><li>값이 실제로 바뀌어 클라에 도착하면 <strong>클라이언트에서</strong> OnRep 함수가 호출됩니다(이때 UI 갱신). 값이 직전 복제값과 동일하면 기본적으로 복제도 OnRep도 일어나지 않습니다.</li><li><strong>서버에서는 값을 세팅해도 OnRep이 자동 호출되지 않습니다.</strong> 서버에서도 동일 로직을 태우려면 세팅 후 OnRep 함수를 직접 호출해야 합니다. &quot;OnRep은 서버·클라 모두 자동 호출된다&quot;는 흔한 오해로, 틀립니다.</li></ul>
+<p>오해 교정: 프로퍼티 리플리케이션은 양방향이 아니며 서버가 권위입니다. 클라의 변경을 서버에 반영하려면 Server RPC를 써야 합니다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>bReplicates + UPROPERTY(Replicated) + DOREPLIFETIME 3종이 모두 필요</li><li>값 변경은 서버(권한)에서만, 리플리케이션은 단방향</li><li>OnRep은 클라에서만 자동 호출(서버는 수동 호출)</li><li>DOREPLIFETIME/GetLifetimeReplicatedProps 누락이 최빈 원인</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q23">
+      <div class="qhead">
+        <span class="qnum">Q23</span>
+        <span class="qid">UE-07</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">스마트 포인터</span>
+      </div>
+      <div class="qbody">
+<p>언리얼의 스마트 포인터 계열(<code>TSharedPtr</code>/<code>TSharedRef</code>/<code>TWeakPtr</code>, <code>TWeakObjectPtr</code>, <code>TUniquePtr</code>)과 UObject 참조 방식을 정리하세요. 특히 <strong>UObject를 <code>std::shared_ptr</code>로 관리하면 안 되는 이유</strong>와, <code>TWeakPtr</code>와 <code>TWeakObjectPtr</code>의 차이를 명확히 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>UObject는 엔진의 <strong>GC가 소유·수명을 관리</strong>하며, 오직 <code>NewObject</code>/<code>SpawnActor</code>로 생성되고 GC만이 파괴합니다. 따라서 <code>new</code>/<code>delete</code>나 refcount 스마트 포인터로 UObject를 관리해서는 안 됩니다.</p>
+<p><strong><code>std::shared_ptr</code> 금지 이유</strong>:</p>
+<ol><li>refcount가 0이 되면 <code>delete</code>를 호출하는데, UObject를 수동 delete하면 <code>GUObjectArray</code>/GC 상태가 손상되어 크래시·이중 해제가 발생합니다.</li><li><code>shared_ptr</code>의 참조는 GC 도달성에 잡히지 않으므로 애초에 대상을 살려두지도 못합니다(GC는 UPROPERTY/AddReferencedObjects 등록 참조만 봅니다). 즉 살리지도 못하면서 파괴는 망가뜨립니다.</li></ol>
+<p><strong>UObject 참조 방식</strong>:</p>
+<ul><li>강한 참조/수명 유지: <code>UPROPERTY()</code>(UE5는 <code>TObjectPtr</code>). GC가 살려두고 파괴 시 자동 null. (UPROPERTY로 둘 수 없는 곳이라면 <code>FGCObject::AddReferencedObjects</code>나 <code>TStrongObjectPtr</code>로 등록.)</li><li>약한 참조: <code>TWeakObjectPtr&lt;T&gt;</code> — 대상을 살려두지 않고, GC로 파괴되면 안전하게 무효화됩니다(<code>IsValid()</code>로 확인). 캐시·옵저버·순환 참조 회피에 적합.</li></ul>
+<p><strong>비-UObject용</strong>: <code>TSharedPtr</code>/<code>TSharedRef</code>/<code>TWeakPtr</code>, <code>TUniquePtr</code>는 GC가 관리하지 않는 순수 C++ 객체(Slate 위젯, 런타임 데이터 구조 등)에 씁니다. <code>TSharedRef</code>는 항상 유효(널 불가), <code>TUniquePtr</code>는 단독 소유입니다.</p>
+<p><strong>TWeakPtr vs TWeakObjectPtr</strong>: <code>TWeakPtr</code>는 <code>TSharedPtr</code>(언리얼 자체 refcount 시스템)의 약한 짝이고, <code>TWeakObjectPtr</code>는 UObject GC 시스템의 약한 참조입니다. 서로 다른 수명 시스템이므로 혼용하면 안 됩니다 — 특히 UObject를 <code>TSharedPtr</code>나 <code>std::shared_ptr</code>에 넣지 마세요.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>UObject는 NewObject/SpawnActor + GC 전용, 수동 delete/refcount 관리 금지</li><li>std::shared_ptr는 GC 상태 손상 + GC 도달성에 안 보여 살리지도 못함</li><li>UObject 약참조=TWeakObjectPtr, 비-UObject=TSharedPtr/TWeakPtr/TUniquePtr</li><li>두 수명 시스템(refcount vs GC) 혼용 금지</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q24">
+      <div class="qhead">
+        <span class="qnum">Q24</span>
+        <span class="qid">UE-08</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">네트워크 RPC</span>
+      </div>
+      <div class="qbody">
+<p>클라이언트가 발사 버튼을 누르면 (1) <strong>서버 권위로 발사를 처리</strong>하고 (2) <strong>모든 클라이언트에 총구 화염 등 연출을 재생</strong>하려 합니다. 어떤 RPC(Server/Client/NetMulticast)와 신뢰성(Reliable/Unreliable) 조합으로 설계할지, 각 RPC의 <strong>호출 주체·실행 위치·소유권(authority/ownership) 조건</strong>을 포함해 설명하세요. 또 <strong>RPC가 실행되지 않는 흔한 원인</strong>도 두 가지 이상 드세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>설계</strong>:</p>
+<ol><li>입력을 받은 클라이언트가 <code>UFUNCTION(Server, Reliable, WithValidation)</code> 서버 RPC(예: <code>Server_Fire</code>)를 호출 → 서버에서 실행. 입력 유실을 막기 위해 Reliable, <code>WithValidation</code>의 <code>_Validate</code>에서 치트 검증(연사 속도·탄약 등).</li><li>서버가 권위 로직을 수행합니다(탄약 차감, 히트/데미지 판정, 필요 시 복제되는 발사체 액터 스폰).</li><li>연출은 서버가 <code>UFUNCTION(NetMulticast, Unreliable)</code> 멀티캐스트(예: <code>Multicast_PlayMuzzleFX</code>)를 호출 → 서버 + 모든 관련 클라에서 실행. 코스메틱이므로 Unreliable로 대역폭을 절약합니다(빈번한 이펙트를 Reliable로 보내면 채널 포화 위험). 발사체를 복제 스폰한다면 연출을 발사체 자체에서 처리해 멀티캐스트를 생략할 수도 있습니다.</li></ol>
+<p><strong>각 RPC 규칙</strong>:</p>
+<ul><li><strong>Server RPC</strong>: 소유 클라이언트에서 호출 → 서버에서 실행. 대상 액터가 그 클라의 연결에 <strong>소유(Owning)</strong> 되어야 합니다(PlayerController와 그가 possess한 Pawn이 이를 만족). 비소유 클라의 Server RPC는 드롭됩니다.</li><li><strong>Client RPC(Owning)</strong>: 서버에서 호출 → 해당 소유 클라에서만 실행.</li><li><strong>NetMulticast</strong>: 서버에서 호출 → 서버와 모든 관련 클라에서 실행. 클라가 호출하면 로컬에서만 돌아 의미가 없습니다.</li></ul>
+<p><strong>RPC 미실행 흔한 원인</strong>:</p>
+<ul><li>액터가 복제 대상이 아님(<code>bReplicates == false</code>).</li><li>소유권/권한 불일치(비소유 클라의 Server RPC, 클라가 호출한 Multicast).</li><li>잘못된 쪽에서 호출(예: Client RPC를 클라가 호출).</li><li><code>_Implementation</code> 미구현, 또는 <code>WithValidation</code>의 <code>_Validate</code>가 false 반환(해당 클라 연결이 끊어짐).</li><li>액터가 클라에 relevant하지 않음(거리/컬링/도먼시).</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>입력=Server Reliable RPC + 검증 → 서버 권위 처리</li><li>연출=NetMulticast Unreliable(반드시 서버에서 호출)</li><li>Server RPC엔 ownership 필요, Multicast/Client는 서버에서만 유효</li><li>미실행 원인: 복제 off·소유권 불일치·잘못된 호출측·relevancy·검증 실패</li></ul></div>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <section class="qsec" id="sec-csharp-core">
+    <h2>Section 04</h2>
+    <p class="sec-title">C# 코어 — 타입 시스템 · GC · 비동기</p>
+    <p class="sec-blurb">값/참조 타입, 박싱, GC 세대, IDisposable, 델리게이트·이벤트, async/await, LINQ. <b>· 8문항</b></p>
+    <article class="qcard" id="q25">
+      <div class="qhead">
+        <span class="qnum">Q25</span>
+        <span class="qid">CS-01</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">단답형</span>
+        <span class="qtopic">값/참조 타입·스택/힙</span>
+      </div>
+      <div class="qbody">
+<p>다음 세 가지에 간단히 답하세요.</p>
+<ol><li>값 타입(value type)과 참조 타입(reference type)의 대표 예를 각각 들고, 대입(<code>b = a</code>) 시 무엇이 복사되는지 차이를 설명하세요.</li><li>&quot;값 타입은 항상 스택(stack)에 저장된다&quot;는 맞는 말인가요?</li><li><code>struct</code>와 <code>class</code> 중 값 타입은 무엇인가요?</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li><strong>값 타입</strong>: <code>int</code>, <code>float</code>, <code>bool</code>, <code>enum</code>, <code>struct</code>. 변수가 값 그 자체를 담고, 대입/전달 시 <strong>값이 복사</strong>된다(서로 독립). <strong>참조 타입</strong>: <code>class</code>, <code>string</code>, 배열, <code>delegate</code>. 변수는 힙 객체를 가리키는 <strong>참조(주소)</strong> 를 담고, 대입 시 <strong>참조만 복사</strong>되어 두 변수가 같은 객체를 공유한다.</li><li><strong>틀린 말이다.</strong> 값 타입이 스택에 놓이는 것은 그것이 <em>지역 변수/파라미터</em>일 때뿐이다. 값 타입이라도 참조 타입의 필드로 포함되면 그 객체와 함께 <strong>힙</strong>에 살고, 박싱되면 힙에, <code>static</code> 필드나 람다에 캡처된 지역 변수도 힙에 산다. 저장 위치는 &quot;값/참조 타입&quot;이 아니라 &quot;어디에 선언·포함되어 있는가&quot;로 결정된다.</li><li><code>struct</code>가 값 타입, <code>class</code>가 참조 타입이다.</li></ol>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>대입 시 값 복사 vs 참조 복사(객체 공유)</li><li>&quot;값 타입=스택&quot;은 오개념 — 선언 위치가 결정</li><li>struct=값 타입, class=참조 타입</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q26">
+      <div class="qhead">
+        <span class="qnum">Q26</span>
+        <span class="qid">CS-02</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">string 불변성·StringBuilder</span>
+      </div>
+      <div class="qbody">
+<p>C#에서 <code>string</code>은 불변(immutable)입니다.</p>
+<ol><li>&quot;불변&quot;이 정확히 무슨 의미인가요?</li><li>루프에서 <code>result += token;</code> 으로 문자열을 수천 번 이어붙이면 어떤 성능 문제가 생기나요?</li><li><code>StringBuilder</code>는 이를 어떻게 해결하며, 반대로 <code>StringBuilder</code>가 오히려 불리한 경우는 언제인가요?</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li><strong>불변</strong> = 한 번 만들어진 <code>string</code> 인스턴스의 내용은 절대 바뀌지 않는다. <code>s += &quot;x&quot;</code>, <code>Replace</code>, <code>Substring</code> 등은 기존 객체를 수정하는 것이 아니라 <strong>새 <code>string</code> 객체를 할당해 반환</strong>하고 원본은 그대로 둔다.</li><li><code>result += token</code> 을 N번 하면 매 반복마다 (점점 길어지는) 새 문자열을 할당하고 기존 내용을 통째로 복사한다 → 전체 복사 비용이 대략 <strong>O(N²)</strong>, 그리고 버려지는 임시 문자열이 대량 생겨 <strong>GC 압박</strong>이 커진다. Unity처럼 매 프레임 문자열을 만들면 특히 치명적이다.</li><li><code>StringBuilder</code>는 내부에 <strong>가변 <code>char</code> 버퍼</strong>를 두고 <code>Append</code>로 그 버퍼에 이어붙이며, 용량이 모자랄 때만 재할당(대략 2배 증가)한다. 마지막에 <code>ToString()</code>을 <strong>한 번만</strong> 호출해 문자열을 만들므로 평균 <strong>O(N)</strong> 에 근접한다.</li><li>다만 연결 횟수가 적거나 컴파일 타임 상수 연결(<code>&quot;a&quot; + &quot;b&quot;</code>, 상수 폴딩)·<code>string.Concat</code>/보간 문자열로 충분한 경우엔 <code>StringBuilder</code> 생성 오버헤드가 오히려 손해다. &quot;무조건 StringBuilder&quot;는 아니다.</li></ol>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>불변=수정이 아니라 새 객체 할당, 원본 유지</li><li>+= 루프는 O(N²) 복사 + 대량 GC garbage</li><li>StringBuilder=가변 버퍼로 비용 상환(평균 O(N))</li><li>소수 연결엔 오히려 과함(상수 폴딩/Concat)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q27">
+      <div class="qhead">
+        <span class="qnum">Q27</span>
+        <span class="qid">CS-03</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">박싱/언박싱</span>
+      </div>
+      <div class="qbody">
+<p>다음 코드에는 눈에 잘 안 보이는 힙 할당(박싱)이 숨어 있습니다. (A)~(C)에서 어떤 일이 일어나는지 짚고, 개선안을 제시하세요.</p>
+<pre class="code"><code class="lang-csharp">int sum = 0;
+var list = new System.Collections.ArrayList();
+for (int i = 0; i &lt; 10000; i++)
+{
+    list.Add(i);            // (A)
+}
+foreach (object o in list)
+{
+    sum += (int)o;          // (B)
+}
+
+object count = list.Count;                     // (C)
+Console.WriteLine(&quot;총 &quot; + count + &quot;개&quot;);</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>(A) 박싱(boxing)</strong>: <code>ArrayList</code>는 요소를 <code>object</code>로 저장한다. 값 타입인 <code>int</code>를 넣을 때마다 힙에 박스 객체가 하나씩 생성된다 → 여기서만 10,000개의 임시 힙 객체가 생겨 GC 부담이 크다.</li><li><strong>(B) 언박싱(unboxing)</strong>: <code>(int)o</code>로 꺼낼 때 박스에서 값을 복사해 <code>int</code>로 되돌린다.</li><li><strong>(C)</strong> <code>list.Count</code>(int)를 <code>object</code>에 대입하면서 또 박싱이 일어난다. <code>object</code>로 받을 이유가 없다.</li><li><strong>개선</strong>: 제네릭 <code>List&lt;int&gt;</code>를 사용하면 내부적으로 <code>int[]</code>에 저장하므로 박싱/언박싱이 <strong>완전히 사라진다</strong>. 또한 <code>List&lt;int&gt;</code> 같은 구체 타입을 <code>foreach</code> 하면 구조체 열거자(<code>List&lt;int&gt;.Enumerator</code>)가 값 타입으로 쓰여 열거 자체도 추가 힙 할당이 없다(단, <code>IEnumerable&lt;int&gt;</code>로 캐스팅해 돌리면 박싱된 열거자가 힙에 생긴다). (C)는 그냥 <code>int count = list.Count;</code>.</li><li><strong>핵심(오개념 교정)</strong>: 박싱은 &quot;값 타입을 <code>object</code>나 인터페이스로 취급&quot;할 때 발생한다. 컬렉션(<code>ArrayList</code>), <code>params object[]</code>, 인터페이스 캐스팅, <code>string.Format</code>/<code>String.Concat(object,object)</code>(값 타입을 문자열에 + 연결) 등 <strong>눈에 안 띄는 곳에서 새기</strong> 쉽다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>ArrayList 저장/조회 = 박싱·언박싱 반복</li><li>List&lt;int&gt;로 전환 시 박싱 제거 + 구체 타입 foreach는 struct 열거자로 무할당</li><li>박싱 조건: 값 타입 → object/인터페이스</li><li>(C)의 object 대입도 불필요한 박싱</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q28">
+      <div class="qhead">
+        <span class="qnum">Q28</span>
+        <span class="qid">CS-04</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">클로저 변수 캡처</span>
+      </div>
+      <div class="qbody">
+<p>다음 코드의 출력을 예측하고, 왜 그런지 설명하세요. 의도한 출력은 <code>01234</code>인데 실제로는 다릅니다. 어떻게 고치나요? 그리고 <code>for</code> 대신 <code>foreach</code>로 반복 변수를 캡처했다면 결과가 달라지는지도 언급하세요.</p>
+<pre class="code"><code class="lang-csharp">var actions = new List&lt;Action&gt;();
+for (int i = 0; i &lt; 5; i++)
+{
+    actions.Add(() =&gt; Console.Write(i));
+}
+foreach (var a in actions)
+    a();</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>실제 출력: <code>55555</code></strong></li><li>이유: 람다는 변수의 <em>값</em>이 아니라 <strong>변수 자체</strong>(를 담은 클로저 객체의 필드)를 캡처한다. <code>for</code> 루프의 <code>i</code>는 루프 전체에서 <strong>단 하나의 변수</strong>이므로 5개의 람다가 같은 <code>i</code>를 공유한다. 실제 호출은 루프가 끝난 뒤 일어나고 그때 <code>i</code>는 이미 <code>5</code>다 → 캡처 시점이 아니라 <strong>호출 시점의 값</strong>을 읽어 모두 5.</li><li><strong>수정</strong>: 반복마다 새 지역 변수를 만들어 캡처시킨다.</li></ul>
+<pre class="code"><code class="lang-csharp">for (int i = 0; i &lt; 5; i++)
+{
+    int copy = i;                       // 반복마다 새 변수
+    actions.Add(() =&gt; Console.Write(copy));
+}
+// 출력: 01234</code></pre>
+<ul><li><strong>언어 버전 함정</strong>: <code>foreach</code>의 반복 변수는 <strong>C# 5.0부터</strong> 매 반복마다 별개의 변수로 취급되도록 언어 명세가 바뀌어 이 버그가 사라졌다. 하지만 <strong><code>for</code> 루프의 <code>i</code>는 여전히 하나의 변수</strong>이므로 위 문제가 그대로 남는다. 즉 &quot;<code>foreach</code>는 괜찮지만 <code>for</code>는 여전히 위험&quot;이 정확한 정리다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>값이 아니라 변수를 캡처 → 호출 시점 값 평가</li><li>for의 i는 단일 변수 공유 → 55555</li><li>반복 내부 지역 변수 복사로 해결 → 01234</li><li>foreach는 C# 5+에서 반복별 변수(다름), for는 여전</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q29">
+      <div class="qhead">
+        <span class="qnum">Q29</span>
+        <span class="qid">CS-05</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">IDisposable·finalizer 소멸 시점</span>
+      </div>
+      <div class="qbody">
+<p>GC가 메모리를 알아서 회수하는데도 <code>IDisposable</code>/<code>using</code>이 필요한 이유를 <strong>소멸 시점(결정성)</strong> 관점에서 설명하세요. finalizer(<code>~MyClass</code>)와는 무엇이 다르며, finalizer를 함부로 쓰면 안 되는 이유는 무엇인가요?</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li>GC는 <strong>관리(managed) 메모리만</strong>, 그것도 <strong>비결정적(nondeterministic)</strong> 시점에 회수한다. 파일 핸들, 소켓, DB 커넥션, 네이티브 포인터 같은 <strong>비관리 자원</strong>은 GC가 언제 정리할지 보장하지 못한다.</li><li><strong><code>IDisposable.Dispose()</code></strong> 는 &quot;지금, 명시적으로&quot; 자원을 해제하는 <strong>결정적</strong> 계약이다. <code>using (var f = ...) { }</code> 은 블록을 벗어날 때(예외가 나도 <code>finally</code>에서) <code>Dispose()</code>를 반드시 호출한다. C# 8의 <code>using var f = ...;</code>는 스코프 끝에서 해제한다.</li><li><strong>finalizer</strong>(<code>~Type</code>, 실제로는 <code>Object.Finalize</code> 재정의)는 GC가 객체를 수거할 때 호출되는 <strong>안전망</strong>이라 호출 시점이 비결정적이고, 프로세스 종료 시 호출된다는 보장조차 없다.</li><li><strong>finalizer 남용 위험</strong>: finalizer가 있는 객체는 finalization queue를 거쳐 <strong>최소 두 번의 GC 사이클을 더 살아남아야</strong> 회수되고(수명 연장·상위 세대 승격) GC에 부담을 준다. 표준은 <strong>Dispose(bool) 패턴 + <code>GC.SuppressFinalize(this)</code></strong> 로, 정상적으로 <code>Dispose</code>가 호출되면 finalizer를 건너뛰게 하는 것이다. finalizer는 비관리 자원을 <em>직접</em> 쥔 클래스의 최후 안전망으로만 둔다(요즘은 <code>SafeHandle</code>로 대체하는 것이 권장된다).</li><li><strong>오개념 교정</strong>: &quot;<code>using</code>이 객체를 메모리에서 즉시 제거한다&quot;는 틀렸다. <code>using</code>은 <code>Dispose()</code>를 호출할 뿐이고, <strong>메모리 회수는 여전히 GC의 몫</strong>이다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>GC=비결정적·관리 메모리 한정 → 비관리 자원엔 부적합</li><li>Dispose/using=결정적 해제(finally 보장)</li><li>finalizer=비결정적 + 수명 연장/승격 부담</li><li>Dispose(bool) 패턴 + SuppressFinalize, using≠메모리 해제</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q30">
+      <div class="qhead">
+        <span class="qnum">Q30</span>
+        <span class="qid">CS-06</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">GC 세대·LOH·GC.Collect</span>
+      </div>
+      <div class="qbody">
+<p>Unity 게임에서 특정 상황마다 프레임이 뚝뚝 끊깁니다(스파이크). 프로파일러를 보니 GC가 튀고 있습니다. 팀원은 &quot;매 프레임 <code>GC.Collect()</code>를 한 번씩 불러서 미리 청소하자&quot;고 제안합니다.</p>
+<ol><li>Gen0/Gen1/Gen2 <strong>세대별 GC</strong>의 의미와, 왜 스파이크로 이어지는지 설명하세요. (Unity의 실제 GC가 이 모델과 같은지도 함께 짚으세요.)</li><li><strong>LOH(Large Object Heap)</strong> 가 왜 별도 문제인지 설명하세요.</li><li>팀원의 <code>GC.Collect()</code> 제안에 대해 어떻게 조언하겠습니까?</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li><strong>세대별 GC</strong>는 &quot;대부분의 객체는 짧게 산다&quot;는 세대 가설(generational hypothesis)에 기반한다. 갓 할당된 객체는 <strong>Gen0</strong>에서 자주·빠르게 수집되고, 살아남으면 <strong>Gen1</strong>, 또 살아남으면 <strong>Gen2</strong>로 승격된다. <strong>Gen2 수집은 힙 전체를 훑어 가장 비싸다.</strong> 매 프레임 임시 garbage(문자열 연결, LINQ, 박싱, 클로저 캡처, 임시 배열/컬렉션)를 많이 만들면 GC가 빈번히 발생해 프레임 스파이크로 나타난다.</li></ol>
+<ul><li><strong>중요한 단서(오개념 교정)</strong>: 이 Gen0/1/2 세대 모델과 아래의 LOH는 <strong>.NET CoreCLR/.NET Framework의 GC</strong> 이야기다. <strong>Unity의 기본 스크립팅 GC(Mono·IL2CPP 모두)는 Boehm(Boehm–Demers–Weiser) conservative GC로, 비세대(non-generational)·비압축(non-compacting)</strong> 이다. 즉 Unity에는 Gen0/1/2 구분도, 별도 LOH도 없고, 수집이 일어날 때마다 <strong>관리 힙 전체를 stop-the-world로 마킹</strong>한다. 힙이 커질수록 한 번의 수집이 통째로 비싸지는 이것이 Unity 스파이크의 직접 원인이다. (Unity의 Incremental GC는 이 마킹을 여러 프레임에 쪼개 스파이크를 완화하지만 여전히 Boehm이다.) 세대별 모델은 .NET 서버 코드에서 유효한 개념으로 알아 두면 된다.</li></ul>
+<ol><li><strong>LOH</strong>: (.NET 기준) 대략 <strong>85,000바이트 이상</strong>의 객체(큰 배열/버퍼 등)는 Large Object Heap에 할당된다. LOH는 기본적으로 <strong>압축(compaction)을 하지 않아 단편화</strong>가 쌓이고, LOH 수집은 비싼 <strong>Gen2 수집과 함께</strong> 일어난다(필요 시 <code>GCSettings.LargeObjectHeapCompactionMode</code>로 1회 압축을 강제할 수는 있다). Unity의 Boehm 힙에는 별도 LOH 개념이 없지만, &quot;큰 버퍼를 매 프레임 새로 할당하지 말고 <strong>재사용(풀링)</strong> 하라&quot;는 교훈은 양쪽 모두 동일하게 적용된다.</li><li><strong><code>GC.Collect()</code>를 매 프레임 부르는 것은 나쁜 조언</strong>이다. 강제로 전체 수집을 유발해 오히려 더 큰 스파이크를 만들고(.NET에선 세대 가설까지 무력화), Boehm에서도 매번 전체 힙을 스캔하게 만들 뿐이다. 근본 해결은 GC를 자주 부르는 게 아니라 <strong>할당 자체를 줄이는 것</strong>: 오브젝트 풀링, <code>StringBuilder</code>/캐싱, 박싱·클로저 제거, LINQ를 핫패스에서 배제. <code>GC.Collect</code>는 로딩 화면 등 &quot;어차피 멈춰도 되는&quot; 지점에서만 한정적으로 쓰고, Unity라면 Incremental GC 활용도 고려한다.</li></ol>
+<ul><li><strong>오개념 교정</strong>: &quot;GC.Collect를 자주 부르면 메모리가 깨끗해져 성능이 좋아진다&quot;는 틀렸다 — 전체 수집 비용(과 .NET의 경우 승격 왜곡)으로 대개 악화된다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>Gen0 잦고 저렴 / Gen2 전체 수집 비쌈 + 승격 — 단, 이는 .NET CoreCLR 모델</li><li>Unity 기본 GC=Boehm(비세대·비압축, 매 수집 전체 힙 스캔)이라 Gen0/1/2·LOH 없음</li><li>LOH 85KB+ 비압축(.NET) → 단편화, 풀링으로 대응(교훈은 Unity에도 동일)</li><li>근본 해결=매 프레임 할당 감소, GC.Collect 매 프레임 금지(로딩 등 한정)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q31">
+      <div class="qhead">
+        <span class="qnum">Q31</span>
+        <span class="qid">CS-07</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">async/await·SynchronizationContext deadlock</span>
+      </div>
+      <div class="qbody">
+<p>다음은 단일 스레드 <code>SynchronizationContext</code>가 있는 클라이언트(UI/게임)의 버튼 핸들러입니다. 실행하면 화면이 그대로 멈춰버립니다(deadlock). 원인을 설명하고, 우선순위대로 해결책을 제시하세요.</p>
+<pre class="code"><code class="lang-csharp">public async Task&lt;string&gt; LoadDataAsync()
+{
+    await Task.Delay(1000);   // 완료 후 원래 컨텍스트로 복귀 시도
+    return &quot;data&quot;;
+}
+
+public void OnButtonClick()
+{
+    string result = LoadDataAsync().Result;   // 동기적으로 결과 대기
+    label.Text = result;
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>데드락 원인</strong>: <code>LoadDataAsync</code> 안의 <code>await Task.Delay(...)</code>는 <code>ConfigureAwait</code> 지정이 없으면 완료 후, <strong>캡처해 둔 <code>SynchronizationContext</code>(= UI 스레드)</strong> 위에서 나머지 continuation(<code>return &quot;data&quot;</code>)을 재개하려 한다. 그런데 UI 스레드는 <code>.Result</code>에서 <strong>블로킹</strong>되어 그 continuation을 실행할 틈이 없다. UI 스레드는 태스크 완료를 기다리고, 태스크는 UI 스레드가 비어야 완료되니 서로를 기다린다 → <strong>데드락</strong>.</li><li>핵심은 <strong>단일 스레드 컨텍스트에서 async 코드를 <code>.Result</code>/<code>.Wait()</code>로 동기 대기(sync-over-async)</strong> 하는 것이 위험하다는 점이다. (컨텍스트가 없는 ThreadPool에선 이 특정 데드락은 안 나지만 스레드 낭비 등 다른 문제는 여전하다.)</li><li><strong>해결책(우선순위)</strong>:</li></ul>
+<ol><li><strong>근본책 — 끝까지 async로(&quot;async all the way&quot;)</strong>: 이벤트 핸들러는 <code>async void</code>가 허용되므로 <code>public async void OnButtonClick()</code> 안에서 <code>label.Text = await LoadDataAsync();</code>. 절대 <code>.Result</code>/<code>.Wait()</code>로 막지 않는다.</li><li><strong>라이브러리 코드</strong>라면 내부 <code>await</code>에 <code>.ConfigureAwait(false)</code>를 붙여 컨텍스트 복귀를 하지 않게 하면 이 데드락을 피할 수 있다(단 이후 UI를 직접 만지는 코드가 없어야 함).</li></ol>
+<ul><li><strong>오개념 교정</strong>: &quot;async가 새 스레드를 만든다&quot;는 흔한 오해다. <code>await</code>는 스레드 생성이 아니라 <strong>continuation 스케줄링</strong>이며, 이 데드락은 스레드 부족이 아니라 <strong>컨텍스트 재진입 불가</strong> 때문이다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>await가 SynchronizationContext로 복귀 시도 + .Result가 그 스레드 블록 → 상호 대기</li><li>sync-over-async 금지, async all the way</li><li>라이브러리는 ConfigureAwait(false)로 회피</li><li>async≠새 스레드(오개념 교정)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q32">
+      <div class="qhead">
+        <span class="qnum">Q32</span>
+        <span class="qid">CS-08</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">yield/지연 실행·다중 열거·LINQ 비용</span>
+      </div>
+      <div class="qbody">
+<p>팀원이 활성 적 목록을 <code>IEnumerable&lt;Enemy&gt; GetActiveEnemies()</code> 로 만들었는데, 내부는 <code>yield return</code>으로 <strong>비싼 필터링(또는 파일/DB 조회)</strong> 을 수행합니다. 호출부는 다음처럼 씁니다.</p>
+<pre class="code"><code class="lang-csharp">var enemies = GetActiveEnemies();
+if (enemies.Any())
+{
+    foreach (var e in enemies) { /* ... */ }
+    int n = enemies.Count();
+}</code></pre>
+<p>무슨 문제가 있고, LINQ/이터레이터의 <strong>지연 실행(deferred execution)</strong> 관점에서 왜 그런지, 어떻게 고치는지 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><code>yield return</code> 이터레이터와 LINQ의 <code>Where</code>/<code>Select</code> 등은 <strong>지연 실행</strong>이다. <code>GetActiveEnemies()</code>를 호출한 시점엔 아무 것도 실행되지 않고, <strong>실제로 열거될 때마다(<code>Any</code>, <code>foreach</code>, <code>Count</code>, <code>ToList</code> …) 처음부터 다시 실행</strong>된다.</li><li>따라서 위 코드는 <code>Any()</code> 1회 + <code>foreach</code> 1회 + <code>Count()</code> 1회 = <strong>시퀀스를 세 번 열거</strong>하고, 그때마다 내부의 비싼 필터/조회가 <strong>세 번 반복 실행</strong>된다(multiple enumeration). 매번 원소가 새로 생성되어 참조 동일성이 깨지거나, 그 사이 소스가 바뀌면 결과가 달라지는 미묘한 버그도 난다.</li><li><strong>해결</strong>: 한 번만 <strong>구체화(materialize)</strong> 한다.</li></ul>
+<pre class="code"><code class="lang-csharp">var enemies = GetActiveEnemies().ToList();  // 필터 1회만 실행
+if (enemies.Count &gt; 0)
+{
+    foreach (var e in enemies) { /* ... */ }
+    int n = enemies.Count;   // List라면 O(1) 프로퍼티
+}</code></pre>
+<ul><li><strong>지연 실행의 순기능/주의 균형</strong>: 지연 실행은 무한 시퀀스, 조기 종료(<code>First</code>/<code>Take</code>), 파이프라이닝에 유리하다. 하지만 결과를 여러 번 쓰거나, 지연 중 소스가 변하거나, 루프 변수를 캡처해 나중에 평가할 때 함정이 된다. 또한 LINQ 체인은 연산자마다 이터레이터/델리게이트 객체를 <strong>할당</strong>하므로 매 프레임 도는 핫패스에서는 할당 비용도 고려해야 한다.</li><li><strong>오개념 교정</strong>: &quot;<code>IEnumerable</code>을 변수에 담으면 그 시점의 스냅샷&quot;이라는 생각은 틀렸다. 담은 것은 결과가 아니라 <strong>실행 방법(쿼리)</strong> 이다. 스냅샷이 필요하면 <code>ToList()</code>/<code>ToArray()</code>로 고정해야 한다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>지연 실행 = 열거할 때마다 처음부터 재실행</li><li>다중 열거로 비싼 작업 반복 + 비결정성 버그</li><li>ToList/ToArray로 1회 구체화(그 후 Count는 O(1))</li><li>IEnumerable≠스냅샷, LINQ 체인 할당 비용(핫패스)</li></ul></div>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <section class="qsec" id="sec-unity-csharp">
+    <h2>Section 05</h2>
+    <p class="sec-title">Unity — MonoBehaviour · 코루틴 · 메모리 · DOTS</p>
+    <p class="sec-blurb">MonoBehaviour 생명주기, Update/FixedUpdate, 코루틴, GC 압박, 풀링, 직렬화, DOTS. <b>· 8문항</b></p>
+    <article class="qcard" id="q33">
+      <div class="qhead">
+        <span class="qnum">Q33</span>
+        <span class="qid">UN-01</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">MonoBehaviour 생명주기</span>
+      </div>
+      <div class="qbody">
+<p>MonoBehaviour의 주요 생명주기 콜백(<code>Awake</code>, <code>OnEnable</code>, <code>Start</code>, <code>FixedUpdate</code>, <code>Update</code>, <code>LateUpdate</code>, <code>OnDisable</code>, <code>OnDestroy</code>)이 호출되는 <strong>순서</strong>를 나열하세요. 그리고 다음을 설명하세요.</p>
+<ol><li><code>Awake</code>와 <code>Start</code>는 각각 어떤 초기화에 쓰는 것이 적절한가?</li><li><code>OnEnable</code>/<code>OnDisable</code>은 <code>Awake</code>/<code>Start</code>와 무엇이 다른가?</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>호출 순서</strong></p>
+<pre class="code"><code>Awake → OnEnable → Start → (매 프레임: FixedUpdate → Update → LateUpdate) → OnDisable → OnDestroy</code></pre>
+<ul><li><strong>Awake</strong>: 스크립트 인스턴스가 로드될 때 <strong>생애 1회</strong>. 컴포넌트의 <code>enabled</code> 체크와 무관하게 호출되지만, 소속 GameObject가 active여야 한다(비활성으로 시작하면 활성화 시점까지 지연). 씬 로드 시 <strong>모든 Awake가 모든 Start보다 먼저</strong> 끝난다. → <code>GetComponent</code> 캐싱 등 <em>자기 자신</em>의 초기화에 사용.</li><li><strong>Start</strong>: 첫 <code>Update</code> 직전 <strong>1회</strong>, 컴포넌트가 enabled일 때(disabled면 활성화 시점까지 지연). 모든 Awake가 끝난 뒤이므로 <strong>다른 오브젝트 참조</strong>에 의존하는 초기화에 안전.</li><li><strong>OnEnable / OnDisable</strong>: 활성/비활성이 <strong>토글될 때마다 반복</strong> 호출. 이벤트 구독/해제, 풀링 재사용 시 상태 리셋에 사용.</li><li><strong>OnDestroy</strong>: 파괴 시 1회. 정리 작업(파괴 시 OnDisable→OnDestroy 순).</li></ul>
+<p><strong>흔한 오개념 교정</strong>: <code>Awake</code>/<code>Start</code>가 매 활성화마다 불린다고 오해하기 쉽지만 둘 다 생애 1회다. 반복적인 활성/비활성 대응은 <code>OnEnable</code>/<code>OnDisable</code>의 역할이다. 또한 물리 이동은 가변 프레임의 <code>Update</code>가 아니라 <code>FixedUpdate</code>에 두어야 한다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>순서 Awake→OnEnable→Start→FixedUpdate/Update/LateUpdate→OnDisable→OnDestroy</li><li>Awake=자기 초기화·모든 Awake가 Start보다 먼저, Start=타 오브젝트 참조</li><li>Awake/Start는 생애 1회 vs OnEnable/OnDisable은 토글마다 반복</li><li>비활성 GameObject는 Awake가 활성화 시점까지 지연</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q34">
+      <div class="qhead">
+        <span class="qnum">Q34</span>
+        <span class="qid">UN-02</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">Update vs FixedUpdate</span>
+      </div>
+      <div class="qbody">
+<p><code>Update</code>와 <code>FixedUpdate</code>의 <strong>호출 시점</strong> 차이를 설명하고, <code>Time.deltaTime</code>과 <code>Time.fixedDeltaTime</code>이 각각 무엇인지 답하세요. 또한 (1) Rigidbody 물리 이동, (2) <code>Input.GetKeyDown</code> 같은 단발 입력은 각각 어느 콜백에 두어야 하며 그 이유는 무엇인가요?</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>Update</strong>: 매 프레임 1회, 호출 간격이 프레임레이트에 따라 <strong>가변</strong>. <code>Time.deltaTime</code> = 직전 프레임 이후 경과 시간(가변).</li><li><strong>FixedUpdate</strong>: 물리 스텝마다 <strong>고정 간격</strong>(기본 0.02초 = 50Hz) 호출. 한 프레임에 <strong>0번 이상 여러 번</strong> 불릴 수 있다(프레임이 느리면 몰아서 여러 번, 아주 빠르면 그 프레임엔 0번). <code>Time.fixedDeltaTime</code> = 고정 스텝 값.</li><li><strong>물리 이동</strong>은 <code>FixedUpdate</code>에 둔다. 물리 엔진과 스텝을 맞춰야 지터/터널링이 줄고 결과가 프레임레이트에 독립적이다.</li><li><strong>단발 입력</strong>(<code>GetKeyDown</code>/<code>GetKeyUp</code>)은 <code>Update</code>에 둔다. 이 값은 프레임 단위로만 1프레임 true인데, <code>FixedUpdate</code>는 해당 프레임에 아예 실행되지 않을 수 있어 입력을 놓칠 수 있다.</li></ul>
+<p><strong>보충</strong>: <code>FixedUpdate</code> 안에서 <code>Time.deltaTime</code>을 읽으면 실제로는 <code>Time.fixedDeltaTime</code> 값을 반환하므로 물리 코드에서 <code>Time.deltaTime</code>을 곱해도 동작상 문제는 없다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>Update=가변 프레임 deltaTime, FixedUpdate=고정 0.02s fixedDeltaTime</li><li>FixedUpdate는 한 프레임에 0~N회 호출 가능</li><li>물리는 FixedUpdate, 단발 입력은 Update(안 그러면 입력 유실)</li><li>FixedUpdate 내 deltaTime은 fixedDeltaTime을 반환</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q35">
+      <div class="qhead">
+        <span class="qnum">Q35</span>
+        <span class="qid">UN-03</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">Camera.main·GetComponent 캐싱</span>
+      </div>
+      <div class="qbody">
+<p>다음 스크립트가 매 프레임 실행됩니다. <strong>성능 관점의 문제 2가지</strong>를 지적하고, 추가로 <strong>물리 API를 잘못된 콜백에서 호출하는 문제</strong>가 있다면 함께 짚은 뒤, 개선한 코드를 제시하세요.</p>
+<pre class="code"><code class="lang-csharp">public class Follower : MonoBehaviour
+{
+    public Transform target;
+
+    void Update()
+    {
+        var rb = GetComponent&lt;Rigidbody&gt;();
+        Vector3 dir = target.position - Camera.main.transform.position;
+        rb.MovePosition(transform.position + dir.normalized * Time.deltaTime);
+    }
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>문제점</strong></p>
+<ol><li><code>GetComponent&lt;Rigidbody&gt;()</code>를 매 프레임 호출 — 컴포넌트 조회 비용이 반복 발생한다. <code>Awake</code>/<code>Start</code>에서 한 번 캐싱해야 한다.</li><li><code>Camera.main</code>을 매 프레임 접근 — 내부적으로 <code>&quot;MainCamera&quot;</code> 태그 오브젝트를 찾는 조회다(2020.2+에서 결과를 캐싱하도록 개선됐으나, 캐시가 무효화되면 다시 탐색하므로 매 프레임 접근은 여전히 지양). 참조를 캐싱한다.</li><li>(물리 API 배치) <code>Rigidbody.MovePosition</code>은 물리 API이므로 <code>Update</code>가 아니라 <code>FixedUpdate</code>에서 호출하는 것이 옳다. <code>Update</code>에서의 물리 이동은 스텝 불일치로 지터를 유발한다.</li></ol>
+<p><strong>개선 예시</strong></p>
+<pre class="code"><code class="lang-csharp">public class Follower : MonoBehaviour
+{
+    public Transform target;
+    private Rigidbody _rb;
+    private Transform _camTr;
+
+    void Awake()
+    {
+        _rb = GetComponent&lt;Rigidbody&gt;();
+    }
+
+    void Start()
+    {
+        _camTr = Camera.main.transform;   // 씬 카메라가 확정된 뒤 1회
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 dir = target.position - _camTr.position;
+        _rb.MovePosition(_rb.position + dir.normalized * Time.fixedDeltaTime);
+    }
+}</code></pre>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>GetComponent 매 프레임 호출 → Awake/Start에서 캐싱</li><li>Camera.main은 태그 탐색이므로 참조 캐싱</li><li>MovePosition은 물리이므로 FixedUpdate로 이동</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q36">
+      <div class="qhead">
+        <span class="qnum">Q36</span>
+        <span class="qid">UN-04</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">코루틴·WaitForSeconds GC</span>
+      </div>
+      <div class="qbody">
+<p>다음 코루틴은 오래 도는 스포너입니다. GC(가비지 컬렉션) 관점에서 문제를 지적하고 개선하세요. 또한 <code>WaitForSeconds</code>와 <code>WaitForSecondsRealtime</code>의 차이, <code>yield return null</code>과의 차이도 설명하세요.</p>
+<pre class="code"><code class="lang-csharp">IEnumerator SpawnLoop()
+{
+    while (true)
+    {
+        Spawn();
+        yield return new WaitForSeconds(1f);
+    }
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>문제</strong>: <code>WaitForSeconds</code>는 참조형(클래스)이라 루프를 돌 때마다 <code>new</code>로 <strong>힙 할당</strong>이 발생 → 반복적인 GC 가비지 누적. <code>WaitForSeconds</code>는 상태가 사실상 불변이라 <strong>루프 밖에서 한 번 만들어 재사용</strong>하면 무할당으로 처리할 수 있다.</p>
+<pre class="code"><code class="lang-csharp">IEnumerator SpawnLoop()
+{
+    var wait = new WaitForSeconds(1f);   // 1회만 생성
+    while (true)
+    {
+        Spawn();
+        yield return wait;               // 재사용
+    }
+}</code></pre>
+<p><strong>차이 설명</strong></p>
+<ul><li><code>yield return null</code>: <strong>다음 프레임까지</strong> 한 프레임 대기(할당 없음). 참고로 <code>yield return 0</code>은 <code>int</code>가 <code>object</code>로 박싱되므로 대신 <code>null</code>을 쓴다.</li><li><code>WaitForSeconds(t)</code>: <strong>스케일된 시간</strong>(<code>Time.timeScale</code> 영향)만큼 대기. <code>timeScale = 0</code>이면 영영 끝나지 않는다.</li><li><code>WaitForSecondsRealtime(t)</code>: 실제(unscaled) 시간으로 대기 → 일시정지(<code>timeScale=0</code>) 중에도 진행. 단, 이 타입은 내부 상태(대기 종료 시각)를 갖는 mutable 객체라 동시에 여러 코루틴에서 같은 인스턴스를 공유하면 안 된다.</li></ul>
+<p><strong>보충</strong>: <code>WaitForEndOfFrame</code>, <code>WaitForFixedUpdate</code> 같은 yield 명령 객체도 캐싱해 재사용할 수 있다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>매 반복 new WaitForSeconds가 힙 할당 → 루프 밖 캐싱 재사용</li><li>WaitForSeconds는 timeScale 영향, Realtime은 unscaled</li><li>yield return null=다음 프레임, yield return 0은 박싱 주의</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q37">
+      <div class="qhead">
+        <span class="qnum">Q37</span>
+        <span class="qid">UN-05</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">코루틴 vs async/await</span>
+      </div>
+      <div class="qbody">
+<p>Unity <strong>코루틴</strong>과 C# <strong>async/await(Task)</strong>를 (1) 실행 스레드, (2) 생명주기/자동 취소, (3) 반환값·예외·취소 처리, (4) 할당 관점에서 비교하세요. 각각 어떤 상황에 쓰는 것이 적절한가요?</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ul><li><strong>실행 스레드</strong>: 코루틴은 항상 <strong>메인 스레드</strong>에서 프레임 단위로 스케줄된다. <code>async/await</code> 자체는 스레드를 새로 만들지 않으며(<code>Task.Run</code> 등을 써야 스레드풀에서 실행), Unity의 <code>SynchronizationContext</code> 덕분에 <code>await</code> 후 메인 스레드로 복귀할 수 있다. <strong>단, Unity API는 메인 스레드에서만 안전</strong>하므로 백그라운드에서 Transform 등을 만지면 안 된다.</li><li><strong>생명주기/자동 취소</strong>: 코루틴은 <code>MonoBehaviour</code>에 종속되어 <strong>GameObject가 비활성(SetActive(false))/파괴되면 자동 중단</strong>된다(컴포넌트의 <code>enabled=false</code>만으로는 멈추지 않는 점에 주의). <code>Task</code>는 오브젝트가 파괴돼도 <strong>자동으로 취소되지 않아</strong> 파괴된 객체 접근·누수 위험이 있다 → <code>CancellationToken</code>(2022.2+의 <code>destroyCancellationToken</code>)으로 직접 취소해야 한다.</li><li><strong>반환값·예외·취소</strong>: 코루틴은 반환값을 받기 어렵고 예외 전파가 제한적이다(예외 시 해당 코루틴만 중단·로그). <code>async/await</code>는 반환값, <code>try/catch</code> 예외 처리, <code>CancellationToken</code> 취소가 자연스럽다.</li><li><strong>할당</strong>: <code>Task</code>/<code>async</code>는 상태머신·Task 객체 할당이 생긴다. 이를 줄이려면 <code>ValueTask</code>나 <strong>UniTask</strong>(무할당·Unity 친화)를 쓴다.</li></ul>
+<p><strong>정리</strong>: 프레임 기반 연출·간단 타이머·씬 종속 로직은 <strong>코루틴</strong>, 반환값/예외/취소가 필요한 IO·네트워크·비동기 로직은 <strong>async/await(가급적 UniTask)</strong>가 적합하다.</p>
+<p><strong>오개념 교정</strong>: &quot;async/await면 멀티스레드다&quot;는 틀렸다 — <code>await</code>는 스레드를 만들지 않는다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>코루틴=메인 스레드 프레임 스케줄, await는 스레드 생성 아님</li><li>코루틴은 오브젝트 파괴/비활성 시 자동 중단, Task는 수동 CancellationToken 필요</li><li>async는 반환값·예외·취소에 유리, 할당은 UniTask/ValueTask로 완화</li><li>async/await=멀티스레드 오개념 교정</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q38">
+      <div class="qhead">
+        <span class="qnum">Q38</span>
+        <span class="qid">UN-06</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">GC 스파이크 진단</span>
+      </div>
+      <div class="qbody">
+<p>모바일 빌드에서 몇 초마다 짧은 프레임 드랍(hitch)이 발생합니다. 프로파일러를 보니 매 프레임 <strong>GC Alloc</strong>이 수 KB씩 잡히고 주기적으로 GC.Collect 스파이크가 뜹니다. <code>Update</code>/코루틴에서 <strong>런타임 힙 할당을 유발하는 흔한 원인 4가지</strong>와 각 회피법을 제시하고, 이런 상황에서 <strong>오브젝트 풀링</strong>이 왜 도움이 되는지 설명하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>흔한 할당 원인과 회피법</strong></p>
+<ol><li><strong>문자열 연결/보간</strong>: <code>&quot;Score: &quot; + score</code>처럼 매 프레임 새 문자열 생성. → 값이 바뀔 때만 갱신, <code>StringBuilder</code>, TextMeshPro의 <code>SetText(포맷, 인자)</code>로 무할당 갱신.</li><li><strong>박싱(boxing)</strong>: 값 타입이 <code>object</code>로 승격되는 경우 — (구버전 Mono/IL2CPP에서) enum 키 <code>Dictionary</code>의 기본 비교자, <code>params object[]</code>, 구조체를 인터페이스로 전달, 값 타입을 받는 로그 오버로드 등. → 전용 제네릭 오버로드, enum엔 커스텀 <code>IEqualityComparer</code> 지정.</li><li><strong>람다/클로저 캡처</strong>: 지역 변수를 캡처하는 람다는 매번 클로저 객체를 할당(특히 매 프레임 이벤트 구독/등록). → 캡처 없는 <code>static</code> 람다 사용, 델리게이트를 필드에 캐싱해 재사용.</li><li><strong>인터페이스를 통한 <code>foreach</code></strong>: <code>List&lt;T&gt;</code>를 직접 <code>foreach</code>하면 열거자가 struct라 할당이 없지만, 같은 리스트를 <code>IEnumerable&lt;T&gt;</code>/<code>IList</code> 등 <strong>인터페이스 타입으로 순회하면</strong> 그 struct 열거자가 박싱되어 할당된다. → 구체 타입으로 순회하거나 인덱스 <code>for</code> 루프.</li></ol>
+<p>(그 밖에 매 프레임 <code>GetComponent</code>, <code>Camera.main</code>, <code>new WaitForSeconds</code>, LINQ, 잦은 <code>Instantiate</code>/<code>Destroy</code>도 주범이다.)</p>
+<p><strong>오브젝트 풀링이 도움되는 이유</strong>: 총알·이펙트처럼 빈번한 <code>Instantiate</code>/<code>Destroy</code>는 매번 힙 할당을 만들고 <code>Destroy</code>된 객체는 GC 대상이 되어 스파이크를 유발한다. 풀링은 객체를 <strong>미리 생성해 두고 <code>SetActive</code> 토글로 재사용</strong>하여 할당/해제 자체를 없애므로 GC 압박과 hitch를 근본적으로 줄인다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>문자열·박싱·람다 캡처·인터페이스 foreach가 대표 할당원</li><li>List&lt;T&gt; 직접 foreach는 무할당, 인터페이스 순회는 박싱</li><li>각 원인의 무할당 대안(SetText·전용 오버로드·static 람다·for)</li><li>풀링=Instantiate/Destroy 제거로 GC 스파이크 완화</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q39">
+      <div class="qhead">
+        <span class="qnum">Q39</span>
+        <span class="qid">UN-07</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">==null 오버로드·파괴된 오브젝트</span>
+      </div>
+      <div class="qbody">
+<p>아래 코드에서 대상 GameObject를 <code>Destroy()</code>한 뒤에도 <code>(A)</code> 분기가 <strong>참이 되어 이미 파괴된 대상에 접근</strong>하는 버그가 보고되었습니다.</p>
+<pre class="code"><code class="lang-csharp">public class Weapon : MonoBehaviour
+{
+    private IDamageable _target;   // 인터페이스 타입 필드
+
+    public void SetTarget(GameObject go)
+    {
+        _target = go.GetComponent&lt;IDamageable&gt;();
+    }
+
+    void Update()
+    {
+        if (_target != null)       // (A)
+            _target.ApplyDamage(10);
+    }
+}</code></pre>
+<p>Unity의 <code>==null</code> 동작과 연관지어 원인을 설명하고, 왜 <strong>인터페이스 타입</strong>으로 담으면 함정에 빠지는지, 올바른 처리법을 제시하세요.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>원인</strong>: <code>UnityEngine.Object</code>는 <code>==</code>/<code>!=</code> 연산자를 <strong>오버로드</strong>하여, C# 참조가 아직 살아 있어도 네이티브(C++) 객체가 파괴됐으면 <code>null</code>처럼 보이게 만든다(이른바 <em>fake null</em>). 그래서 <code>Component == null</code>은 파괴 후 <code>true</code>가 된다.</p>
+<p>그러나 이 오버로드는 <strong>컴파일 타임 정적 타입이 <code>UnityEngine.Object</code>(또는 파생)일 때만</strong> 적용된다. 위 코드의 <code>_target</code>은 정적 타입이 <strong>인터페이스 <code>IDamageable</code></strong>이므로 오버로드가 적용되지 않고 <strong>C#의 기본 참조 비교</strong>가 쓰인다. 파괴된 오브젝트라도 관리 힙의 참조는 여전히 non-null이므로 <code>_target != null</code>이 <code>true</code> → 파괴된 객체에 접근해 <code>MissingReferenceException</code>이 발생한다.</p>
+<p><strong>해결</strong></p>
+<ul><li>인터페이스와 별개로 <code>UnityEngine.Object</code> 참조를 함께 보관하거나, 검사 시점에 캐스팅해 오버로드를 태운다.</li></ul>
+<pre class="code"><code class="lang-csharp">if (_target as UnityEngine.Object != null)   // (_target as UnityEngine.Object) != null 로 파싱, 오버로드 적용
+    _target.ApplyDamage(10);</code></pre>
+<ul><li>혹은 필드를 <code>MonoBehaviour</code>/<code>Component</code> 타입으로 들고, 사용할 때만 인터페이스로 캐스팅한다. 파괴 시점에 명시적으로 참조를 비워주는 것도 안전하다.</li></ul>
+<p><strong>추가 함정</strong>: null 조건 연산자 <code>?.</code>와 null 병합 <code>??</code>도 오버로드된 <code>==</code>를 <strong>타지 않으므로</strong>(순수 참조 null 검사) <code>UnityEngine.Object</code>에 쓰면 fake null을 감지하지 못한다 → Unity 객체에는 <code>?.</code>/<code>??</code> 대신 명시적 <code>== null</code> 비교를 사용한다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>UnityEngine.Object의 오버로드된 ==는 파괴 시 fake null 반환</li><li>정적 타입이 인터페이스/object면 오버로드 미적용 → 기본 참조 비교</li><li>as UnityEngine.Object 캐스팅 후 ==null 검사로 해결</li><li>?. 와 ??는 오버로드를 안 타므로 Unity 객체에 지양</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q40">
+      <div class="qhead">
+        <span class="qnum">Q40</span>
+        <span class="qid">UN-08</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">DOTS·IL2CPP/AOT·Addressables</span>
+      </div>
+      <div class="qbody">
+<p>수천 개의 유닛을 동시 시뮬레이션하는 전략 게임의 성능/출시를 준비 중입니다. 다음 세 가지를 판단해 주세요.</p>
+<ol><li><strong>DOTS(ECS) / Job System / Burst</strong> 도입 여부의 판단 기준과 각 구성요소의 역할.</li><li>iOS 빌드는 <strong>IL2CPP</strong>를 사용합니다. <strong>Mono 대비 차이</strong>와 <strong>AOT 제약</strong>(제네릭/리플렉션)이 코드(및 DOTS)에 주는 영향.</li><li>런타임 에셋 로딩을 <strong>Addressables</strong>로 갈지 <strong>Resources</strong>로 갈지.</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><strong>1) DOTS/Job/Burst</strong></p>
+<ul><li><strong>ECS</strong>: 데이터 지향(SoA)으로 동종 컴포넌트를 캐시 친화적 chunk에 모아 두어, <strong>수천~수만의 동질 엔티티</strong>에 같은 로직을 반복할 때 캐시 미스를 줄인다.</li><li><strong>Job System</strong>: 안전성 검사가 있는 <code>NativeContainer</code> 기반으로 로직을 <strong>여러 코어에 병렬화</strong>(메인 스레드 밖에서 안전 실행).</li><li><strong>Burst</strong>: Job/수치 코드를 LLVM으로 <strong>SIMD 네이티브</strong>로 컴파일해 대폭 가속.</li><li><strong>판단 기준</strong>: 대량·동질 엔티티에 CPU 바운드 데이터 병렬성이 있을 때 이득. 소수 오브젝트·복잡한 개별 게임플레이·기존 MonoBehaviour 자산이 많으면 과설계다. 전면 ECS 없이 <strong><code>IJob</code>+<code>NativeArray</code>+Burst만 부분 도입</strong>하는 절충도 유효하다.</li></ul>
+<p><strong>2) IL2CPP vs Mono / AOT</strong></p>
+<ul><li><strong>Mono</strong>는 IL을 런타임 <strong>JIT</strong> 컴파일(빠른 iteration, 주로 에디터/개발). <strong>IL2CPP</strong>는 IL→C++→네이티브 <strong>AOT</strong> 컴파일로 성능·코드 보호에 유리하나 빌드가 느리다. <strong>iOS는 JIT가 금지</strong>되어 IL2CPP가 사실상 필수다.</li><li><strong>AOT 제약</strong>: 런타임 코드 생성이 불가하다. <code>System.Reflection.Emit</code> 등은 못 쓰고, <strong>값 타입 제네릭 인스턴스화가 코드에 실제로 등장하지 않으면</strong> AOT에 그 버전이 없어 런타임 예외가 날 수 있다(코드 스트리핑과 겹치면 <code>link.xml</code>로 보존 필요). 리플렉션 의존 직렬화/DI도 주의.</li><li><strong>DOTS와의 관계</strong>: Burst 자체가 AOT 컴파일러라 IL2CPP/AOT 환경과 궁합이 좋다.</li></ul>
+<p><strong>3) Addressables vs Resources</strong></p>
+<ul><li><code>Resources</code> 폴더는 내용이 <strong>빌드에 통째로 포함</strong>되어 초기화가 느려지고 메모리·용량 관리가 어려워 대규모에는 공식적으로 비권장이다.</li><li><strong>Addressables</strong>는 주소 기반 <strong>비동기 로드/언로드</strong>, 참조 카운팅, 에셋번들·원격(CDN)/패치, 메모리 제어를 제공한다. 대량 유닛/DLC/원격 콘텐츠가 있는 이 프로젝트에는 <strong>Addressables</strong>가 정답이다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>ECS=캐시친화 대량 엔티티, Job=병렬화, Burst=SIMD 네이티브; 동질·대량일 때 도입</li><li>iOS는 JIT 금지→IL2CPP(AOT) 필수, Mono는 JIT</li><li>AOT는 Reflection.Emit 불가·값타입 제네릭/스트리핑 예외(link.xml)</li><li>대규모/원격은 Resources 비권장→Addressables(비동기·참조카운팅)</li></ul></div>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <section class="qsec" id="sec-game-common">
+    <h2>Section 06</h2>
+    <p class="sec-title">게임 공통 — 수학 · 네트워크 · 패턴 · 아키텍처</p>
+    <p class="sec-blurb">벡터/쿼터니언, 프레임 타이밍, 물리, 네트워크 동기화, 디자인 패턴. <b>· 8문항</b></p>
+    <article class="qcard" id="q41">
+      <div class="qhead">
+        <span class="qnum">Q41</span>
+        <span class="qid">G-01</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">단답형</span>
+        <span class="qtopic">벡터 내적/외적</span>
+      </div>
+      <div class="qbody">
+<p>정규화(normalize)된 두 방향 벡터 <strong>A</strong>, <strong>B</strong>가 있다.</p>
+<ol><li>내적(dot) <code>A·B</code>의 값이 <strong>0 / 양수 / 음수</strong>일 때 두 벡터의 각도 관계를 각각 쓰시오.</li><li>적이 플레이어의 <strong>시야 정면 반각(half-angle) 30° 이내</strong>에 있는지 판정하려면 내적/외적 중 무엇을 쓰며, 판정식을 쓰시오. (플레이어 forward와 플레이어→적 방향을 사용)</li><li>3D에서 외적(cross) <code>A×B</code> 결과 벡터의 <strong>방향</strong>과 <strong>크기</strong>가 각각 무엇을 의미하는지 쓰시오.</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li>정규화되어 있으면 <code>A·B = |A||B|cosθ = cosθ</code>. <strong>0 → 수직(90°)</strong>, <strong>양수 → 예각(0°~90°, 같은 방향 성향)</strong>, <strong>음수 → 둔각(90°~180°, 반대 방향 성향)</strong>.</li><li><strong>내적</strong>을 쓴다. <code>toTarget</code>을 정규화한 뒤 <code>Vector3.Dot(forward, toTarget) &gt;= cos(30°)</code> 이면 시야 안. cos는 각이 커질수록 작아지므로 부등호는 <code>&gt;=</code>. 흔한 실수는 전체 시야각(60°)을 그대로 쓰는 것 — 반드시 <strong>반각(30°)의 코사인</strong>과 비교해야 하고, 두 벡터(forward와 toTarget)를 모두 정규화해야 한다. 참고로 이 판정은 반각 30°의 원뿔(cone) 안쪽을 검사한다. (좌/우 어느 쪽인지 구분은 외적을 쓴다.)</li><li>방향: <strong>두 벡터가 이루는 평면에 수직</strong>인 벡터(오른손 법칙; Unity는 왼손 좌표계라 <code>Vector3.Cross</code>는 왼손 법칙을 따른다 — Unity 공식 문서 명시). 크기: <code>|A||B|sinθ</code>, 즉 <strong>두 벡터가 만드는 평행사변형의 넓이</strong>.</li></ol>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>cosθ 부호로 각도 구간(수직/예각/둔각) 판정</li><li>시야 판정은 내적 + 반각 코사인 비교, 두 벡터 정규화 필수</li><li>외적=수직 벡터, 크기=|A||B|sinθ(평행사변형 넓이)</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q42">
+      <div class="qhead">
+        <span class="qnum">Q42</span>
+        <span class="qid">G-02</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">delta time / 프레임 타이밍</span>
+      </div>
+      <div class="qbody">
+<p>Unity에서 이동 코드를 <code>transform.position += velocity * Time.deltaTime</code> 처럼 작성한다.</p>
+<ol><li><code>Time.deltaTime</code>을 곱하는 이유와, 곱하지 않고 <code>+= velocity</code>만 하면 어떤 문제가 생기는지 설명하시오.</li><li>이동·타이머 같은 로직은 <code>Update()</code>에서 처리하면서, <strong>물리(Rigidbody)</strong> 는 왜 <code>FixedUpdate()</code>에서 다뤄야 하는지 설명하시오.</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li><code>Time.deltaTime</code>은 직전 프레임과 현재 프레임 사이의 경과 시간(초)이다. 프레임 레이트는 기기 성능·부하에 따라 계속 변하므로, 프레임당 고정량을 더하면 <strong>속도가 프레임률에 비례</strong>해 달라진다(60fps에서 30fps의 2배 속도). <code>velocity</code>(= 초당 이동량)에 <code>deltaTime</code>을 곱하면 프레임률과 무관하게 <strong>초당 동일한 이동량</strong>으로 정규화된다. 곱하지 않으면 고사양 기기에서 더 빨라지고 프레임 드랍 시 느려져 밸런스·체감이 하드웨어에 종속된다.</li><li>물리 시뮬레이션은 수치 적분의 <strong>안정성·결정성</strong>을 위해 <strong>고정 timestep</strong>이 필요하다. <code>Update()</code>는 가변 간격이라 적분 오차, 충돌 관통(tunneling), 비결정적 결과가 생긴다. <code>FixedUpdate()</code>는 고정 간격(기본 0.02초, 50Hz)으로 물리 스텝과 동기되므로 Rigidbody의 힘/velocity 조작은 여기서 해야 한다. (참고: <code>FixedUpdate</code> 안에서의 <code>Time.deltaTime</code>은 <code>Time.fixedDeltaTime</code> 값을 반환한다.)</li></ol>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>deltaTime을 곱해 프레임률 독립적인 초당 속도로 정규화</li><li>미적용 시 고fps에서 빨라지는 하드웨어 의존 버그</li><li>물리는 고정 timestep(FixedUpdate) 필요 — 적분 안정성/결정성</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q43">
+      <div class="qhead">
+        <span class="qnum">Q43</span>
+        <span class="qid">G-03</span>
+        <span class="badge diff-jr">주니어</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">delta time 버그</span>
+      </div>
+      <div class="qbody">
+<p>아래 미사일은 <strong>초당 10유닛 전진</strong>, <strong>초당 90° 회전</strong>, <strong>3초 뒤 파괴</strong>를 의도했다. 실제로는 어떻게 동작하며(특히 프레임률에 따라), 어떻게 고쳐야 하는가?</p>
+<pre class="code"><code class="lang-csharp">public class Missile : MonoBehaviour
+{
+    public float speed = 10f;      // 초당 이동 속도(의도)
+    public float turnSpeed = 90f;  // 초당 회전 각도(의도)
+    public float lifeTime = 3f;    // 3초 후 파괴(의도)
+
+    void Update()
+    {
+        transform.position += transform.forward * speed;
+        transform.Rotate(0f, turnSpeed, 0f);
+
+        lifeTime -= 1f;
+        if (lifeTime &lt;= 0f)
+            Destroy(gameObject);
+    }
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>세 줄 모두 <code>Time.deltaTime</code>이 빠져 <strong>프레임당</strong> 처리되므로 전부 프레임률에 종속된다.</p>
+<ul><li><strong>이동·회전(초당 값이 fps에 비례해 폭주)</strong>: 60fps 기준 이동 <code>10×60 = 600유닛/초</code>, 회전 <code>90×60 = 5400°/초</code>. 30fps에선 프레임 수가 절반이므로 이 초당 값들이 절반(<code>300유닛/초</code>, <code>2700°/초</code>)이 된다.</li><li><strong>수명(오히려 저fps에서 더 오래 생존)</strong>: <code>lifeTime</code>은 프레임마다 1씩 줄어 <strong>정확히 3프레임 뒤</strong> 파괴된다. 이 3프레임은 프레임률과 무관하게 일정하므로, 벽시계 시간으로는 60fps에서 약 0.05초, 30fps에서 약 0.1초로 <strong>저사양(저fps) 기기에서 더 오래 산다</strong>(이동·회전 속도와는 반대 방향의 종속성). 결국 이동·회전·수명 모두 기기마다 결과가 달라진다.</li><li>수정: 이동·회전·수명 감소 모두 <code>Time.deltaTime</code>을 곱/차감한다.</li></ul>
+<pre class="code"><code class="lang-csharp">transform.position += transform.forward * speed * Time.deltaTime;
+transform.Rotate(0f, turnSpeed * Time.deltaTime, 0f);
+lifeTime -= Time.deltaTime;</code></pre>
+<p>추가로, 고속 이동체는 프레임 간 충돌 관통(tunneling)이 생길 수 있으므로 물리 충돌이 중요하면 Rigidbody+FixedUpdate 또는 레이캐스트 기반 이동을 고려한다. 단순 수명 처리는 <code>Destroy(gameObject, 3f)</code>로 대체할 수도 있다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>세 줄 모두 deltaTime 누락 → 프레임률 종속</li><li>이동/회전 초당 값은 fps에 비례해 폭주(60fps에서 600유닛/초·5400°/초)</li><li>lifeTime은 항상 3프레임 뒤 파괴 → 저fps일수록 벽시계 생존시간이 더 김(이동/회전과 반대 방향 종속)</li><li>이동/회전/수명 모두 deltaTime 곱·차감으로 수정</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q44">
+      <div class="qhead">
+        <span class="qnum">Q44</span>
+        <span class="qid">G-04</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">쿼터니언/짐벌락/slerp</span>
+      </div>
+      <div class="qbody">
+<p>회전을 다룰 때 다음을 설명하시오.</p>
+<ol><li>오일러각(Euler angles)으로 회전을 직접 다룰 때 발생하는 <strong>짐벌락(gimbal lock)</strong> 이 무엇이며, <strong>쿼터니언(quaternion)</strong> 이 이를 어떻게 회피하는가?</li><li>두 회전을 부드럽게 보간할 때 <strong>Lerp 대신 Slerp</strong> 를 쓰는 이유는? 쿼터니언을 성분별로 그냥 선형보간(Lerp)하면 어떤 문제가 있는가?</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<ol><li><strong>짐벌락</strong>: 오일러각은 세 축 회전을 순차 적용하는데, 특정 자세(예: pitch가 ±90°)에서 두 회전축이 정렬되면 회전 자유도가 3→2로 붕괴해 한 축의 회전이 소실된다. 그 결과 특정 방향으로 못 돌거나 자세가 급격히 튄다. <strong>쿼터니언</strong>은 4D 단위 쿼터니언으로 축-각(axis-angle) 회전을 직접 표현하므로 순차 축 회전이라는 구조 자체가 없어 짐벌락이 없고, 회전 합성이 곱으로 간단하며 특이점이 없다. (단, 쿼터니언을 다시 오일러각으로 변환해 저장·표시하면 그 오일러 표현에서는 짐벌락이 다시 나타날 수 있다.)</li><li><strong>Slerp</strong>(구면 선형보간)는 두 회전을 4D 초구 위 대원 호(great arc)를 따라 <strong>등각속도</strong>로 보간한다. 성분별 Lerp는 직선 보간이라 (1) 결과가 단위 길이를 벗어나 정규화가 필요하고, (2) 각속도가 일정하지 않아 중간이 빠르거나 느려진다. 또한 <code>q</code>와 <code>-q</code>는 같은 회전을 나타내므로, 보간 전 내적 부호를 확인해 <code>dot&lt;0</code>이면 한쪽 부호를 뒤집어 <strong>최단 경로</strong>로 돌아야 먼 길로 회전하지 않는다. (Unity의 <code>Quaternion.Slerp</code>/<code>Lerp</code>는 내부적으로 최단 경로 처리 및 결과 정규화를 해 준다.) 각도차가 작으면 정규화 Lerp(nlerp)가 시각적으로 충분하고 더 저렴한 대안이 된다.</li></ol>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>짐벌락=축 정렬로 자유도 소실, 쿼터니언은 축-각 표현이라 없음(단 오일러 변환 시 재발 가능)</li><li>Slerp=대원 호 등각속도 보간</li><li>성분별 Lerp는 비단위·비등속, q/-q 최단경로 처리 필요</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q45">
+      <div class="qhead">
+        <span class="qnum">Q45</span>
+        <span class="qid">G-05</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">코드분석</span>
+        <span class="qtopic">Lerp 프레임 의존 스무딩</span>
+      </div>
+      <div class="qbody">
+<p>카메라가 타깃을 부드럽게 따라가도록 아래처럼 작성했다. 이 코드는 <strong>프레임률이 높을수록 더 빨리 따라붙는</strong> 문제가 있다. 왜 그런지 설명하고, 프레임률에 독립적으로 만드는 방법을 제시하시오.</p>
+<pre class="code"><code class="lang-csharp">void Update()
+{
+    transform.position = Vector3.Lerp(transform.position, target.position, 0.1f);
+}</code></pre>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p><code>Vector3.Lerp(a, b, t)</code>는 <code>a</code>에서 <code>b</code>쪽으로 <code>t</code> 비율만큼 이동시킨다. 매 프레임 <code>t=0.1</code>을 적용하면 <strong>&quot;프레임당&quot; 10%씩</strong> 접근하므로, 프레임 수가 많은 고fps 기기에서 초당 훨씬 여러 번 접근해 더 빨리 수렴한다. 즉 지수 감쇠의 시정수가 프레임률에 종속된다.</p>
+<p>흔한 오해: <code>Vector3.Lerp(a, b, Time.deltaTime)</code>로 바꾸면 프레임 독립이 된다는 것 — 이는 근사일 뿐 정확히 프레임 독립이 아니다(프레임당 고정 비율 감쇠가 아니므로). 정확한 프레임 독립 지수 감쇠는 감쇠율 <code>k</code>(1/초)에 대해 <code>t = 1 - exp(-k·dt)</code> 형태여야 한다.</p>
+<pre class="code"><code class="lang-csharp">float k = 5f; // 감쇠율(1/초)
+transform.position = Vector3.Lerp(transform.position, target.position,
+                                  1f - Mathf.Exp(-k * Time.deltaTime));</code></pre>
+<p>또는 스프링 기반의 <code>Vector3.SmoothDamp</code>(ref velocity)를 사용한다. 카메라 추적은 렌더링 직전 최신 타깃 위치를 반영하려면 <code>LateUpdate</code>에서 처리하는 것이 좋다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>고정 t를 매 프레임 적용 → 프레임당 감쇠라 고fps에서 빨라짐</li><li>Lerp(a,b,deltaTime)은 정확한 프레임 독립이 아님(오개념 교정)</li><li>정확한 해: t = 1 - exp(-k·dt) 또는 SmoothDamp</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q46">
+      <div class="qhead">
+        <span class="qnum">Q46</span>
+        <span class="qid">G-06</span>
+        <span class="badge diff-mid">미들</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">TCP vs UDP</span>
+      </div>
+      <div class="qbody">
+<p>실시간 대전 액션 게임(초당 20~30회 상태 업데이트)의 네트워크 전송 계층을 설계한다. <strong>TCP와 UDP 중 무엇을 기반</strong>으로 하겠는가? head-of-line blocking, 신뢰성/순서보장, 지연 관점에서 근거를 설명하고, UDP를 택했을 때 <strong>신뢰성이 필요한 메시지</strong>(채팅, 아이템 획득 확정 등)는 어떻게 처리할지 서술하시오.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>실시간 위치/상태 동기는 <strong>UDP 기반</strong>이 표준이다.</p>
+<ul><li><strong>TCP 문제</strong>: 순서·신뢰성을 보장하지만 패킷 손실 시 재전송을 기다리느라 뒤따르는 데이터가 막히는 <strong>head-of-line blocking</strong>이 발생한다. 실시간 상태는 &quot;가장 최신 값&quot;만 중요하고 오래된 패킷은 버려도 되므로, TCP의 순서보장이 오히려 지연을 유발한다. Nagle 알고리즘도 지연 원인(<code>TCP_NODELAY</code>로 끄지만 HOL 문제는 남음)이다.</li><li><strong>UDP 선택</strong>: 순서·신뢰성이 없으므로 애플리케이션에서 필요한 것만 구현한다. 상태 동기는 매 틱 전체/델타 스냅샷을 보내므로 패킷이 손실돼도 다음 틱이 덮어써 재전송이 불필요하고, 시퀀스 번호로 오래된(순서 뒤바뀐) 패킷은 폐기한다.</li><li><strong>신뢰성 필요 메시지</strong>: ACK+재전송+시퀀싱을 갖춘 신뢰성 UDP 채널을 별도로 두거나(비신뢰/신뢰·순서보장 채널을 분리), 그런 메시지만 별도 신뢰 채널로 보낸다. 실무에서는 ENet/RakNet, Unreal의 신뢰/비신뢰 RPC, Unity Transport 등이 이런 <strong>채널 개념</strong>을 제공한다.</li><li>아이템 획득 같은 확정성 이벤트는 <strong>서버 권위</strong>로 결정해 신뢰 채널로 통지하고, 클라는 서버 확정을 최종 진실로 삼는다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>실시간 동기는 UDP — TCP는 HOL blocking으로 오래된 데이터가 막음</li><li>손실 시 재전송 대신 다음 스냅샷이 덮어씀 + 시퀀스로 구식 폐기</li><li>신뢰 필요 메시지는 별도 신뢰 채널(ACK/재전송) 또는 서버 권위 확정</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q47">
+      <div class="qhead">
+        <span class="qnum">Q47</span>
+        <span class="qid">G-07</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">서술형</span>
+        <span class="qtopic">예측·재조정·보간·지연보상</span>
+      </div>
+      <div class="qbody">
+<p>서버 권위(server-authoritative) 방식의 온라인 FPS/액션 게임에서 다음 세 기법이 각각 어떤 문제를 풀고 어떻게 동작하는지 설명하시오. 또한 각 기법이 <strong>로컬 플레이어</strong>와 <strong>원격 플레이어</strong>에 어떻게 다르게 적용되는지 밝히시오.</p>
+<ol><li>클라이언트 예측(client-side prediction)과 서버 재조정(server reconciliation)</li><li>스냅샷/엔티티 보간(snapshot interpolation)</li><li>지연 보상(lag compensation)</li></ol>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>서버 권위는 치팅 방지에 좋지만 입력→서버 왕복(RTT)만큼 반응 지연이 생긴다. 세 기법으로 이 지연을 감춘다.</p>
+<ol><li><strong>클라 예측 + 재조정(로컬 플레이어)</strong>: 입력을 서버로 보내는 동시에 클라가 같은 시뮬레이션을 즉시 로컬 적용해 조작 지연을 0처럼 보이게 한다. 각 입력에 시퀀스 번호를 붙이고, 서버는 권위 상태와 &quot;마지막으로 처리한 입력 번호&quot;를 회신한다. 클라는 그 권위 상태로 되돌린 뒤 아직 확인되지 않은 입력들을 다시 재생(replay)해 재예측하고, 서버 값과 어긋나면 부드럽게 보정한다(reconciliation). 예측이 맞으면 눈에 띄지 않는다.</li><li><strong>스냅샷 보간(원격 플레이어)</strong>: 다른 플레이어는 예측하지 않는다. 서버 스냅샷을 버퍼에 쌓아 <strong>약간 과거 시점</strong>(interpolation delay, 예: 100ms)을 두 스냅샷 사이 보간으로 렌더한다. 낮은 틱레이트나 패킷 손실에도 부드럽게 보인다. 미래를 추정하는 외삽(extrapolation)은 오차 위험이 커서 보통 보간을 우선한다.</li><li><strong>지연 보상(서버, 히트 판정)</strong>: 원격 플레이어를 과거 시점으로 보다 보니, 쏜 순간 슈터 화면의 타깃 위치와 서버 현재 위치가 다르다. 서버는 발사 명령에 담긴 클라 타임스탬프/틱으로 과거 상태를 되감아(rewind) 그 시점의 히트박스로 판정한다 → &quot;본 대로 맞는다&quot;. 대가로 피격자 입장에선 코너 뒤에서 맞는(shot-around-corner) 현상이 생긴다.</li></ol>
+<p>정리: <strong>로컬 플레이어=예측+재조정(즉각 반응)</strong>, <strong>원격 플레이어=스냅샷 보간(부드러운 표현)</strong>, <strong>히트 판정=서버 되감기(lag compensation)</strong>. 결과적으로 각 클라는 같은 월드를 &quot;로컬은 현재, 원격은 과거&quot;라는 서로 다른 시간축에서 본다.</p>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>로컬=예측+시퀀스 기반 재조정(replay)로 입력 지연 은폐</li><li>원격=버퍼링 후 과거 시점 스냅샷 보간(외삽보다 우선)</li><li>지연보상=서버가 클라 타임스탬프로 과거 히트박스 되감기</li><li>로컬은 현재/원격은 과거 — 서로 다른 시간축</li></ul></div>
+        </div>
+      </details>
+    </article>
+    <article class="qcard" id="q48">
+      <div class="qhead">
+        <span class="qnum">Q48</span>
+        <span class="qid">G-08</span>
+        <span class="badge diff-sr">시니어</span>
+        <span class="badge type">실무시나리오</span>
+        <span class="qtopic">DOD/ECS/브로드페이즈</span>
+      </div>
+      <div class="qbody">
+<p>수만 개의 유닛(적·발사체)이 매 프레임 이동·충돌 검사를 하는 RTS/디펜스 게임에서, 전통적 OOP(각 Entity가 <code>Update()</code>를 돌며 서로를 O(n²)로 검사)로 심각한 프레임 저하가 발생한다. <strong>데이터 지향 설계(DOD)</strong> 와 <strong>브로드페이즈(broadphase)</strong> 관점에서 어떻게 최적화하겠는가? 캐시 지역성, 충돌 브로드페이즈 자료구조, 병렬화, ECS를 근거로 서술하시오.</p>
+      </div>
+      <details class="ans">
+        <summary>모범답안 보기</summary>
+        <div class="ans-body">
+<p>우선순위는 <strong>알고리즘 복잡도 → 데이터 레이아웃 → 병렬/SIMD</strong> 순이며, 모두 프로파일링 기반으로 진행한다.</p>
+<ul><li><strong>브로드페이즈(O(n²) → 근접 후보만)</strong>: 공간 분할로 충돌 후보를 좁힌 뒤 정밀 검사(narrow phase)만 수행한다. 대량 균질 유닛에는 uniform grid/spatial hash가 평균 상수시간 삽입·조회로 특히 유리하고, 분포가 불균일하면 quadtree/BVH, 축 정렬 이동이 많으면 sweep-and-prune을 고려한다.</li><li><strong>캐시 지역성(DOD)</strong>: OOP는 엔티티가 힙에 흩어진 참조/객체(AoS 성향)로 놓이고 가상함수 <code>Update()</code>의 vtable 간접호출까지 겹쳐 캐시 미스·분기 예측 실패가 잦다. 데이터를 <strong>SoA</strong>(<code>positions[]</code>, <code>velocities[]</code> …)로 모아 연속 메모리를 선형 순회하면 캐시 히트율과 SIMD 친화성이 오른다. &quot;객체별 Update 호출&quot;이 아니라 &quot;같은 연산을 배열 전체에 일괄 적용&quot;하는 데이터 변환 파이프라인으로 재구성한다.</li><li><strong>ECS</strong>: 컴포넌트(데이터)를 아키타입/청크 단위 연속 배열로 저장하고 시스템이 배치로 처리해 DOD를 구조적으로 강제한다. Unity DOTS(Entities + Burst + Job System)가 대표적이다.</li><li><strong>병렬화</strong>: 이동·브로드페이즈 갱신처럼 독립적인 데이터 병렬 작업은 Job System/멀티스레드로 분산하고 Burst로 SIMD 컴파일한다. 단, 쓰기 경합을 피하려면 읽기 단계와 쓰기 단계를 분리해야 한다.</li></ul>
+          <div class="gradepoints"><p class="gp-h">채점 포인트</p><ul><li>브로드페이즈(spatial hash/grid, BVH, sweep-and-prune)로 O(n²) 제거</li><li>힙 산재 객체+가상함수 → SoA 연속 배열로 캐시 지역성/SIMD 확보</li><li>ECS(DOTS/Burst/Job)로 배치 처리 + 데이터 병렬화</li><li>알고리즘→레이아웃→병렬 순, 프로파일 기반</li></ul></div>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <p class="disclaimer">본 자료는 면접 대비용 학습 목적으로 정리한 참고자료이며, 특정 기업의 기출문제가 아닙니다. C++ 표준·.NET/Mono·Unity·Unreal은 버전별로 동작·API가 달라질 수 있으니, 실제 면접 전 공식 문서로 재확인하세요.</p>
+
+</div>
+
+<script>
+  (function(){
+    var all=false;
+    var b=document.getElementById('toggleAll');
+    if(b){b.addEventListener('click',function(){
+      all=!all;
+      document.querySelectorAll('details.ans').forEach(function(d){d.open=all;});
+      b.textContent=all?'모범답안 모두 접기':'모범답안 모두 펼치기';
+    });}
+    var p=document.getElementById('printBtn');
+    if(p){p.addEventListener('click',function(){window.print();});}
+    window.addEventListener('beforeprint',function(){
+      document.querySelectorAll('details.ans').forEach(function(d){d.dataset.pv=d.open?'1':'0';d.open=true;});
+    });
+    window.addEventListener('afterprint',function(){
+      document.querySelectorAll('details.ans').forEach(function(d){d.open=(d.dataset.pv==='1');});
+    });
+  })();
+</script>
+</body>
+</html>

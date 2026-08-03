@@ -6,6 +6,10 @@
 
 - `index.html` — 노트·가이드 모음(허브)
 
+### 면접 예상문제
+
+- `cpp-csharp-interview.html` — C++ / C# 게임 개발자 면접 예상문제(Unity·Unreal): 6개 영역(C++ 코어·C++ 고급·Unreal C++·C# 코어·Unity·게임 공통) 총 48문항. 난이도(주니어~시니어)·유형(단답/서술/코드분석/시나리오)별로 모범답안과 채점 포인트를 접이식으로 제공하며 인쇄/PDF 저장 지원
+
 ### 개발 노트
 
 - `ai-era-unity-architecture.html` — AI 코딩 시대의 유니티 대규모 프로젝트 설계: 검수 비용 관점, 클린 아키텍처의 이득·비용, 함수형 코어·데이터 지향, 계층 분리(blast radius), Data/ViewEntity/View 3계층 테스트
