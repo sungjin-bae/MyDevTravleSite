@@ -12,6 +12,8 @@
 
 ### 개발 노트
 
+- `chameleon-hideseek-analysis.html` — 카멜레온 위장 게임(octopus7/chameleon, UE 5.7 숨바꼭질 모작) 코드 분석: 절차 메타볼 몸체 채색(정점색+텍스처 2채널·rest-pose 역매핑), 언리얼 내장 리플리케이션·서버 권위 동기화, 채색 미복제 함정
+- `tinyrenderer-software-rendering.html` — 500줄 소프트웨어 렌더러(ssloy/tinyrenderer) 코드 분석: 서드파티 없이 OBJ→MVP 변환→원근분할→바운딩박스+무게중심 래스터화→z-buffer→Darboux 프레임 탄젠트공간 노멀맵 Phong 셰이딩
 - `ai-era-unity-architecture.html` — AI 코딩 시대의 유니티 대규모 프로젝트 설계: 검수 비용 관점, 클린 아키텍처의 이득·비용, 함수형 코어·데이터 지향, 계층 분리(blast radius), Data/ViewEntity/View 3계층 테스트
 - `unity-memory-coreclr.html` — Unity 메모리 구조와 CoreCLR: GC(mark-sweep-compact·LOH·decommit)·네이티브 메모리·최적화(이벤트 해제·NonAlloc·바이너리 직렬화·ZString·GPU 인스턴싱) 정리
 

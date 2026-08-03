@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>개발 노트 & 정리 가이드 모음</title>
-<meta name="description" content="C++/C# 게임 개발자 면접 예상문제(Unity·Unreal), Unity 메모리·CoreCLR·GC 개발 스터디 노트와, 서울·성남 전세대출·청약 정리 가이드 모음">
+<meta name="description" content="C++/C# 게임 개발자 면접 예상문제(Unity·Unreal), Unity·언리얼·그래픽스 렌더링 개발 스터디 노트와, 서울·성남 전세대출·청약 정리 가이드 모음">
 <style>
   :root{
     --paper:#F5F7F4; --surface:#FFFFFF; --ink:#1A211E; --muted:#5B635E; --faint:#8A938D;
@@ -58,7 +58,7 @@
   <header>
     <p class="eyebrow">개발 노트 · 가이드 모음</p>
     <h1>개발 노트 &amp; 정리 가이드</h1>
-    <p class="lede">C++/C# 게임 개발자 면접 예상문제와 Unity 개발 스터디 노트, 성남·서울 전세대출·청약 정리 가이드를 모아둔 공간입니다. 카드를 눌러 이동하세요.</p>
+    <p class="lede">C++/C# 게임 개발자 면접 예상문제와 Unity·언리얼·그래픽스 렌더링 개발 스터디 노트, 성남·서울 전세대출·청약 정리 가이드를 모아둔 공간입니다. 카드를 눌러 이동하세요.</p>
   </header>
 
   <div class="cards">
@@ -69,6 +69,22 @@
       <div class="tags"><span>C++ 메모리·동시성</span><span>Unreal UObject·GC</span><span>C# GC·async</span><span>Unity 생명주기·DOTS</span><span>모범답안·채점 포인트</span></div>
       <p>Unity·Unreal 기반 게임 개발자 면접 대비 필기 시험지. 6개 영역 총 48문항(주니어~시니어)을 도메인별로 출제하고 2차 기술 검수를 거친 모범답안·채점 포인트를 접이식으로 제공합니다. 인쇄/PDF 저장도 지원.</p>
       <span class="go">시험지 열기 <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card b" href="chameleon-hideseek-analysis.html">
+      <p class="kicker">Dev Notes · Game Engine</p>
+      <h2>카멜레온 위장 게임 뜯어보기 — UE5 절차 채색과 서버 권위 동기화</h2>
+      <div class="tags"><span>Unreal Engine 5.7</span><span>절차 메시 채색</span><span>언리얼 리플리케이션</span><span>서버 권위</span></div>
+      <p>octopus7/chameleon(숨바꼭질 위장 게임 모작) 코드 분석 — 절차 메타볼 몸체에 정점색+텍스처 2채널로 칠하는 법, 언리얼 내장 리플리케이션·서버 권위 동기화 구조, 그리고 “칠한 색이 복제 안 되는” 핵심 함정까지.</p>
+      <span class="go">노트 보기 <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card a" href="tinyrenderer-software-rendering.html">
+      <p class="kicker">Dev Notes · Graphics</p>
+      <h2>500줄 소프트웨어 렌더러 뜯어보기 — tinyrenderer가 GPU 없이 3D를 그리는 법</h2>
+      <div class="tags"><span>소프트웨어 렌더링</span><span>래스터화·무게중심</span><span>z-buffer</span><span>탄젠트공간 노멀맵</span></div>
+      <p>ssloy/tinyrenderer(약 500줄 C++) 코드 분석 — 서드파티 없이 OBJ 모델을 MVP 변환·원근분할·바운딩박스+무게중심 래스터화·z-buffer·Darboux 프레임 Phong 셰이딩으로 그려내는 그래픽스 파이프라인을 코드부터 정리.</p>
+      <span class="go">노트 보기 <span class="arrow">→</span></span>
     </a>
 
     <a class="card b" href="ai-era-unity-architecture.html">
