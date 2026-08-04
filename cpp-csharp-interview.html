@@ -120,9 +120,26 @@
   @media print{
     body{background:#fff;} .toolbar,.backlink,.toc{display:none;}
     .qcard{box-shadow:none;break-inside:avoid;} details.ans>summary{display:none;}
+    .myans{background:#fff;break-inside:avoid;} .myans .clr{display:none;} .myans textarea{border-color:#ccc;}
     pre.code{background:#f3f4f2;border-color:#ddd;} pre.code code{color:#1a211e;}
     .ans-body{background:#fafafa;}
   }
+  /* ── 내 답안(브라우저 로컬 저장) ───────────────────── */
+  .myans{margin-top:16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .myans-h{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+  .myans-h .lbl{font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--accent-deep);display:inline-flex;align-items:center;gap:6px;}
+  .myans-h .status{font-size:11.5px;color:var(--faint);margin-left:auto;transition:color .2s;white-space:nowrap;}
+  .myans-h .status.saved{color:var(--accent);} .myans-h .status.dirty{color:var(--amber);}
+  .myans textarea{width:100%;box-sizing:border-box;min-height:74px;resize:vertical;display:block;overflow:hidden;
+    border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);
+    font-family:var(--sans);font-size:14.5px;line-height:1.7;padding:11px 13px;}
+  .myans textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+  .myans textarea::placeholder{color:var(--faint);}
+  .myans .clr{background:none;border:1px solid var(--line);border-radius:7px;font-size:11.5px;font-weight:600;
+    padding:3px 9px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:border-color .15s,color .15s;}
+  .myans .clr:hover{border-color:var(--alert);color:var(--alert);}
+  .myans-count{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent-deep);
+    background:var(--accent-soft);border-radius:999px;padding:8px 14px;display:inline-flex;align-items:center;gap:6px;}
 </style>
 </head>
 <body>
@@ -161,6 +178,11 @@
   <div class="toolbar">
     <button class="btn" id="toggleAll" type="button">모범답안 모두 펼치기</button>
     <button class="btn" id="printBtn" type="button">인쇄 / PDF 저장</button>
+    <button class="btn" id="exportAns" type="button">내 답안 내보내기(.json)</button>
+    <button class="btn" id="importAns" type="button">가져오기</button>
+    <button class="btn" id="clearAns" type="button">내 답안 전체 지우기</button>
+    <span class="myans-count" id="ansCount" title="작성한 답안 수">✍ 내 답안 0 / 0</span>
+    <input type="file" id="importFile" accept="application/json,.json" hidden>
   </div>
 
   <nav class="toc" aria-label="목차">
@@ -1555,6 +1577,129 @@ transform.position = Vector3.Lerp(transform.position, target.position,
     window.addEventListener('afterprint',function(){
       document.querySelectorAll('details.ans').forEach(function(d){d.open=(d.dataset.pv==='1');});
     });
+  })();
+</script>
+
+<script>
+  /* 내 답안: 각 문항에 편집기 주입 + 브라우저 localStorage 자동 저장 + 내보내기/가져오기 */
+  (function(){
+    var KEY='cppcs-interview-answers-v1';
+    var store={};
+    try{ store=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ store={}; }
+
+    var cards=[].slice.call(document.querySelectorAll('article.qcard'));
+    var editors={};      // id -> {ta, status}
+    var timers={};
+
+    function pad(n){ return (n<10?'0':'')+n; }
+    function nowStr(){ var d=new Date(); return pad(d.getHours())+':'+pad(d.getMinutes()); }
+    function has(v){ return v && v.trim().length>0; }
+    function answered(){ var c=0; for(var k in store){ if(store.hasOwnProperty(k)&&has(store[k])) c++; } return c; }
+    function updateCount(){ var el=document.getElementById('ansCount'); if(el) el.textContent='✍ 내 답안 '+answered()+' / '+cards.length; }
+    function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+    function grow(ta){ ta.style.height='auto'; ta.style.height=(ta.scrollHeight+2)+'px'; }
+    function setStatus(st,cls,txt){ st.className='status'+(cls?(' '+cls):''); st.textContent=txt; }
+    function renderStatus(st,v){ if(has(v)) setStatus(st,'saved','저장됨'); else setStatus(st,'',''); }
+
+    cards.forEach(function(card){
+      var id=card.id; if(!id) return;
+      var qidEl=card.querySelector('.qid'); var qid=qidEl?qidEl.textContent.trim():id;
+
+      var box=document.createElement('div'); box.className='myans';
+      var head=document.createElement('div'); head.className='myans-h';
+      var lbl=document.createElement('span'); lbl.className='lbl'; lbl.textContent='✍ 내 답안';
+      var status=document.createElement('span'); status.className='status';
+      var clr=document.createElement('button'); clr.type='button'; clr.className='clr'; clr.textContent='지우기';
+      head.appendChild(lbl); head.appendChild(status); head.appendChild(clr);
+
+      var ta=document.createElement('textarea');
+      ta.setAttribute('spellcheck','false');
+      ta.setAttribute('aria-label', qid+' 내 답안');
+      ta.placeholder='여기에 직접 답안을 작성하세요 — 이 브라우저에 자동 저장됩니다. (모범답안을 펼치기 전에 먼저 써보는 걸 권합니다)';
+      ta.value=store[id]||'';
+
+      box.appendChild(head); box.appendChild(ta);
+
+      var details=card.querySelector('details.ans');
+      if(details){ card.insertBefore(box, details); } else { card.appendChild(box); }
+
+      renderStatus(status, ta.value);
+      requestAnimationFrame(function(){ grow(ta); });
+
+      ta.addEventListener('input', function(){
+        grow(ta);
+        setStatus(status,'dirty','입력 중…');
+        clearTimeout(timers[id]);
+        timers[id]=setTimeout(function(){
+          if(has(ta.value)){ store[id]=ta.value; } else { delete store[id]; }
+          persist(); updateCount();
+          if(has(ta.value)) setStatus(status,'saved','저장됨 · '+nowStr()); else setStatus(status,'','');
+        }, 350);
+      });
+
+      clr.addEventListener('click', function(){
+        if(has(ta.value) && !confirm(qid+' 답안을 지울까요?')) return;
+        ta.value=''; delete store[id]; persist(); updateCount();
+        grow(ta); setStatus(status,'',''); ta.focus();
+      });
+
+      editors[id]={ ta:ta, status:status };
+    });
+
+    updateCount();
+
+    function reRender(){
+      for(var id in editors){ if(!editors.hasOwnProperty(id)) continue;
+        var e=editors[id]; e.ta.value=store[id]||''; grow(e.ta); renderStatus(e.status, e.ta.value); }
+      updateCount();
+    }
+
+    /* 내보내기: JSON 파일 다운로드(백업·다른 기기 이동용) */
+    var ex=document.getElementById('exportAns');
+    if(ex) ex.addEventListener('click', function(){
+      var payload={ _meta:{ page:'cpp-csharp-interview', savedAt:new Date().toISOString(), count:answered() }, answers:store };
+      var blob=new Blob([JSON.stringify(payload,null,2)], {type:'application/json'});
+      var url=URL.createObjectURL(blob);
+      var d=new Date(), stamp=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());
+      var a=document.createElement('a'); a.href=url; a.download='cpp-csharp-내답안-'+stamp+'.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    });
+
+    /* 가져오기: JSON 파일 읽어 병합 */
+    var imp=document.getElementById('importAns'), file=document.getElementById('importFile');
+    if(imp && file){
+      imp.addEventListener('click', function(){ file.click(); });
+      file.addEventListener('change', function(){
+        var f=file.files && file.files[0]; if(!f){ return; }
+        var r=new FileReader();
+        r.onload=function(){
+          try{
+            var data=JSON.parse(r.result);
+            var ans=(data && data.answers) ? data.answers : data;   // 래핑/원본 둘 다 허용
+            if(typeof ans!=='object' || !ans){ throw new Error('bad'); }
+            var n=0;
+            for(var k in ans){ if(ans.hasOwnProperty(k) && typeof ans[k]==='string'){ store[k]=ans[k]; n++; } }
+            persist(); reRender();
+            alert('가져오기 완료: '+n+'개 항목을 불러왔습니다.');
+          }catch(err){ alert('가져오기 실패: JSON 형식을 확인하세요.'); }
+          file.value='';
+        };
+        r.readAsText(f);
+      });
+    }
+
+    /* 전체 지우기 */
+    var cl=document.getElementById('clearAns');
+    if(cl) cl.addEventListener('click', function(){
+      var c=answered(); if(c===0){ alert('저장된 내 답안이 없습니다.'); return; }
+      if(!confirm('이 브라우저에 저장된 내 답안 '+c+'개를 모두 지울까요? 되돌릴 수 없습니다.')) return;
+      store={}; persist(); reRender();
+    });
+
+    /* 폭 변경 시 높이 재계산 */
+    var rz; window.addEventListener('resize', function(){ clearTimeout(rz); rz=setTimeout(function(){
+      for(var id in editors){ if(editors.hasOwnProperty(id)) grow(editors[id].ta); } }, 150); });
   })();
 </script>
 </body>

@@ -136,6 +136,7 @@
     <p class="toc-h">목차</p>
     <ol>
       <li><a href="#sec-what">01 · 무엇을 하는 코드인가</a></li>
+      <li><a href="#sec-pipeline">· 파이프라인 한눈에</a></li>
       <li><a href="#sec-math">02 · 준비물: 수학과 이미지</a></li>
       <li><a href="#sec-model">03 · 3D 모델 읽어오기</a></li>
       <li><a href="#sec-spaces">04 · 좌표계 여행 (사진 찍기)</a></li>
@@ -192,6 +193,76 @@
       </table>
     </div>
     <p class="subnote">유일한 선택적 부품은 “여러 픽셀을 동시에 계산”하는 OpenMP 한 줄뿐. 없어도 (조금 느리게) 그대로 돌아갑니다.</p>
+  </section>
+
+  <section id="sec-pipeline">
+    <h2>파이프라인 한눈에</h2>
+    <p class="sec-title">OBJ 한 점이 TGA 픽셀이 되기까지, 전체 흐름</p>
+    <div class="plain">
+      <span class="ic">🏭</span>
+      <p><span class="h">쉽게 말하면</span>이 렌더러 전체는 <b>여섯 단계짜리 공장 라인</b>입니다. 모델을 <b>읽고</b> → 각 점을 화면 좌표로 <b>옮기고</b> → 삼각형을 픽셀로 <b>채우고</b>(겹치면 앞엣것만) → 빛으로 <b>색을 정해</b> → 이미지 파일로 <b>저장</b>합니다. 아래가 그 전체 지도이고, 03~06장이 각 칸을 하나씩 자세히 풀어요.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 790 210" role="img" aria-label="tinyrenderer 렌더링 파이프라인 전체 흐름 6단계">
+        <defs><marker id="pp" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0F5B52"/></marker></defs>
+        <g font-family="'Pretendard Variable',Pretendard,'Malgun Gothic',sans-serif">
+          <rect x="6"   y="58" width="112" height="76" rx="11" fill="#E2EFEB" stroke="#0F5B52" stroke-width="1.4"/>
+          <text x="62"  y="46"  text-anchor="middle" fill="#8A938D" font-size="10.5" font-weight="700">03장</text>
+          <text x="62"  y="90"  text-anchor="middle" fill="#0A4942" font-size="13"   font-weight="700">① 모델 로드</text>
+          <text x="62"  y="108" text-anchor="middle" fill="#5B635E" font-size="10.5">OBJ · 텍스처</text>
+          <line x1="118" y1="96" x2="138" y2="96" stroke="#0F5B52" stroke-width="1.6" marker-end="url(#pp)"/>
+
+          <rect x="138" y="58" width="112" height="76" rx="11" fill="#FFFFFF" stroke="#0F5B52" stroke-width="1.4"/>
+          <text x="194" y="46"  text-anchor="middle" fill="#8A938D" font-size="10.5" font-weight="700">04장</text>
+          <text x="194" y="90"  text-anchor="middle" fill="#1A211E" font-size="13"   font-weight="700">② 정점 변환</text>
+          <text x="194" y="108" text-anchor="middle" fill="#5B635E" font-size="10.5">MVP · ÷w · Viewport</text>
+          <line x1="250" y1="96" x2="270" y2="96" stroke="#0F5B52" stroke-width="1.6" marker-end="url(#pp)"/>
+
+          <rect x="270" y="58" width="112" height="76" rx="11" fill="#FFFFFF" stroke="#0F5B52" stroke-width="1.4"/>
+          <text x="326" y="46"  text-anchor="middle" fill="#8A938D" font-size="10.5" font-weight="700">05장</text>
+          <text x="326" y="90"  text-anchor="middle" fill="#1A211E" font-size="13"   font-weight="700">③ 래스터화</text>
+          <text x="326" y="108" text-anchor="middle" fill="#5B635E" font-size="10.5">박스+무게중심</text>
+          <line x1="382" y1="96" x2="402" y2="96" stroke="#0F5B52" stroke-width="1.6" marker-end="url(#pp)"/>
+
+          <rect x="402" y="58" width="112" height="76" rx="11" fill="#FFFFFF" stroke="#0F5B52" stroke-width="1.4"/>
+          <text x="458" y="46"  text-anchor="middle" fill="#8A938D" font-size="10.5" font-weight="700">05장</text>
+          <text x="458" y="90"  text-anchor="middle" fill="#1A211E" font-size="13"   font-weight="700">④ z-buffer</text>
+          <text x="458" y="108" text-anchor="middle" fill="#5B635E" font-size="10.5">앞엣것만 남김</text>
+          <line x1="514" y1="96" x2="534" y2="96" stroke="#0F5B52" stroke-width="1.6" marker-end="url(#pp)"/>
+
+          <rect x="534" y="58" width="112" height="76" rx="11" fill="#FFFFFF" stroke="#0F5B52" stroke-width="1.4"/>
+          <text x="590" y="46"  text-anchor="middle" fill="#8A938D" font-size="10.5" font-weight="700">06장</text>
+          <text x="590" y="90"  text-anchor="middle" fill="#1A211E" font-size="13"   font-weight="700">⑤ 셰이딩</text>
+          <text x="590" y="108" text-anchor="middle" fill="#5B635E" font-size="10.5">노멀맵 · Phong</text>
+          <line x1="646" y1="96" x2="666" y2="96" stroke="#0F5B52" stroke-width="1.6" marker-end="url(#pp)"/>
+
+          <rect x="666" y="58" width="112" height="76" rx="11" fill="#0F5B52"/>
+          <text x="722" y="46"  text-anchor="middle" fill="#8A938D" font-size="10.5" font-weight="700">main.cpp</text>
+          <text x="722" y="90"  text-anchor="middle" fill="#FFFFFF" font-size="13"   font-weight="750">⑥ 저장</text>
+          <text x="722" y="108" text-anchor="middle" fill="#CFE6DF" font-size="10.5">framebuffer.tga</text>
+
+          <text x="6" y="164" fill="#8A938D" font-size="11.5">②~④는 삼각형 하나마다, ⑤는 픽셀 하나마다 반복됩니다 — 모델의 모든 삼각형을 훑으면 한 장이 완성돼요.</text>
+        </g>
+      </svg>
+      <figcaption>왼→오 여섯 칸이 전체 파이프라인입니다. 03~06장은 이 칸들을 하나씩 확대해 설명한 것 — 지금 이 그림이 “목차” 역할을 합니다.</figcaption>
+    </figure>
+
+    <div class="tablewrap">
+      <table>
+        <caption>단계 ↔ 본문 장 매핑 — 각 칸을 자세히 보려면 오른쪽 링크로</caption>
+        <thead><tr><th>단계</th><th>무슨 일</th><th>자세히</th></tr></thead>
+        <tbody>
+          <tr><th>① 모델 로드</th><td>OBJ의 정점·면·UV와 diffuse/normal/spec 텍스처를 읽어들임</td><td><a href="#sec-model">03장</a></td></tr>
+          <tr><th>② 정점 변환</th><td>각 점을 ModelView→Perspective→÷w(원근분할)→Viewport로 화면 좌표화</td><td><a href="#sec-spaces">04장</a></td></tr>
+          <tr><th>③ 래스터화</th><td>삼각형을 감싼 네모를 훑으며 무게중심으로 “픽셀이 삼각형 안이야?” 판정</td><td><a href="#sec-raster">05장</a></td></tr>
+          <tr><th>④ z-buffer</th><td>같은 픽셀이 겹치면 카메라에 더 가까운 것만 남겨 앞뒤를 가림</td><td><a href="#sec-raster">05장</a></td></tr>
+          <tr><th>⑤ 셰이딩</th><td>노멀맵으로 요철을 흉내내고 Phong으로 밝기·반짝임을 더해 픽셀 색 결정</td><td><a href="#sec-shade">06장</a></td></tr>
+          <tr><th>⑥ 이미지 저장</th><td>완성된 프레임버퍼를 <code>framebuffer.tga</code> 한 장으로 기록</td><td>main.cpp</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="subnote">GPU에선 이 라인을 하드웨어가 수천 개씩 <b>병렬로</b> 돌립니다. tinyrenderer는 CPU로 삼각형·픽셀을 <b>한 개씩 순서대로</b> 밟기 때문에, 평소 GPU 안에 숨어 있던 각 단계가 코드로 그대로 드러납니다 — 이게 이 프로젝트의 핵심 가치예요.</p>
   </section>
 
   <section id="sec-math">
