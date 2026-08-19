@@ -19,7 +19,6 @@
 
 ### 주거 가이드
 
-- `seongnam-naksaeng-newlywed.html` — 성남낙생 신혼희망타운 예비신혼부부 청약 가이드
 - `seongnam-arista-kakao-jeonse.html` — 성남아리스타 전세 + 카카오뱅크 청년 전세대출 준비 가이드
 - `songpa-seokchon-villa-jeonse.html` — 송파동 석촌역 올전세 원룸 매물 + 전세대출 정리
 
