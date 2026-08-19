@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>송파동 석촌역 반전세 — 전세보증금 반환보증(보증보험) 가입 계획</title>
+<meta name="description" content="서울 송파구 송파동 반전세(보증금 1억 5,200만원 + 월세 12만원) 계약 완료 · 카카오뱅크 전세자금대출 5,000만원 실행 · 2026.09.04 입주. 전세보증금 반환보증(HUG·HF·SGI) 3종 비교와, 비아파트·카카오뱅크 대출자에게 가장 유리한 HF 전세지킴보증 가입 계획을 정리했습니다. 대출보증과 반환보증의 차이, 126% 룰, 잔금일 전입·확정 동시처리, D-day 역산 일정까지 (2026.08 기준)">
+<style>
+  :root{
+    --paper:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF1EC;
+    --ink:#1A211E;
+    --muted:#5B635E;
+    --faint:#8A938D;
+    --line:#E1E5DF;
+    --accent:#0F5B52;
+    --accent-deep:#0A4942;
+    --accent-soft:#E2EFEB;
+    --teal:#13616E;
+    --teal-deep:#0C434C;
+    --amber:#8A5A12;
+    --amber-soft:#FBF1DA;
+    --amber-line:#EBD6A8;
+    --alert:#9E3B2C;
+    --alert-soft:#F8E6E1;
+    --alert-line:#EBC6BC;
+    --sans:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;
+    --mono:'SFMono-Regular',ui-monospace,'Cascadia Mono','Segoe UI Mono',Menlo,monospace;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.68;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    word-break:keep-all;
+  }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:56px 22px 96px;
+  }
+
+  /* ---- typography ---- */
+  .eyebrow{
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  h1{
+    font-size:clamp(28px,5vw,42px);
+    line-height:1.18;
+    font-weight:800;
+    letter-spacing:-.02em;
+    margin:0 0 16px;
+    text-wrap:balance;
+  }
+  .lede{
+    font-size:17.5px;
+    color:var(--muted);
+    margin:0 0 22px;
+    max-width:60ch;
+  }
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    font-size:13px;
+    color:var(--faint);
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .meta b{color:var(--muted);font-weight:600;}
+
+  h2{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 6px;
+  }
+  .sec-title{
+    font-size:clamp(21px,3.2vw,27px);
+    font-weight:780;
+    letter-spacing:-.015em;
+    margin:0 0 18px;
+    line-height:1.25;
+    text-wrap:balance;
+  }
+  section{margin-top:64px;}
+  p{margin:0 0 14px;}
+  a{color:var(--accent-deep);text-underline-offset:3px;text-decoration-thickness:1px;}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+
+  .backlink{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--accent-deep);text-decoration:none;margin-bottom:26px;}
+  .backlink:hover{text-decoration:underline;}
+
+  /* ---- key takeaway ---- */
+  .keybox{
+    margin-top:38px;
+    display:grid;
+    gap:14px;
+  }
+  .key{
+    display:flex;
+    gap:15px;
+    padding:18px 20px;
+    border-radius:14px;
+    background:var(--surface);
+    border:1px solid var(--line);
+  }
+  .key .tag{
+    flex:0 0 auto;
+    align-self:flex-start;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:999px;
+    margin-top:2px;
+  }
+  .tag.alert{background:var(--alert-soft);color:var(--alert);}
+  .tag.note{background:var(--accent-soft);color:var(--accent-deep);}
+  .tag.amber{background:var(--amber-soft);color:var(--amber);}
+  .key p{margin:0;font-size:15px;}
+  .key strong{font-weight:720;}
+
+  /* ---- listing spec ---- */
+  .spec{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 26px;
+  }
+  .spec .name{font-size:20px;font-weight:760;letter-spacing:-.01em;margin:0 0 3px;}
+  .spec .loc{font-size:13px;color:var(--faint);margin:0 0 18px;}
+  .spec dl{
+    margin:0;display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:16px 22px;
+  }
+  .spec dt{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:3px;}
+  .spec dd{margin:0;font-size:15px;font-variant-numeric:tabular-nums;line-height:1.45;}
+  .spec .memo{margin:18px 0 0;padding-top:14px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted);line-height:1.55;}
+
+  /* ---- checklist ---- */
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+  }
+  .panel.warn{background:var(--amber-soft);border-color:var(--amber-line);}
+  .panel.warn .panel-h{color:var(--amber);}
+  .panel-h{
+    font-size:14px;font-weight:730;letter-spacing:.01em;margin:0 0 12px;
+    display:flex;align-items:center;gap:9px;
+  }
+  ul.check{list-style:none;margin:0;padding:0;display:grid;gap:11px;}
+  ul.check li{position:relative;padding-left:27px;font-size:14.5px;line-height:1.55;}
+  ul.check li::before{
+    content:"";position:absolute;left:0;top:7px;width:15px;height:15px;border-radius:5px;
+    background:var(--accent-soft);border:1.5px solid var(--accent);
+  }
+  ul.check li::after{
+    content:"";position:absolute;left:4.5px;top:9.5px;width:4px;height:8px;
+    border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(40deg);
+  }
+  ul.check.warnlist li::before{background:#fff;border-color:var(--amber);}
+  ul.check.warnlist li::after{border-color:var(--amber);}
+  ul.check b{font-weight:700;}
+  .subnote{font-size:13px;color:var(--muted);margin:14px 0 0;}
+
+  /* ---- explainer ---- */
+  .explainer{
+    background:var(--alert-soft);
+    border:1px solid var(--alert-line);
+    border-left:4px solid var(--alert);
+    border-radius:12px;
+    padding:18px 22px;
+    margin-bottom:24px;
+  }
+  .explainer .h{font-weight:740;color:var(--alert);margin:0 0 8px;font-size:15.5px;}
+  .explainer p{font-size:14.5px;margin:0 0 8px;}
+  .explainer p:last-child{margin:0;}
+  .explainer.ok{background:var(--accent-soft);border-color:var(--accent);border-left-color:var(--accent);}
+  .explainer.ok .h{color:var(--accent-deep);}
+  .explainer.ok p{color:var(--ink);}
+  .explainer.teal{background:#E5EEF0;border-color:var(--teal);border-left-color:var(--teal);}
+  .explainer.teal .h{color:var(--teal-deep);}
+  .explainer.teal p{color:var(--ink);}
+
+  /* ---- table ---- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:620px;font-size:13.5px;}
+  caption{text-align:left;font-size:12.5px;color:var(--faint);padding:12px 16px 0;caption-side:bottom;}
+  th,td{text-align:left;padding:12px 15px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.5;}
+  thead th{
+    position:sticky;top:0;
+    background:var(--accent);color:#fff;font-weight:680;font-size:13px;
+    border-bottom:none;letter-spacing:-.005em;
+  }
+  thead th:first-child{background:var(--accent-deep);}
+  thead th.col-rec{background:var(--teal);}
+  tbody th{
+    background:var(--surface-2);font-weight:680;color:var(--ink);white-space:nowrap;
+    font-size:12.5px;letter-spacing:.01em;
+  }
+  tbody td{font-variant-numeric:tabular-nums;}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:none;}
+  .col-pick{background:var(--accent-soft);}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent-deep);}
+  .pill.x{background:var(--alert-soft);color:var(--alert);}
+  .pill.rec{background:#fff;color:var(--teal-deep);}
+
+  /* ---- steps ---- */
+  .steps{list-style:none;margin:0;padding:0;counter-reset:step;display:grid;gap:12px;}
+  .steps li{
+    position:relative;padding:16px 18px 16px 58px;
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    font-size:14.5px;line-height:1.55;
+  }
+  .steps li::before{
+    counter-increment:step;content:counter(step);
+    position:absolute;left:16px;top:15px;width:28px;height:28px;border-radius:50%;
+    background:var(--accent);color:#fff;font-weight:700;font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps li b{font-weight:720;}
+  .steps .st-h{display:block;font-weight:730;margin-bottom:2px;}
+
+  /* ---- timeline ---- */
+  .timeline{list-style:none;margin:0;padding:0;position:relative;}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line);}
+  .timeline li{position:relative;padding:0 0 20px 34px;}
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{
+    content:"";position:absolute;left:3px;top:4px;width:14px;height:14px;border-radius:50%;
+    background:var(--surface);border:3px solid var(--accent);
+  }
+  .timeline li.crit::before{border-color:var(--alert);background:var(--alert-soft);}
+  .timeline li.done::before{border-color:var(--accent);background:var(--accent);}
+  .timeline .when{font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:2px;}
+  .timeline li.crit .when{color:var(--alert);}
+  .timeline .what{font-size:14.5px;line-height:1.5;}
+  .timeline .what b{font-weight:720;}
+
+  /* ---- sources / footer ---- */
+  .srcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 28px;font-size:13px;}
+  .srcgrid div b{display:block;color:var(--muted);font-weight:600;margin-bottom:4px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+  .srcgrid a{display:block;color:var(--accent-deep);word-break:break-all;line-height:1.5;}
+  .disclaimer{
+    margin-top:32px;font-size:12.5px;color:var(--faint);line-height:1.6;
+    border-top:1px solid var(--line);padding-top:18px;
+  }
+
+  @media (max-width:560px){
+    .wrap{padding:40px 16px 72px;}
+    .key{flex-direction:column;gap:10px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="backlink" href="index.html">← 가이드 목록</a>
+
+  <header>
+    <p class="eyebrow">서울 송파 · 반전세 · 전세보증금 반환보증</p>
+    <h1>송파동 석촌역 반전세 — 전세보증금 반환보증(보증보험) 가입 계획</h1>
+    <p class="lede">계약(반전세 · 보증금 1억 5,200만원 + 월세 12만원)도, <strong>카카오뱅크 전세자금대출 5,000만원</strong>도 끝냈고 <strong>2026년 9월 4일 입주</strong>합니다. 이제 남은 건 <strong>보증금 1.52억을 지키는 '반환보증'</strong> 가입입니다. 대출에 딸린 보증과는 전혀 다른 상품이라, HUG·HF·SGI 세 곳을 비교하고 <strong>이 조건(비아파트 + 카카오뱅크 대출)에 가장 유리한 선택</strong>과 잔금일 전후 순서를 정리했습니다.</p>
+    <div class="meta">
+      <span><b>물건</b> 서울 송파구 송파동 · 빌라/주택(분리형 원룸, 비아파트)</span>
+      <span><b>계약</b> 반전세 · 보증금 1억 5,200만원 + 월세 12만원 (완료)</span>
+      <span><b>대출</b> 카카오뱅크 전세자금대출 5,000만원 (실행 완료)</span>
+      <span><b>입주(잔금)</b> 2026-09-04</span>
+      <span><b>기준일</b> 2026-08-19</span>
+      <span><b>성격</b> 반환보증 가입 계획 (요율·공시가격·자격은 신청 직전 공식 채널 재확인)</span>
+    </div>
+  </header>
+
+  <div class="keybox">
+    <div class="key">
+      <span class="tag alert">먼저 · 개념 정리</span>
+      <p><strong>대출에 딸린 보증 ≠ 지금 들 반환보증.</strong> 카카오뱅크 대출을 내줄 때 붙은 보증은 <strong>내가 대출을 못 갚을 때 은행</strong>을 지키는 보증입니다. 지금 필요한 <strong>전세보증금 반환보증</strong>은 <strong>임대인이 보증금을 안 돌려줄 때 나(임차인)</strong>를 지키는 별개 상품입니다. 대출이 있어도 <strong>보증금 전액 1.52억</strong>에 대해 따로 가입합니다.</p>
+    </div>
+    <div class="key">
+      <span class="tag note">✅ 추천 · HF 전세지킴보증</span>
+      <p>비아파트라 카카오뱅크 대출은 사실상 <strong>HF(한국주택금융공사) 보증부</strong>일 가능성이 매우 높습니다. 그러면 같은 HF의 <strong>‘전세지킴보증’</strong>이 1순위 — 세 곳 중 <strong>보증료가 가장 싸고(연 0.04~0.18%)</strong>, <strong>대출 실행 후 30일 안</strong>이면 대출 때 낸 서류를 재활용해 <strong>카카오뱅크 앱에서 클릭 몇 번</strong>으로 가입됩니다.</p>
+    </div>
+    <div class="key">
+      <span class="tag amber">비아파트 관문 · 126% 룰</span>
+      <p>HUG로 갈 경우 빌라는 <strong>보증금 ≤ 공시가격 × 1.26</strong>이어야 가입됩니다. 보증금 1.52억이면 그 호수의 <strong>공시가격이 약 1억 2,060만원 이상</strong>이어야 통과. 다행히 <strong>등기부 근저당(선순위) 0원</strong>이라 조건이 크게 유리합니다. 신청 전 안심전세앱에서 <strong>공시가격부터 확인</strong>하세요.</p>
+    </div>
+    <div class="key">
+      <span class="tag alert">타이밍 · 9/4 당일이 핵심</span>
+      <p>잔금 치르는 <strong>9월 4일 당일에 전입신고 + 확정일자를 같이</strong> 끝내야 합니다(대항력은 전입 <strong>다음날 0시</strong> 발생 → 당일 근저당 끼어들 위험 차단). 그 뒤 <strong>바로 반환보증 신청</strong>. 월세 12만원은 보증 대상이 아니라 보증금 1.52억만 보호됩니다.</p>
+    </div>
+  </div>
+
+  <!-- ========== 개념 ========== -->
+  <section>
+    <h2>Step 1 · 왜 또 보증인가</h2>
+    <p class="sec-title">‘대출보증’은 은행 몫, ‘반환보증’이 내 보증금을 지킨다</p>
+
+    <div class="explainer">
+      <p class="h">헷갈리기 쉬운 두 보증 — 목적도, 지켜주는 대상도 다릅니다</p>
+      <p><b>대출보증(전세자금보증)</b> : 카카오뱅크가 5,000만원을 빌려줄 때 붙는 보증입니다. <b>내가 대출을 못 갚으면 보증기관이 은행에 대신 갚아</b> 줍니다. 즉 <b>은행을 위한</b> 보증이라, 내 보증금이 떼이는 상황에는 아무 도움이 안 됩니다.</p>
+      <p style="margin:0;"><b>반환보증(전세보증금 반환보증)</b> : <b>임대인이 계약 끝나고 보증금을 안(못) 돌려줄 때 보증기관이 나에게 대신</b> 돌려줍니다. <b>나를 위한</b> 보증이고, 지금 들어야 하는 것이 바로 이것입니다.</p>
+    </div>
+
+    <div class="explainer ok">
+      <p class="h">그래서 지금 상황은?</p>
+      <p>대출·계약은 끝났고 <b>대출보증은 이미 걸려 있습니다.</b> 남은 건 <b>내 보증금 1.52억을 지키는 반환보증 하나</b>뿐입니다. 반환보증은 대출로 낸 5,000만원만이 아니라 <b>보증금 전액(1억 5,200만원)</b>을 보호합니다. 다만 사고가 나면 반환금에서 <b>대출금이 먼저 상환</b>되는 구조일 수 있으니, 실제 보장·상환 순서는 가입 시 확인하세요.</p>
+    </div>
+  </section>
+
+  <!-- ========== 3종 비교 ========== -->
+  <section>
+    <h2>Step 2 · 어디서 드나</h2>
+    <p class="sec-title">HUG · HF · SGI 세 곳 비교 (2026년 기준)</p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>세 곳 모두 ‘전세보증금 반환보증’이지만 운영주체·보증료·조건이 다릅니다. 보증료율·공시가격·최종 자격은 신청 시점에 각 기관 앱/심사에서 확정됩니다.</caption>
+        <thead>
+          <tr>
+            <th scope="col">구분</th>
+            <th scope="col" class="col-rec">HF 전세지킴보증 <span class="pill rec">추천</span></th>
+            <th scope="col">HUG 전세보증금반환보증</th>
+            <th scope="col">SGI 전세금보장신용보험</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">운영</th>
+            <td class="col-pick">한국주택금융공사(공적)</td>
+            <td>주택도시보증공사(공적)</td>
+            <td>SGI서울보증(민간)</td>
+          </tr>
+          <tr>
+            <th scope="row">가입 핵심조건</th>
+            <td class="col-pick"><b>HF 보증부 전세대출 이용 중</b>일 것 — 카뱅 HF 대출이면 충족</td>
+            <td>전입+확정, <b>보증금 ≤ 공시가격×1.26</b>(비아파트 126% 룰)</td>
+            <td>전입+확정, 선순위채권 주택가액 50% 이내</td>
+          </tr>
+          <tr>
+            <th scope="row">보증료율(연)</th>
+            <td class="col-pick"><b>0.04~0.18%</b> (LTV 구간별, 최저)</td>
+            <td>0.097~0.211%</td>
+            <td>비아파트 <b>0.260%</b> (가장 비쌈)</td>
+          </tr>
+          <tr>
+            <th scope="row">1.52억 예상 보증료(연)</th>
+            <td class="col-pick"><b>약 6만~27만원</b></td>
+            <td>약 20만~28만원</td>
+            <td>약 39.5만원</td>
+          </tr>
+          <tr>
+            <th scope="row">보증금 한도(수도권)</th>
+            <td class="col-pick">7억원 이하</td>
+            <td>7억원 이하</td>
+            <td>비아파트 10억원 이내</td>
+          </tr>
+          <tr>
+            <th scope="row">비아파트(빌라) 취급</th>
+            <td class="col-pick"><span class="pill">가능</span></td>
+            <td><span class="pill">가능</span> (공시가격 요건 관건)</td>
+            <td><span class="pill">가능</span> (한도 큼)</td>
+          </tr>
+          <tr>
+            <th scope="row">신청 채널</th>
+            <td class="col-pick"><b>카카오뱅크 앱</b> / HF 스마트주택금융</td>
+            <td>안심전세앱 · 모바일HUG · 위탁은행</td>
+            <td>SGI 앱·지점·대리점</td>
+          </tr>
+          <tr>
+            <th scope="row">이 건 적합도</th>
+            <td class="col-pick"><b>1순위</b> — 대출과 같은 HF, 최저 보증료, 서류 재활용</td>
+            <td>2순위 — 공시가격 낮으면 대안·병행</td>
+            <td>참고 — 위 둘 다 막힐 때만</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="subnote">💡 보증료 순서는 <b>HF &lt; HUG &lt; SGI</b>입니다. 같은 1.52억이라도 SGI는 HF보다 연 30만원 이상 비쌀 수 있습니다. HF가 싼 건 <b>이미 HF 대출로 심사가 끝난 고객</b>을 대상으로 하기 때문이고, 그래서 <b>‘HF 대출 이용 중’</b>이라는 조건이 붙습니다.</p>
+  </section>
+
+  <!-- ========== 내 선택 ========== -->
+  <section>
+    <h2>Step 3 · 나에게 맞는 선택</h2>
+    <p class="sec-title">1순위 HF 전세지킴, 공시가격이 걱정되면 HUG 병행</p>
+
+    <div class="explainer ok">
+      <p class="h">① 1순위 — 카카오뱅크 앱 속 ‘HF 전세지킴보증’</p>
+      <p>카카오뱅크에서 <b>빌라(비아파트) 전세대출</b>은 아파트 전용인 SGI 상품이 안 되므로, 사실상 <b>HF 보증부 대출</b>로 나갑니다(대출약정서의 ‘주택금융공사 보증서’ 문구로 확인). 그러면 같은 HF의 전세지킴보증이 가장 자연스럽습니다 — <b>세 곳 중 보증료 최저</b>, <b>대출 실행 후 30일 이내</b>면 <b>추가 서류 없이 앱에서 가입</b>. 선순위 0원이라 담보인정한도(주택가격×90%) 안에서 <b>보증금 전액이 보호</b>될 가능성이 높습니다.</p>
+    </div>
+
+    <div class="explainer teal">
+      <p class="h">② 2순위 — HUG 안심전세 (단독가입)</p>
+      <p>HF 창(30일)을 놓쳤거나, HF 심사에서 보증금액이 깎이면 <b>HUG 안심전세앱</b>으로 직접 가입할 수 있습니다. 대신 빌라는 <b>126% 룰</b>(보증금 ≤ 공시가격×1.26)이 관문 — 보증금 1.52억이면 <b>공시가격 약 1억 2,060만원 이상</b>이어야 합니다. 그래서 <b>어느 쪽을 고르든 신청 전 안심전세앱으로 공시가격·가입가능 여부를 먼저 조회</b>해두면 좋습니다(HF가 막혀도 HUG가 되거나 그 반대일 수 있음).</p>
+    </div>
+
+    <div class="explainer">
+      <p class="h">③ 참고 — SGI는 마지막 카드</p>
+      <p>SGI는 <b>한도가 크고 심사 문턱이 다른</b> 대신 <b>보증료가 가장 비쌉니다</b>(1.52억 기준 연 약 39.5만원). HF·HUG가 모두 막히는 특수한 경우에만 검토하세요. 이 건은 보증금이 작고 선순위 0원이라 <b>거기까지 갈 일은 거의 없습니다.</b></p>
+    </div>
+  </section>
+
+  <!-- ========== 자격 사전점검 ========== -->
+  <section>
+    <h2>Step 4 · 가입되는지 먼저 확인</h2>
+    <p class="sec-title">신청 전, 이 물건이 조건을 넘는지부터 (선순위 0원이라 대체로 유리)</p>
+
+    <div class="panel" style="margin-bottom:18px;">
+      <p class="panel-h">🔎 신청 전 자격 셀프체크</p>
+      <ul class="check">
+        <li><b>공시가격 확인(HUG용 126% 룰)</b> — 안심전세앱에 물건 주소를 넣어 그 호수 공시가격을 확인. <b>보증금 1.52억 ÷ 1.26 ≈ 1억 2,060만원</b> 이상이면 통과선. 미달이면 HUG는 어렵고 HF·SGI로 우회.</li>
+        <li><b>보증금 한도</b> — 수도권 7억(HUG·HF), SGI 비아파트 10억. <b>1.52억은 전부 여유</b>.</li>
+        <li><b>선순위채권(근저당)</b> — 등기부상 <b>0원</b>이면 담보인정한도가 오직 보증금만으로 계산돼 가장 유리. 잔금 직전까지 0원 유지 확인.</li>
+        <li><b>대항력 3종</b> — 주택 인도(점유) + 전입신고 + 확정일자. <b>9/4 입주일에 한 번에</b> 갖춥니다(Step 5).</li>
+        <li><b>카뱅 대출 보증기관</b> — 대출약정서/카뱅 앱에서 <b>‘HF(주택금융공사)’</b>인지 확인. HF면 전세지킴보증 바로 가능.</li>
+        <li><b>물건 상태</b> — 소유자 = 임대인 일치, 신탁등기·위반(불법)건축물 아님. (계약서상 ‘전세보증보험 가능’으로 표기된 물건)</li>
+      </ul>
+      <p class="subnote">※ 흔한 거절 사유: 전세가율 초과(보증금+선순위 &gt; 주택가격×90%), 공시가격 미달(126% 초과), 신청기한 도과, 위반건축물, 신탁등기·소유자 불일치. <b>선순위 0원</b>인 이 건은 대부분 해당 없음 — 남는 변수는 사실상 <b>공시가격 하나</b>입니다.</p>
+    </div>
+
+    <div class="explainer teal">
+      <p class="h">보증료율은 ‘집값 대비 보증금 비율(LTV)’로 정해집니다</p>
+      <p>HF는 <b>LTV = 보증금 ÷ 주택가격</b>이 낮을수록 요율이 싼 구조(70%↓ 0.04% · 70~80% 0.11% · 80~90% 0.18%). 선순위 0원이라 주택가격이 <b>약 2.17억 이상이면 최저 0.04%(연 약 6만원)</b> 구간입니다. 정확한 요율은 <b>HF ‘예상 보증금액·보증료 조회’</b>나 카뱅 앱에서 확인하세요.</p>
+    </div>
+  </section>
+
+  <!-- ========== 절차 ========== -->
+  <section>
+    <h2>Step 5 · 어떤 순서로 하나</h2>
+    <p class="sec-title">전입·확정 → 순위 확인 → 반환보증 신청</p>
+    <ol class="steps">
+      <li><span class="st-h">잔금 지급 (9/4)</span>카뱅 대출 5,000만원 실행분 + 자기자본으로 <b>보증금 잔금 지급</b>. 대출 실행일 = 잔금일로 맞추기.</li>
+      <li><span class="st-h">전입신고 + 확정일자 — 같은 날 동시에</span><b>정부24 온라인</b> 또는 송파 관할 <b>주민센터</b>에서 전입신고, 이어서 확정일자까지. 대항력이 <b>전입 다음날 0시</b>에 생기므로 <b>반드시 잔금 당일</b> 처리해 당일 근저당 위험을 차단.</li>
+      <li><span class="st-h">보증금 이체확인증 저장</span>계좌이체 내역(보증금 지급 증빙)을 캡처·보관. 반환보증 신청 서류로 쓰입니다.</li>
+      <li><span class="st-h">익일 등기부 재열람 (9/5)</span>대항력 발생을 확인하고, 잔금일에 <b>새 근저당·가압류가 끼지 않았는지</b> 등기사항증명서로 재확인.</li>
+      <li><span class="st-h">반환보증 신청 — 바로</span><b>1순위</b>: 카카오뱅크 앱에서 <b>HF 전세지킴보증</b>(대출 실행 후 30일 내 서류 재활용). <b>2순위/병행</b>: 안심전세앱에서 HUG 가입가능·공시가격 조회 후 신청.</li>
+      <li><span class="st-h">가입 완료·증서 보관</span>보증서(증권)를 받아 보관. 청년·신혼 등 대상이면 <b>보증료 지원(최대 40만원)</b>도 별도 신청.</li>
+    </ol>
+    <p class="subnote">⏱ 최종 신청 마감은 <b>‘잔금·전입일(9/4) 기준 계약기간의 1/2 경과 전’</b>(2년 계약이면 대략 2027년 8~9월)입니다. 하지만 <b>늦출수록 리스크만 커지므로 잔금 직후 바로</b> 가입하세요. 카뱅 HF 경로는 <b>실행 후 30일</b>이 가장 편한 창입니다.</p>
+  </section>
+
+  <!-- ========== 안전 체크 ========== -->
+  <section>
+    <h2>Step 6 · 계약 끝날 때까지 지킬 것</h2>
+    <p class="sec-title">가입만큼 중요한 건 ‘자격 유지’</p>
+
+    <div class="panel warn">
+      <p class="panel-h">⚠ 이걸 어기면 보증이 무력화될 수 있습니다</p>
+      <ul class="check warnlist">
+        <li><b>전입 상태 계속 유지</b> — 계약 중간에 주소를 다른 곳으로 옮기면 대항력·우선변제권이 사라집니다. 이사 전까지 주민등록을 이 집에 둘 것.</li>
+        <li><b>월세 2기(2개월분) 이상 연체 금지</b> — 임대인이 계약해지할 수 있고, 사고 시 <b>밀린 월세는 반환금에서 공제</b>될 수 있습니다.</li>
+        <li><b>임대인 세금 사전 확인</b> — 잔금 전 <b>미납 국세 열람</b>(관할 세무서, 임대인 동의 없이 가능) + 지방세 체납 여부(안심전세앱). 체납이 크면 보증금이 후순위로 밀립니다.</li>
+        <li><b>임대인 본인 확인</b> — 등기부상 소유자와 잔금 받는 계좌 명의가 일치하는지. 대리인이면 위임장·인감 확인.</li>
+        <li><b>다음 계약을 위한 특약</b> — (이번엔 계약이 끝났지만) 향후 갱신 시 <b>‘반환보증 가입 불가 시 계약 무효·보증금 반환’</b> 특약을 넣어두면 안전합니다.</li>
+      </ul>
+    </div>
+
+    <div class="explainer" style="margin-top:18px;">
+      <p class="h">참고 · 앞으로 기준이 더 빡빡해질 수 있습니다</p>
+      <p>2026년 정부가 HUG 담보인정비율을 <b>90% → 80%로 낮추는 방안</b>을 검토 중입니다. 시행되면 빌라 가입 문턱이 더 올라가므로, <b>지금(요건이 상대적으로 여유 있을 때) 서둘러 가입</b>하는 편이 유리합니다.</p>
+    </div>
+  </section>
+
+  <!-- ========== 일정 ========== -->
+  <section>
+    <h2>Step 7 · 일정</h2>
+    <p class="sec-title">입주일(9/4) 기준 역산 타임라인</p>
+
+    <div class="panel">
+      <ul class="timeline">
+        <li class="done">
+          <span class="when">완료</span>
+          <span class="what"><b>반전세 계약 + 카카오뱅크 전세대출 5,000만원</b> 실행 준비 완료. 등기부 선순위 0원.</span>
+        </li>
+        <li class="crit">
+          <span class="when">지금 ~ 9/3 (D-2~D-1)</span>
+          <span class="what"><b>안심전세앱으로 공시가격·가입가능 사전조회</b>(126% 룰), 등기부 재열람(선순위 0 유지), 임대인 미납국세·지방세 확인, 카뱅 대출 <b>보증기관이 HF인지</b> 확인.</span>
+        </li>
+        <li class="crit">
+          <span class="when">9/4 (D-day · 입주)</span>
+          <span class="what"><b>잔금 지급 → 같은 날 전입신고 + 확정일자 동시 처리 → 이체확인증 저장.</b> 대출 실행일과 잔금일을 같은 날로.</span>
+        </li>
+        <li>
+          <span class="when">9/5 (D+1)</span>
+          <span class="what"><b>대항력 발생 확인 + 등기부 재열람</b>(당일 새 근저당 없는지).</span>
+        </li>
+        <li class="crit">
+          <span class="when">9/5 이후 즉시</span>
+          <span class="what"><b>반환보증 신청</b> — 1순위 카뱅 앱 HF 전세지킴보증(실행 후 30일 서류 재활용), 필요 시 HUG 안심전세 병행. 보증료 지원 대상이면 함께 신청.</span>
+        </li>
+        <li>
+          <span class="when">~ 2027년 8~9월</span>
+          <span class="what"><b>최종 신청 마감</b>(계약기간 1/2 경과 전). 단, 위에서 이미 가입 완료 권장 — 이 칸은 절대 마감선일 뿐.</span>
+        </li>
+      </ul>
+      <p class="subnote">※ 계약 내내 <b>전입 유지 + 월세 정상 납부</b>가 자격 유지의 조건입니다(Step 6).</p>
+    </div>
+  </section>
+
+  <!-- ========== 출처 ========== -->
+  <section>
+    <h2>참고</h2>
+    <p class="sec-title">직접 확인할 곳 &amp; 출처</p>
+    <div class="srcgrid">
+      <div>
+        <b>HF · 1순위</b>
+        <a href="https://www.hf.go.kr/ko/sub02/sub02_05_01.do" target="_blank" rel="noopener">HF 일반전세지킴보증(자격·기한·요율)</a>
+        <a href="https://www.hf.go.kr/ko/sub02/sub02_03_03.do" target="_blank" rel="noopener">HF 예상 보증금액·보증료 조회</a>
+        <a href="https://www.hf.go.kr/ko/sub02/sub02_05_06.do" target="_blank" rel="noopener">HF 전세지킴보증 신청가능 확인</a>
+      </div>
+      <div>
+        <b>HUG · 2순위</b>
+        <a href="https://www.khug.or.kr/jeonse/index_jeonse.jsp" target="_blank" rel="noopener">HUG 안심전세포털(공시가격·가입가능 조회)</a>
+        <a href="https://www.khug.or.kr/hug/web/ig/dr/igdr000001.jsp" target="_blank" rel="noopener">HUG 전세보증금반환보증 상품개요</a>
+      </div>
+      <div>
+        <b>SGI · 참고</b>
+        <a href="https://www.sgic.co.kr/biz/ccp/index.html?p=CCPPRD030101F01" target="_blank" rel="noopener">SGI 전세금보장신용보험</a>
+      </div>
+      <div>
+        <b>카카오뱅크</b>
+        <a href="https://www.kakaobank.com/products/leaseLoan" target="_blank" rel="noopener">전월세보증금 대출(HF·전세지킴보증 안내)</a>
+      </div>
+      <div>
+        <b>보증료 지원</b>
+        <a href="https://housing.seoul.go.kr/site/main/content/sh01_061030" target="_blank" rel="noopener">서울주거포털 — 반환보증 보증료 지원</a>
+      </div>
+      <div>
+        <b>안전 확인</b>
+        <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24(전입신고·등본)</a>
+        <a href="https://www.iros.go.kr" target="_blank" rel="noopener">인터넷등기소(등기부·확정일자)</a>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      본 자료는 2026-08-19 기준 공개 정보(HUG·HF·SGI·카카오뱅크 공식 안내 및 관련 보도)를 정리한 참고용이며, 법률·금융 자문이 아닙니다. ① 지금 필요한 것은 대출에 딸린 ‘대출보증’이 아니라 임차인을 보호하는 <b>‘전세보증금 반환보증’</b>이며, 보증금 전액(1억 5,200만원)을 대상으로 별도 가입합니다(월세 12만원은 보증 대상 아님). ② 비아파트+카카오뱅크(HF 보증부) 대출자에게는 <b>HF 전세지킴보증(카뱅 앱, 실행 후 30일 서류 재활용, 최저 보증료)</b>이 1순위이나, 대출 보증기관이 실제 HF인지 대출약정서에서 확인하세요. ③ HUG로 갈 경우 빌라는 <b>보증금 ≤ 공시가격×1.26(126% 룰)</b>이 관문이므로 신청 전 안심전세앱에서 <b>공시가격</b>을 반드시 확인하세요. ④ 보증료율(HF 0.04~0.18% · HUG 0.097~0.211% · SGI 비아파트 0.260%)과 예상 보증료는 구간·주택가격·전세가율에 따라 달라지며 <b>신청 시 최종 확정</b>됩니다. ⑤ <b>9월 4일 잔금 당일 전입신고+확정일자를 동시</b>에 마치고(대항력은 익일 0시 발생), 등기부·임대인 세금 체납을 재확인한 뒤 <b>잔금 직후 즉시</b> 가입하세요. 신청 마감은 계약기간의 1/2 경과 전입니다.
+    </p>
+  </section>
+
+</div>
+
+</body>
+</html>
